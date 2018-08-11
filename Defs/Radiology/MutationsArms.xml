@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+    <defName>MutationFastArms</defName>
+    <label>fast arm</label>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Arm</li></affectedParts>
+    <exclusive>speed</exclusive>
+    <affectsAllParts>false</affectsAllParts>
+  
+    <stage>
+      <capMods>
+        <li><capacity>Manipulation</capacity><offset>0.25</offset></li>
+      </capMods>
+    </stage>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+    <defName>MutationSlowArms</defName>
+    <label>slow arm</label>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Arm</li></affectedParts>
+    <exclusive>speed</exclusive>
+    <affectsAllParts>false</affectsAllParts>
+  
+    <stage>
+      <capMods>
+        <li><capacity>Manipulation</capacity><offset>-0.25</offset></li>
+      </capMods>
+    </stage>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+    <defName>MutationNimbleArms</defName>
+    <label>nimble arm</label>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Arm</li></affectedParts>
+    <exclusive>productivity</exclusive>
+    <affectsAllParts>false</affectsAllParts>
+  
+    <stage>
+      <statOffsets>
+        <WorkSpeedGlobal>0.25</WorkSpeedGlobal>
+      </statOffsets>
+    </stage>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+    <defName>MutationClumsyArms</defName>
+    <label>nimble arm</label>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Arm</li></affectedParts>
+    <exclusive>productivity</exclusive>
+    <affectsAllParts>false</affectsAllParts>
+  
+    <stage>
+      <statOffsets>
+        <WorkSpeedGlobal>-0.25</WorkSpeedGlobal>
+      </statOffsets>
+    </stage>
+  </HediffDef>
+
+
+</Defs>

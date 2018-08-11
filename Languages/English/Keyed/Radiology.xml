@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <CommandRadiologyAssignChamberLabel>Assign</CommandRadiologyAssignChamberLabel>
+  <CommandRadiologyAssignChamberDesc>Assign this chamber to be used by specific colonists.</CommandRadiologyAssignChamberDesc>
+  
+  <ChamberUnavailable>Cannot operate: {0}</ChamberUnavailable>
+  <ChamberNoPower>chamber not powered</ChamberNoPower>
+  <IrradiatorNoPower>irradiator not powered</IrradiatorNoPower>
+  <ChamberNoRoom>must be inside a room</ChamberNoRoom>
+  <ChamberNoIrradiator>no irradiator linked</ChamberNoIrradiator>
+  <ChamberPawnIsHurt>{0} is too hurt</ChamberPawnIsHurt>
+  
+  
+  <CommandRadiologyAssignRadiationBlockingLabel>Setup blocking</CommandRadiologyAssignRadiationBlockingLabel>
+  <CommandRadiologyAssignRadiationBlockingDesc>Setup blocking</CommandRadiologyAssignRadiationBlockingDesc>
+  <RadiologyFilterEnabled>Blocked</RadiologyFilterEnabled>
+  <RadiologyFilterDisabled>Not blocked</RadiologyFilterDisabled>
+
+  <RadiologyFilterBlocking>Blocking: {0}</RadiologyFilterBlocking>
+  <RadiologyFilterNone>none</RadiologyFilterNone>
+
+  <RadiologyRadiationBurn>Harmful radiation: {0}%</RadiologyRadiationBurn>
+  <RadiologyRadiationNormal>Normal radiation: {0}%</RadiologyRadiationNormal>
+  <RadiologyRadiationRare>Rare radiation: {0}%</RadiologyRadiationRare>
+
+
+</LanguageData>

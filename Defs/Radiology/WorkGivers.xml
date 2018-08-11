@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <WorkGiverDef>
+    <defName>RadiologyIrradiate</defName>
+    <label>get irradiated</label>
+    <giverClass>Radiology.WorkGiverIrradiate</giverClass>
+    <workType>PatientBedRest</workType>
+    <priorityInType>50</priorityInType>
+    <verb>get irradiated</verb>
+    <gerund>getting irradiated</gerund>
+  </WorkGiverDef>
+</Defs>

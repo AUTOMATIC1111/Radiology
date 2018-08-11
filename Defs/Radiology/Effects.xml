@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef Name="RadiologyMoteBase" Abstract="True">
+    <thingClass>Radiology.MoteRadiation</thingClass>
+    <label>Mote</label>
+    <category>Mote</category>
+    <graphicData>
+      <graphicClass>Graphic_Mote</graphicClass>
+      <shaderType>Mote</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteLow</altitudeLayer>
+    <tickerType>Normal</tickerType>
+    <useHitPoints>false</useHitPoints>
+    <isSaveable>false</isSaveable>
+    <rotatable>false</rotatable>
+  </ThingDef>
+
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteRadiation</defName>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.1</fadeInTime>
+      <solidTime>4.0</solidTime>
+      <fadeOutTime>1.0</fadeOutTime>
+    </mote>
+    <graphicData>
+      <texPath>Radiology/Effects/MoteRadiation</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+  </ThingDef>
+  
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteRadiationDirected</defName>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.05</fadeInTime>
+      <solidTime>10</solidTime>
+      <fadeOutTime>0.4</fadeOutTime>
+    </mote>
+    <graphicData>
+      <texPath>Radiology/Effects/MoteRadiationDirected</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+  </ThingDef>
+
+  
+</Defs>

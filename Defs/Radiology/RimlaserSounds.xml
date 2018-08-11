@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <SoundDef Abstract="True" Name="RadiologySound">
+    <context>MapOnly</context>
+    <eventNames />
+  </SoundDef>
+
+  <SoundDef ParentName="RadiologySound">
+    <defName>RadiologyIrradiateBasic</defName>  
+    <maxSimultaneous>1</maxSimultaneous>  
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>Radiology/IrradiateBasic</clipFolderPath>
+          </li>
+        </grains>
+        <volumeRange><min>15</min><max>25</max></volumeRange>
+        <sustainLoop>False</sustainLoop>
+      </li>
+    </subSounds>
+  </SoundDef>
+  
+</Defs>
