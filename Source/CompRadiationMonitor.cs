@@ -23,12 +23,12 @@ namespace Radiology
             }
 
             var tr = chamber.radiationTracker;
-            var sum = tr.burn + tr.radiation + tr.radiationRare;
+            var sum = tr.burn + tr.normal + tr.rare;
             if (sum == 0) sum = 1;
 
             values[0] = tr.burn / sum;
-            values[1] = tr.radiation / sum;
-            values[2] = tr.radiationRare / sum;
+            values[1] = tr.normal / sum;
+            values[2] = tr.rare / sum;
         }
 
         public override string CompInspectStringExtra()

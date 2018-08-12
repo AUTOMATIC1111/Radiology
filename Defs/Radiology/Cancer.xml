@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+   <HediffDef Class="Radiology.CancerDef">
+      <defName>RadiologyCancer</defName>
+      <label>cancer</label>
+      
+      <defaultLabelColor>(255,66,168)</defaultLabelColor>
+      <isBad>true</isBad>
+      <scenarioCanAdd>false</scenarioCanAdd>
+      
+      <likelihood>2.0</likelihood>
+      <affectsAllParts>false</affectsAllParts>
+      
+      <initialSeverityRange><min>0.05</min><max>0.5</max></initialSeverityRange>
+      <maxSeverity>1.0</maxSeverity>
+      
+      <exclusive>cancer</exclusive>
+
+      <spawnEffect>RadiologyEffectCancerMale</spawnEffect>
+      <spawnEffectFemale>RadiologyEffectCancerFemale</spawnEffectFemale>
+      
+   
+      <defsPossible>
+        <li>CancerCompPartEfficiency</li>
+        <li>CancerCompCapacityOffset</li>
+        <li>CancerCompGrowing</li>
+        <li>CancerCompGrowingFast</li>
+        <li>CancerCompShrinking</li>
+      </defsPossible>
+      <diagnoseDifficulty>0.8</diagnoseDifficulty>
+      
+      <!--
+      <comps>
+        <li Class="HediffCompProperties_Discoverable">
+          <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
+        </li>
+      </comps>-->
+   </HediffDef>
+   
+
+</Defs>

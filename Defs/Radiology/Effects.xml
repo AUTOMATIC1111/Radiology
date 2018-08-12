@@ -2,7 +2,7 @@
 <Defs>
 
   <ThingDef Name="RadiologyMoteBase" Abstract="True">
-    <thingClass>Radiology.MoteRadiation</thingClass>
+    <thingClass>MoteThrown</thingClass>
     <label>Mote</label>
     <category>Mote</category>
     <graphicData>
@@ -18,10 +18,11 @@
 
   <ThingDef ParentName="RadiologyMoteBase">
     <defName>RadiologyMoteRadiation</defName>
+    <thingClass>Radiology.MoteRadiation</thingClass>
     <altitudeLayer>MoteOverhead</altitudeLayer>
     <mote>
-      <fadeInTime>0.1</fadeInTime>
-      <solidTime>4.0</solidTime>
+      <fadeInTime>1.0</fadeInTime>
+      <solidTime>1.0</solidTime>
       <fadeOutTime>1.0</fadeOutTime>
     </mote>
     <graphicData>
@@ -32,17 +33,191 @@
   
   <ThingDef ParentName="RadiologyMoteBase">
     <defName>RadiologyMoteRadiationDirected</defName>
+    <thingClass>Radiology.MoteRadiation</thingClass>
     <altitudeLayer>MoteOverhead</altitudeLayer>
     <mote>
       <fadeInTime>0.05</fadeInTime>
       <solidTime>10</solidTime>
-      <fadeOutTime>0.4</fadeOutTime>
+      <fadeOutTime>0.25</fadeOutTime>
     </mote>
     <graphicData>
       <texPath>Radiology/Effects/MoteRadiationDirected</texPath>
       <shaderType>MoteGlow</shaderType>
     </graphicData>
   </ThingDef>
-
   
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteBurn</defName>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0</fadeInTime>
+      <solidTime>0.25</solidTime>
+      <fadeOutTime>0.35</fadeOutTime>
+    </mote>
+    <graphicData>
+      <texPath>Radiology/Effects/Burn</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+  </ThingDef>
+  
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteMutate</defName>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0</fadeInTime>
+      <solidTime>0.25</solidTime>
+      <fadeOutTime>0.35</fadeOutTime>
+    </mote>
+    <graphicData>
+      <texPath>Radiology/Effects/Mutate</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+  </ThingDef>
+  
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteCancer</defName>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0</fadeInTime>
+      <solidTime>0.25</solidTime>
+      <fadeOutTime>0.35</fadeOutTime>
+    </mote>
+    <graphicData>
+      <texPath>Radiology/Effects/Cancer</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+  </ThingDef>
+  
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteAirPuff</defName>
+    <graphicData>
+      <texPath>Radiology/Effects/AirPuff</texPath>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.04</fadeInTime>
+      <solidTime>0.03</solidTime>
+      <fadeOutTime>1</fadeOutTime>
+    </mote>
+  </ThingDef>
+  
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteMutationCloud</defName>
+    <graphicData>
+      <texPath>Radiology/Effects/MutationCloud</texPath>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.04</fadeInTime>
+      <solidTime>0.03</solidTime>
+      <fadeOutTime>1</fadeOutTime>
+    </mote>
+  </ThingDef>
+
+  <AutomaticEffectSpawnerDef>
+    <defName>RadiologyEffectBurn</defName>
+      
+    <subEffects>
+      <li Class="AutomaticSubEffectSound">
+        <sound>RadiologyBurn</sound>
+      </li>
+      <li Class="AutomaticSubEffectRadial">
+        <mote>RadiologyMoteBurn</mote>
+        <moteCount>8</moteCount>
+        <radius><min>0.25</min><max>0.3</max></radius>
+        <scale><min>0.5</min><max>0.9</max></scale>
+        <speed>0.25</speed>
+      </li>
+    </subEffects>
+    <alsoSpawn>
+      <li>RadiologyEffectSmoke</li>
+    </alsoSpawn>
+    
+    <offset><min>0</min><max>0.25</max></offset>
+  </AutomaticEffectSpawnerDef>
+
+  <AutomaticEffectSpawnerDef>
+    <defName>RadiologyEffectMutate</defName>
+      
+    <subEffects>
+      <li Class="AutomaticSubEffectSound">
+        <sound>RadiologyMutate</sound>
+      </li>
+      <li Class="AutomaticSubEffectRadial">
+        <mote>RadiologyMoteMutate</mote>
+        <moteCount>12</moteCount>
+        <radius><min>0.2</min><max>0.5</max></radius>
+        <scale><min>0.5</min><max>0.9</max></scale>
+        <speed>0.4</speed>
+      </li>
+      <li Class="AutomaticSubEffectRadial">
+        <mote>RadiologyMoteMutationCloud</mote>
+        <moteCount>12</moteCount>
+        <radius><min>0.1</min><max>0.5</max></radius>
+        <scale><min>0.5</min><max>1.0</max></scale>
+        <speed>1.0</speed>
+      </li>
+    </subEffects>
+    
+    <offset><min>0</min><max>0</max></offset>
+  </AutomaticEffectSpawnerDef>
+  
+  <AutomaticEffectSpawnerDef Abstract="True" Name="RadiologyEffectCancerBase">
+    <subEffects>
+      <li Class="AutomaticSubEffectRadial">
+        <mote>RadiologyMoteCancer</mote>
+        <moteCount>16</moteCount>
+        <radius><min>0.25</min><max>0.3</max></radius>
+        <scale><min>0.5</min><max>0.9</max></scale>
+        <speed>0.25</speed>
+      </li>
+    </subEffects>
+    <alsoSpawn>
+      <li>RadiologyEffectSmoke</li>
+    </alsoSpawn>
+    
+    <offset><min>0</min><max>0.25</max></offset>
+  </AutomaticEffectSpawnerDef>
+
+  <AutomaticEffectSpawnerDef ParentName="RadiologyEffectCancerBase">
+    <defName>RadiologyEffectCancerMale</defName>
+    <subEffects>
+      <li Class="AutomaticSubEffectSound">
+        <sound>RadiologyCancerMale</sound>
+      </li>
+    </subEffects>
+  </AutomaticEffectSpawnerDef>
+
+  <AutomaticEffectSpawnerDef ParentName="RadiologyEffectCancerBase">
+    <defName>RadiologyEffectCancerFemale</defName>
+    <subEffects>
+      <li Class="AutomaticSubEffectSound">
+        <sound>RadiologyCancerFemale</sound>
+      </li>
+    </subEffects>
+  </AutomaticEffectSpawnerDef>
+
+  <AutomaticEffectSpawnerDef>
+    <defName>RadiologyEffectSmoke</defName>
+      
+    <subEffects>
+      <li Class="AutomaticSubEffectRadial">
+        <mote>RadiologyMoteAirPuff</mote>
+        <moteCount>12</moteCount>
+        <radius><min>0.1</min><max>0.5</max></radius>
+        <scale><min>0.5</min><max>1.0</max></scale>
+        <speed>0.5</speed>
+      </li>
+      <li Class="AutomaticSubEffectRadial">
+        <mote>RadiologyMoteAirPuff</mote>
+        <moteCount>6</moteCount>
+        <radius><min>0.01</min><max>0.04</max></radius>
+        <scale><min>0.5</min><max>1.0</max></scale>
+        <speed>0.25</speed>
+      </li>
+    </subEffects>
+    
+    <offset><min>0</min><max>0</max></offset>
+  </AutomaticEffectSpawnerDef>
+
 </Defs>

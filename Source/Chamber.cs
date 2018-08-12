@@ -13,7 +13,6 @@ namespace Radiology
 
         new public ChamberDef def => base.def as ChamberDef;
 
-
         public static string causeNoPower = "ChamberNoPower";
         public static string causeNoRoom = "ChamberNoRoom";
         public static string causePawnHurt = "ChamberPawnIsHurt";
@@ -70,7 +69,12 @@ namespace Radiology
             radiationTracker.Clear();
             foreach (CompIrradiator comp in GetIrradiators())
             {
-                comp.Irradiate(this, pawn, ticksCooldown);
+                RadiationInfo info = new RadiationInfo { chamber = this, pawn = pawn, part = null };
+                comp.Irradiate(info, ticksCooldown);
+
+                radiationTracker.burn += info.burn;
+                radiationTracker.normal += info.normal;
+                radiationTracker.rare += info.rare;
             }
         }
 
@@ -78,7 +82,7 @@ namespace Radiology
         {
             foreach (CompIrradiator comp in GetIrradiators())
             {
-                if (!comp.IsHealthyEnoughForIrradiation(pawn)) return false;
+                if (!comp.IsHealthyEnoughForIrradiation(this, pawn)) return false;
             }
 
             return true;
@@ -89,7 +93,7 @@ namespace Radiology
         {
             base.ExposeData();
 
-            Scribe_Collections.Look<Pawn>(ref assigned, "assigned", LookMode.Reference);
+            Scribe_Collections.Look(ref assigned, "assigned", LookMode.Reference);
         }
 
 
@@ -111,7 +115,19 @@ namespace Radiology
 
             if (Faction != Faction.OfPlayer)
                 yield break;
-            
+
+            yield return new Command_Action
+            {
+                defaultLabel = "ChamberTestRunLabel".Translate(),
+                defaultDesc = "ChamberTestRunDesc".Translate(),
+                icon = ContentFinder<Texture2D>.Get("Radiology/Icons/TestRun", true),
+                action = delegate ()
+                {
+                    Irradiate(null, 60);
+                },
+                hotKey = KeyBindingDefOf.Misc3
+            };
+
             yield return new Command_Action
             {
                 defaultLabel = "CommandRadiologyAssignChamberLabel".Translate(),
@@ -160,14 +176,14 @@ namespace Radiology
         public class RadiationTracker
         {
             public float burn = 0;
-            public float radiation = 0;
-            public float radiationRare = 0;
+            public float normal = 0;
+            public float rare = 0;
 
             public void Clear()
             {
                 burn = 0;
-                radiation = 0;
-                radiationRare = 0;
+                normal = 0;
+                rare = 0;
             }
         };
 

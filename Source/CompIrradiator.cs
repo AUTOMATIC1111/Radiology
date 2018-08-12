@@ -14,9 +14,17 @@ namespace Radiology
     {
         public new CompPropertiesIrradiator props => base.props as CompPropertiesIrradiator;
 
-        public HediffRadiation GetHediffRadition(Chamber chamber, Pawn pawn)
+        public BodyPartRecord GetBodyPart(Chamber chamber, Pawn pawn)
         {
-            BodyPartRecord part = pawn.health.hediffSet.GetNotMissingParts().RandomElementByWeight(x => props.PartsMap.TryGetValue(x.def, 0f));
+            if (pawn == null) return null;
+
+            return pawn.health.hediffSet.GetNotMissingParts().RandomElementByWeight(x => chamber.def.PartsMap.TryGetValue(x.def, 0f));
+        }
+
+        public HediffRadiation GetHediffRadition(BodyPartRecord part, Chamber chamber, Pawn pawn)
+        {
+            if (part == null) return null;
+
             foreach (var v in pawn.health.hediffSet.GetHediffs<HediffRadiation>())
             {
                 if (v.Part == part) return v;
@@ -30,93 +38,173 @@ namespace Radiology
 
         IEnumerable<ThingWithComps> GetFacilitiesBetweenThisAndChamber(Chamber chamber)
         {
-            foreach (var v in parent.GetComp<CompAffectedByFacilities>().LinkedFacilitiesListForReading)
+            Rot4 rot = parent.Rotation;
+
+            IEnumerable<Thing> list =
+                parent.GetComp<CompAffectedByFacilities>().LinkedFacilitiesListForReading
+                .OrderBy(thing =>
+                    rot == Rot4.North ? thing.Position.z :
+                    rot == Rot4.South ? -thing.Position.z :
+                    rot == Rot4.East ? thing.Position.x :
+                    -thing.Position.x
+                );
+
+            foreach (var v in list)
             {
                 ThingWithComps thing = v as ThingWithComps;
                 if (thing == null) continue;
 
                 if (parent.Rotation.IsHorizontal && !MathHelper.IsBetween(thing.Position.x, parent.Position.x, chamber.Position.x)) continue;
                 if (!parent.Rotation.IsHorizontal && !MathHelper.IsBetween(thing.Position.z, parent.Position.z, chamber.Position.z)) continue;
-
                 yield return thing;
             }
 
             yield break;
         }
 
-        IEnumerable<CompBlocker> GetBlockers(Chamber chamber)
+
+        public override IEnumerable<Gizmo> CompGetGizmosExtra()
+        {
+            if (parent.Faction != Faction.OfPlayer) yield break;
+
+            yield return new Command_Action
+            {
+                defaultLabel = "burn",
+                defaultDesc = "Play the burn effect.",
+                icon = ContentFinder<Texture2D>.Get("Radiology/Effects/Burn", true),
+                action = delegate ()
+                {
+                    Chamber chamber = parent.Linked<Chamber>();
+                    if (chamber != null && chamber.def.burnEffect!=null)
+                        chamber.def.burnEffect.Spawn(parent.Map, parent.Position.ToVector3());
+
+                },
+                hotKey = KeyBindingDefOf.Misc3
+            };
+            yield return new Command_Action
+            {
+                defaultLabel = "mutate",
+                defaultDesc = "Play the mutate effect.",
+                icon = ContentFinder<Texture2D>.Get("Radiology/Effects/Mutate", true),
+                action = delegate ()
+                {
+                    if (HediffDefOf.MutationFastLegs.spawnEffect != null)
+                        HediffDefOf.MutationFastLegs.spawnEffect.Spawn(parent.Map, parent.Position.ToVector3());
+                },
+                hotKey = KeyBindingDefOf.Misc3
+            };
+            yield return new Command_Action
+            {
+                defaultLabel = "cancer male",
+                defaultDesc = "Play the cancer male effect.",
+                icon = ContentFinder<Texture2D>.Get("Radiology/Effects/Cancer", true),
+                action = delegate ()
+                {
+                    Chamber chamber = parent.Linked<Chamber>();
+                    if (HediffDefOf.RadiologyCancer.spawnEffect != null)
+                        HediffDefOf.RadiologyCancer.spawnEffect.Spawn(parent.Map, parent.Position.ToVector3());
+                },
+                hotKey = KeyBindingDefOf.Misc3
+            };
+            yield return new Command_Action
+            {
+                defaultLabel = "cancer female",
+                defaultDesc = "Play the cancer female effect.",
+                icon = ContentFinder<Texture2D>.Get("Radiology/Effects/Cancer", true),
+                action = delegate ()
+                {
+                    if (HediffDefOf.RadiologyCancer.spawnEffectFemale != null)
+                        HediffDefOf.RadiologyCancer.spawnEffectFemale.Spawn(parent.Map, parent.Position.ToVector3());
+                },
+                hotKey = KeyBindingDefOf.Misc3
+            };
+
+
+            yield break;
+        }
+
+        IEnumerable<T> GetModifiers<T, X>(Chamber chamber) where X: class where T : ThingComp
         {
             foreach (ThingWithComps thing in GetFacilitiesBetweenThisAndChamber(chamber))
             {
-                foreach (CompBlocker comp in thing.GetComps<CompBlocker>())
+                foreach (T comp in thing.GetComps<T>())
                 {
-                    yield return comp;
+                    X x = comp as X;
+                    if (x != null) yield return comp;
                 }
             }
 
             yield break;
         }
 
-        public void Irradiate(Chamber chamber, Pawn pawn, int ticks)
+        public void Irradiate(RadiationInfo info, int ticks)
         {
-            HediffRadiation radiation = GetHediffRadition(chamber, pawn);
-            if (radiation == null) return;
+            Chamber chamber = parent.Linked<Chamber>();
 
             SoundDefOf.RadiologyIrradiateBasic.PlayOneShot(new TargetInfo(parent.Position, parent.Map, false));
-
             ticksCooldown = ticks;
 
-            bool stop = false;
+            info.part = GetBodyPart(info.chamber, info.pawn);
+            info.burn = props.burn.perSecond.RandomInRange;
+            info.normal = props.mutate.perSecond.RandomInRange;
+            info.rare = props.mutateRare.perSecond.RandomInRange;
+ 
             motesReflectAt.Clear();
-            foreach (CompBlocker blocker in GetBlockers(chamber))
+            foreach (ThingComp comp in GetModifiers<ThingComp, IRadiationModifier>(info.chamber))
             {
-                motesReflectAt.Add((parent.Rotation.IsHorizontal ? blocker.parent.Position.x : blocker.parent.Position.z) + 0.5f);
-                bool match = blocker.enabledParts.Contains(radiation.Part);
-                if (match && Rand.Range(0.0f,1.0f)<blocker.props.blockChance)
-                    stop=true;
+                if (comp is CompBlocker)
+                {
+                    motesReflectAt.Add((parent.Rotation.IsHorizontal ? comp.parent.Position.x : comp.parent.Position.z) + 0.5f);
+                }
+
+                IRadiationModifier modifier = comp as IRadiationModifier;
+                modifier.Modify(ref info);
             }
+            
+            if (info.burn <= 0 && info.normal <= 0 && info.rare <= 0)
+                return;
 
-            if (stop) return;
+            HediffRadiation radiation = GetHediffRadition(info.part, info.chamber, info.pawn);
+            if (radiation == null) return;
 
-            var radiationAmount = props.mutate.perSecond.RandomInRange;
-            var radiationRareAmount = props.mutateRare.perSecond.RandomInRange;
-            var burningAmount = props.burn.perSecond.RandomInRange;
+            radiation.burn += info.burn;
+            radiation.normal += info.normal;
+            radiation.rare += info.rare;
 
-            radiation.radiation += radiationAmount;
-            radiation.radiationRare += radiationRareAmount;
-            radiation.burning += burningAmount;
-
-            chamber.radiationTracker.radiation += radiationAmount;
-            chamber.radiationTracker.radiationRare += radiationRareAmount;
-            chamber.radiationTracker.burn += burningAmount;
-
-            float burnThreshold = chamber.def.burnThreshold.RandomInRange;
-            float burnAmount = radiation.burning - burnThreshold;
+            float burnThreshold = info.chamber.def.burnThreshold.RandomInRange;
+            float burnAmount = radiation.burn - burnThreshold;
             if (burnAmount > 0)
             {
-                radiation.burning -= chamber.def.burnThreshold.min;
+                radiation.burn -= info.chamber.def.burnThreshold.min;
 
-                DamageInfo dinfo = new DamageInfo(DamageDefOf.Burn, burnAmount * props.burn.multiplier, 999999f, -1f, chamber, radiation.Part, null, DamageInfo.SourceCategory.ThingOrUnknown, null);
-                pawn.TakeDamage(dinfo);
+                DamageInfo dinfo = new DamageInfo(DamageDefOf.Burn, burnAmount * props.burn.multiplier, 999999f, -1f, info.chamber, radiation.Part, null, DamageInfo.SourceCategory.ThingOrUnknown, null);
+                info.pawn.TakeDamage(dinfo);
+
+                if (chamber != null && chamber.def.burnEffect != null)
+                    chamber.def.burnEffect.Spawn(info.pawn.Map, info.pawn.TrueCenter());
             }
 
-            float mutateThreshold = chamber.def.mutateThreshold.RandomInRange;
-            float mutateAmount = radiation.radiation + radiation.radiationRare - mutateThreshold;
+            float mutateThreshold = info.chamber.def.mutateThreshold.RandomInRange;
+            float mutateAmount = radiation.normal + radiation.rare - mutateThreshold;
             if (mutateAmount > 0)
             {
-                float ratio = radiation.radiationRare / (radiation.radiation + radiation.radiationRare);
-                radiation.radiationRare -= chamber.def.mutateThreshold.min * ratio;
-                radiation.radiation -= chamber.def.mutateThreshold.min * (1f - ratio);
+                float ratio = radiation.rare / (radiation.normal + radiation.rare);
+                radiation.rare -= info.chamber.def.mutateThreshold.min * ratio;
+                radiation.normal -= info.chamber.def.mutateThreshold.min * (1f - ratio);
 
-                var mutatedParts = RadiationHelper.MutatePawn(pawn, radiation, mutateAmount * props.mutate.multiplier, ratio);
+                Mutation mutation;
+                var mutatedParts = RadiationHelper.MutatePawn(info.pawn, radiation, mutateAmount * props.mutate.multiplier, ratio, out mutation);
                 if (mutatedParts != null)
                 {
-                    foreach (var anotherRadiation in pawn.health.hediffSet.GetHediffs<HediffRadiation>())
+                    if (mutation != null && mutation.def.SpawnEffect(info.pawn) != null)
+                        mutation.def.SpawnEffect(info.pawn).Spawn(info.pawn.Map, info.pawn.TrueCenter());
+
+                    foreach (var anotherRadiation in info.pawn.health.hediffSet.GetHediffs<HediffRadiation>())
                     {
                         if (mutatedParts.Contains(anotherRadiation.Part) && radiation != anotherRadiation)
                         {
-                            anotherRadiation.radiationRare -= chamber.def.mutateThreshold.min * ratio;
-                            anotherRadiation.radiation -= chamber.def.mutateThreshold.min * (1f - ratio);
+                            anotherRadiation.normal -= info.chamber.def.mutateThreshold.min * (1f - ratio);
+                            anotherRadiation.rare -= info.chamber.def.mutateThreshold.min * ratio;
                         }
                     }
                 }
@@ -133,10 +221,10 @@ namespace Radiology
             return null;
         }
 
-        public bool IsHealthyEnoughForIrradiation(Pawn pawn)
+        public bool IsHealthyEnoughForIrradiation(Chamber chamber, Pawn pawn)
         {
             var pawnParts = pawn.health.hediffSet.GetNotMissingParts();
-            var parts = props.bodyParts.Join(pawnParts, left => left.part, right => right.def, (left, right) => right);
+            var parts = chamber.def.bodyParts.Join(pawnParts, left => left.part, right => right.def, (left, right) => right);
 
             foreach (var part in parts)
             {
@@ -175,15 +263,15 @@ namespace Radiology
             Vector2 rotationVector2 = parent.Rotation.AsVector2.RotatedBy(90);
             Vector3 rotationVector = new Vector3(rotationVector2.x, 0, rotationVector2.y);
             Vector3 origin = parent.ExactPosition() + Rand.Range(-def.initialSpread, def.initialSpread) * rotationVector;
-            Vector3 destination = chamber.ExactPosition();
+            Vector3 destination = chamber.ExactPosition() + Rand.Range(-def.spread, def.spread) * rotationVector;
             Vector3 offset = destination - origin;
             Vector3 dir = offset.normalized;
-            Vector3 dirOrtho = dir.RotatedBy(90);
 
-            float position = def.offset.RandomInRange;
+            float positionPercent = Mathf.Sqrt(Rand.Range(0f,1f));
+            float position = def.offset.LerpThroughRange(positionPercent);
             float scale = def.scaleRange.RandomInRange;
 
-            Vector3 startOffset = offset * position + dirOrtho * position * Rand.Range(-def.spread, def.spread);
+            Vector3 startOffset = offset * position;
             float angle = startOffset.AngleFlat();
 
             moteThrown.exactPosition = origin + startOffset;

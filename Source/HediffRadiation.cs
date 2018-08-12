@@ -12,9 +12,9 @@ namespace Radiology
         {
             base.ExposeData();
 
-            Scribe_Values.Look<float>(ref radiation, "radiation", 0f, false);
-            Scribe_Values.Look<float>(ref radiationRare, "radiationRare", 0f, false);
-            Scribe_Values.Look<float>(ref burning, "burning", 0f, false);
+            Scribe_Values.Look(ref normal, "normal", 0f, false);
+            Scribe_Values.Look(ref rare, "rare", 0f, false);
+            Scribe_Values.Look(ref burn, "burn", 0f, false);
         }
 
         public override string TipStringExtra
@@ -22,9 +22,9 @@ namespace Radiology
             get
             {
                 return base.TipStringExtra +
-                    "Radiation (debug): " + radiation + "\n" +
-                    "radiationRare (debug): " + radiationRare + "\n" +
-                    "Burning (debug): " + burning + "\n";
+                    "Burn (debug): " + burn + "\n" +
+                    "Normal (debug): " + normal + "\n" +
+                    "Rare (debug): " + rare + "\n";
             }
         }
 
@@ -32,12 +32,12 @@ namespace Radiology
         {
             base.Tick();
 
-            burning -= 0.001f;
-            if (burning < 0) burning = 0;
+            burn -= 0.001f;
+            if (burn < 0) burn = 0;
         }
 
-        public float radiation;
-        public float radiationRare;
-        public float burning;
+        public float burn;
+        public float normal;
+        public float rare;
     }
 }

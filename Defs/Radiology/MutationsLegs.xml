@@ -3,6 +3,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
     <defName>MutationFastLegs</defName>
     <label>fast legs</label>
+    <description>This is a description test</description>
     <relatedParts><li>Leg</li></relatedParts>
     <exclusive>speed</exclusive>
   

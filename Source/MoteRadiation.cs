@@ -15,7 +15,7 @@ namespace Radiology
 
         void Kill()
         {
-            spawnTick = Find.TickManager.TicksGame - (int)(def.mote.Lifespan * 60) + 30;
+            spawnTick = Find.TickManager.TicksGame - (int)((def.mote.Lifespan - def.mote.fadeOutTime) * 60);
         }
 
         protected override Vector3 NextExactPosition(float deltaTime)

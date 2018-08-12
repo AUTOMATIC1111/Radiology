@@ -18,12 +18,14 @@
     <description>A place to stand on for a prescripted dose of radiation.</description>
     <label>radiation chamber</label>
     <thingClass>Radiology.Chamber</thingClass>
+    <researchPrerequisites><li>RadiologyBasic</li></researchPrerequisites>
 
     <graphicData>
       <texPath>Radiology/Buildings/Chamber</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <drawSize>3,3</drawSize>
     </graphicData>
+    <uiIconPath>Radiology/Buildings/ChamberIcon</uiIconPath>
     
     <altitudeLayer>Building</altitudeLayer>
     <passability>Standable</passability>
@@ -55,6 +57,7 @@
       <li Class="CompProperties_AffectedByFacilities">
         <linkableFacilities>
           <li>RadiologyIrradiator</li>
+          <li>RadiologyIrradiatorIntermediate</li>
           <li>RadiologyMonitor</li>
         </linkableFacilities>
       </li>
@@ -63,32 +66,28 @@
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
     <staticSunShadowHeight>1.0</staticSunShadowHeight>
     
+    <bodyParts>
+      <li><part>Head</part></li>
+      <li><part>Torso</part></li>
+      <li><part>Shoulder</part></li>
+      <li><part>Leg</part></li>
+    </bodyParts>
+    
     <burnThreshold><min>5</min><max>10</max></burnThreshold>
     <mutateThreshold><min>5</min><max>10</max></mutateThreshold>
+    
+    <burnEffect>RadiologyEffectBurn</burnEffect>
 
     <placeWorkers>
       <li>Radiology.PlaceWorkerShowFacilitiesConnections</li>
     </placeWorkers>
   </ThingDef>
   
-  
-  <ThingDef ParentName="RadiologyBuildingMinifiable">
-    <defName>RadiologyIrradiator</defName>
-    <label>irradiator</label>
-    <description>Bombard your colonists with harmful radiation.</description>
+  <ThingDef Abstract="True" Name="RadiologyIrradiatorBase" ParentName="RadiologyBuildingMinifiable">
     <tickerType>Normal</tickerType>
-
-    <graphicData>
-      <texPath>Radiology/Buildings/Irradiator</texPath>
-      <graphicClass>Graphic_Multi</graphicClass>
-      <drawSize>(2,2)</drawSize>
-      <shadowData>
-        <volume>(3.1, 1.0, 3.3)</volume>
-      </shadowData>
-    </graphicData>
     <size>(1,2)</size>
-
-    <defaultPlacingRot>South</defaultPlacingRot>
+    
+    <defaultPlacingRot>East</defaultPlacingRot>
     
     <comps>
       <li Class="CompProperties_Power">
@@ -100,10 +99,33 @@
       <li Class="CompProperties_AffectedByFacilities">
         <linkableFacilities>
           <li>RadiologyBlocker</li>
+          <li>RadiologyFilter</li>
         </linkableFacilities>
       </li>
+    </comps>
+    
+    <placeWorkers>
+      <li>Radiology.PlaceWorkerShowFacilitiesConnections</li>
+    </placeWorkers>
+  </ThingDef>
+
+  <ThingDef ParentName="RadiologyIrradiatorBase">
+    <defName>RadiologyIrradiator</defName>
+    <label>irradiator</label>
+    <description>Bombard your colonists with harmful radiation.</description>
+    <researchPrerequisites><li>RadiologyBasic</li></researchPrerequisites>
+
+    <graphicData>
+      <texPath>Radiology/Buildings/Irradiator</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(2,2)</drawSize>
+      <shadowData>
+        <volume>(3.1, 1.0, 3.3)</volume>
+      </shadowData>
+    </graphicData>
+
+    <comps>
       <li Class="Radiology.CompPropertiesAdvancedFacility">
-        <maxSimultaneous>12</maxSimultaneous>
         <maxDistance>6</maxDistance>
         <mustBeFacing>true</mustBeFacing>
       </li>
@@ -121,12 +143,6 @@
             <perSecond><min>0.1</min><max>0.2</max></perSecond>
         </mutateRare>
         
-        <bodyParts>
-          <li><part>Head</part></li>
-          <li><part>Torso</part></li>
-          <li><part>Shoulder</part></li>
-          <li><part>Leg</part></li>
-        </bodyParts>
         
         <powerConsumption>1000</powerConsumption>
         
@@ -136,34 +152,90 @@
             <scaleRange><min>0.5</min><max>2.0</max></scaleRange>
             <speed><min>-0.1</min><max>0.1</max></speed>
             <offset><min>0.0</min><max>1.0</max></offset>
-            <spread>1.65</spread>
+            <initialSpread>0.75</initialSpread>
+            <spread>0.75</spread>
           </li>
           <li>
             <mote>RadiologyMoteRadiationDirected</mote>
-            <scaleRange><min>0.75</min><max>1.25</max></scaleRange>
-            <speed><min>4.75</min><max>7.0</max></speed>
+            <scaleRange><min>1.0</min><max>1.25</max></scaleRange>
+            <speed><min>12</min><max>16</max></speed>
             <offset><min>0.05</min><max>0.15</max></offset>
             <initialSpread>0.5</initialSpread>
-            <spread>1.5</spread>
+            <spread>1.0</spread>
             <reflectChance>0.5</reflectChance>
           </li>
           <li><skip>true</skip></li>
-          <li><skip>true</skip></li>
-          <li><skip>true</skip></li>
        </motes>
-
-    <!--
-          <li><part>Arm</part></li>
-          <li><part>Hand</part></li>
-          <li><part>Foot</part></li>
-    -->
         
       </li>
     </comps>
     
-    <placeWorkers>
-      <li>Radiology.PlaceWorkerShowFacilitiesConnections</li>
-    </placeWorkers>
+    <statBases>
+      <MaxHitPoints>400</MaxHitPoints>
+      <WorkToBuild>3200</WorkToBuild>
+      <Mass>120</Mass>
+    </statBases>
+  </ThingDef>
+
+  <ThingDef ParentName="RadiologyIrradiatorBase">
+    <defName>RadiologyIrradiatorIntermediate</defName>
+    <label>intermediate irradiator</label>
+    <description>Bombard your colonists with less harmful radiation.</description>
+    <researchPrerequisites><li>RadiologyIntermediate</li></researchPrerequisites>
+
+    <graphicData>
+      <texPath>Radiology/Buildings/Irradiator2</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(2,2)</drawSize>
+      <shadowData>
+        <volume>(3.1, 1.0, 3.3)</volume>
+      </shadowData>
+    </graphicData>
+
+    <comps>
+      <li Class="Radiology.CompPropertiesAdvancedFacility">
+        <maxDistance>8</maxDistance>
+        <mustBeFacing>true</mustBeFacing>
+      </li>
+      <li Class="Radiology.CompPropertiesIrradiator">
+        <burn>
+            <perSecond><min>1.5</min><max>3</max></perSecond>
+            <multiplier>8</multiplier>
+        </burn>
+        
+        <mutate>
+            <perSecond><min>1.6</min><max>3.2</max></perSecond>
+        </mutate>
+        
+        <mutateRare>
+            <perSecond><min>0.2</min><max>0.4</max></perSecond>
+        </mutateRare>
+        
+        <powerConsumption>1500</powerConsumption>
+        
+        <motes>
+          <li>
+            <mote>RadiologyMoteRadiation</mote>
+            <scaleRange><min>0.5</min><max>2.0</max></scaleRange>
+            <speed><min>-0.1</min><max>0.1</max></speed>
+            <offset><min>0.0</min><max>1.0</max></offset>
+            <initialSpread>0.75</initialSpread>
+            <spread>0.75</spread>
+          </li>
+          <li>
+            <mote>RadiologyMoteRadiationDirected</mote>
+            <scaleRange><min>1.0</min><max>1.25</max></scaleRange>
+            <speed><min>12</min><max>16</max></speed>
+            <offset><min>0.05</min><max>0.15</max></offset>
+            <initialSpread>0.5</initialSpread>
+            <spread>1.0</spread>
+            <reflectChance>0.5</reflectChance>
+          </li>
+          <li><skip>true</skip></li>
+       </motes>
+        
+      </li>
+    </comps>
     
     <statBases>
       <MaxHitPoints>400</MaxHitPoints>
@@ -177,6 +249,7 @@
     <defName>RadiologyBlocker</defName>
     <label>radiation blocker</label>
     <description>Lets you set up a filter that will block a large amount of radiation directed ac certain body parts.</description>
+    <researchPrerequisites><li>RadiologyBlocking</li></researchPrerequisites>
 
     <graphicData>
       <texPath>Radiology/Buildings/Barrier</texPath>
@@ -192,11 +265,49 @@
     
     <comps>
       <li Class="Radiology.CompPropertiesAdvancedFacility">
-        <maxSimultaneous>4</maxSimultaneous>
+        <maxSimultaneous>999</maxSimultaneous>
         <maxDistance>5</maxDistance>
         <mustBeFaced>true</mustBeFaced>
       </li>
       <li Class="Radiology.CompPropertiesBlocker">
+      </li>
+    </comps>
+    
+    <placeWorkers>
+      <li>Radiology.PlaceWorkerShowFacilitiesConnections</li>
+    </placeWorkers>
+    
+    <statBases>
+      <MaxHitPoints>400</MaxHitPoints>
+      <WorkToBuild>3200</WorkToBuild>
+      <Mass>120</Mass>
+    </statBases>
+  </ThingDef>
+  
+  <ThingDef ParentName="RadiologyBuildingMinifiable">
+    <defName>RadiologyFilter</defName>
+    <label>radiation filter</label>
+    <description>Lets you set up a filter that will alter the radiation going through it.</description>
+    <researchPrerequisites><li>RadiologyFiltering</li></researchPrerequisites>
+    
+    <graphicData>
+      <texPath>Radiology/Buildings/Filter</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,3)</drawSize>
+      <shadowData>
+        <volume>(3.1, 1.0, 3.3)</volume>
+      </shadowData>
+    </graphicData>
+    <size>(2,1)</size>
+
+    <defaultPlacingRot>South</defaultPlacingRot>
+    
+    <comps>
+      <li Class="Radiology.CompPropertiesAdvancedFacility">
+        <maxDistance>5</maxDistance>
+        <mustBeFaced>true</mustBeFaced>
+      </li>
+      <li Class="Radiology.CompPropertiesFilter">
       </li>
     </comps>
     
@@ -215,6 +326,7 @@
     <defName>RadiologyMonitor</defName>
     <label>radiation monitor</label>
     <description>Displays the amount of radiation dispensed at radiation chamber.</description>
+    <researchPrerequisites><li>RadiologyMonitoring</li></researchPrerequisites>
 
     <graphicData>
       <texPath>Radiology/Buildings/MonitorRadiation</texPath>
@@ -226,7 +338,6 @@
 
     <comps>
       <li Class="Radiology.CompPropertiesAdvancedFacility">
-        <maxSimultaneous>1</maxSimultaneous>
         <maxDistance>4</maxDistance>
       </li>
       <li>

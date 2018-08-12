@@ -6,11 +6,6 @@ using Verse;
 
 namespace Radiology
 {
-    public class AffectedBodyPart
-    {
-        public BodyPartDef part;
-    }
-
     public class RadiationInflurence
     {
         public FloatRange perSecond;
@@ -39,32 +34,10 @@ namespace Radiology
 
         public List<MoteSprayer> motes;
 
-        public List<AffectedBodyPart> bodyParts;
-
         public RadiationInflurence burn;
         public RadiationInflurence mutate;
         public RadiationInflurence mutateRare;
         public float powerConsumption;
-
-        private Dictionary<BodyPartDef, float> cachedPartsMap;
-
-        public Dictionary<BodyPartDef, float> PartsMap
-        {
-            get
-            {
-                if (cachedPartsMap != null) return cachedPartsMap;
-
-                cachedPartsMap = new Dictionary<BodyPartDef, float>();
-                if (bodyParts != null)
-                {
-                    foreach (AffectedBodyPart x in bodyParts)
-                    {
-                        cachedPartsMap[x.part] = x.part.hitPoints;
-                    }
-                }
-                return cachedPartsMap;
-            }
-        }
 
         public override void ResolveReferences(ThingDef parentDef)
         {

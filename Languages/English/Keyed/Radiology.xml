@@ -2,6 +2,8 @@
 <LanguageData>
   <CommandRadiologyAssignChamberLabel>Assign</CommandRadiologyAssignChamberLabel>
   <CommandRadiologyAssignChamberDesc>Assign this chamber to be used by specific colonists.</CommandRadiologyAssignChamberDesc>
+  <ChamberTestRunLabel>Test run</ChamberTestRunLabel>
+  <ChamberTestRunDesc>Lauch the radiation process to work for a short while without an pawn to receive radiation.</ChamberTestRunDesc>
   
   <ChamberUnavailable>Cannot operate: {0}</ChamberUnavailable>
   <ChamberNoPower>chamber not powered</ChamberNoPower>
@@ -23,5 +25,13 @@
   <RadiologyRadiationNormal>Normal radiation: {0}%</RadiologyRadiationNormal>
   <RadiologyRadiationRare>Rare radiation: {0}%</RadiologyRadiationRare>
 
+  <RadiologyFilterOperationModeLabel>Set up</RadiologyFilterOperationModeLabel>
+  <RadiologyFilterOperationModeDesc>Change filtering mode.</RadiologyFilterOperationModeDesc>
+  <RadiologyFilterOperationMode>Operation mode: {0}</RadiologyFilterOperationMode>
+  <RadiologyFilterOperationModeNone>none</RadiologyFilterOperationModeNone>
+  <RadiologyFilterOperationModeSelected>Enabled</RadiologyFilterOperationModeSelected>
+  <RadiologyFilterOperationModeNotSelected>Not enabled</RadiologyFilterOperationModeNotSelected>
 
+  <RadiologyCancerNotGrowing>not growing</RadiologyCancerNotGrowing>
+  <RadiologyCancerNotDiagnosed>not diagnosed</RadiologyCancerNotDiagnosed>
 </LanguageData>

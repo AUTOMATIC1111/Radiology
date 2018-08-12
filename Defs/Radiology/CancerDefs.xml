@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompPartEfficiencyDef">
+     <defName>CancerCompPartEfficiency</defName>
+     <description>reduces body part efficiency by {0}%</description>
+     <offset>-0.5</offset>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompCapacityOffsetDef">
+     <defName>CancerCompCapacityOffset</defName>
+     <description>reduces {0} by {1}%</description>
+     <offset>-0.5</offset>
+     <capacity>BloodFiltration</capacity>
+   </RadiologyCancerCompDef>
+   
+   <RadiologyCancerCompDef Class="Radiology.CancerCompSeverityChangeDef">
+     <defName>CancerCompGrowing</defName>
+     <description>growing</description>
+     <changePerDay>0.1</changePerDay>
+     <tag>growthSpeed</tag>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompSeverityChangeDef">
+     <defName>CancerCompGrowingFast</defName>
+     <description>growing fast</description>
+     <changePerDay>0.2</changePerDay>
+     <tag>growthSpeed</tag>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompSeverityChangeDef">
+     <defName>CancerCompShrinking</defName>
+     <description>shrinking</description>
+     <changePerDay>-0.1</changePerDay>
+     <tag>growthSpeed</tag>
+   </RadiologyCancerCompDef>
+
+</Defs>

@@ -6,7 +6,7 @@
     <hediffClass>Radiology.HediffRadiation</hediffClass>
     <defaultLabelColor>(179,86,132)</defaultLabelColor>
     <maxSeverity>1.0</maxSeverity>
-    <scenarioCanAdd>true</scenarioCanAdd>
+    <scenarioCanAdd>false</scenarioCanAdd>
     <isBad>false</isBad>
     <stages>
       <li>
@@ -19,5 +19,6 @@
   <HediffDef Abstract="True" Name="RadiologyMutation" Class="Radiology.HediffMutationDef">
     <defaultLabelColor>(255,138,0)</defaultLabelColor>
     <isBad>false</isBad>
+    <spawnEffect>RadiologyEffectMutate</spawnEffect>
   </HediffDef>
 </Defs>

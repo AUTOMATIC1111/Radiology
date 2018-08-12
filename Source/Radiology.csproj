@@ -53,12 +53,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AutomaticEffectSpawnerDef.cs" />
+    <Compile Include="Cancer.cs" />
+    <Compile Include="CancerComp.cs" />
+    <Compile Include="CancerCompCapacityOffset.cs" />
+    <Compile Include="CancerCompPartEfficiency.cs" />
+    <Compile Include="CancerCompSeverityChange.cs" />
+    <Compile Include="CancerDef.cs" />
     <Compile Include="Chamber.cs" />
     <Compile Include="ChamberDef.cs" />
     <Compile Include="CompBlocker.cs" />
+    <Compile Include="CompFilter.cs" />
+    <Compile Include="CompFilterOperationModes.cs" />
     <Compile Include="CompIrradiator.cs" />
     <Compile Include="CompPropertiesAdvancedFacility.cs" />
     <Compile Include="CompPropertiesBlocker.cs" />
+    <Compile Include="CompPropertiesFilter.cs" />
     <Compile Include="CompPropertiesIrradiator.cs" />
     <Compile Include="CompRadiationMonitor.cs" />
     <Compile Include="Debug.cs" />
@@ -67,6 +77,7 @@
     <Compile Include="HediffDefOf.cs" />
     <Compile Include="HelperCompFacility.cs" />
     <Compile Include="IAdvancedFacilityConnector.cs" />
+    <Compile Include="IRadiationModifier.cs" />
     <Compile Include="MathHelper.cs" />
     <Compile Include="MoteRadiation.cs" />
     <Compile Include="Mutation.cs" />
@@ -79,7 +90,9 @@
     <Compile Include="PlaceWorkerShowFacilitiesConnections.cs" />
     <Compile Include="RadiationCompProperties.cs" />
     <Compile Include="RadiationHelper.cs" />
+    <Compile Include="RadiationInfo.cs" />
     <Compile Include="Radiology.cs" />
+    <Compile Include="ResearchDefOf.cs" />
     <Compile Include="SoundDefOf.cs" />
     <Compile Include="ThingDefOf.cs" />
     <Compile Include="ThingHelper.cs" />

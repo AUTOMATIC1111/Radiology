@@ -13,6 +13,11 @@ namespace Radiology
         public bool mustBeFacing = false;
         public bool mustBeFaced = false;
 
+        public CompPropertiesAdvancedFacility()
+        {
+            maxSimultaneous = 999;
+        }
+
 
         static IntVec2 RotatedSize(ThingDef def, Rot4 rot)
         {

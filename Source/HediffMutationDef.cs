@@ -22,6 +22,10 @@ namespace Radiology
 
         public float likelihood = 1.0f;
 
+        public AutomaticEffectSpawnerDef spawnEffect;
+        public AutomaticEffectSpawnerDef spawnEffectFemale;
+        public AutomaticEffectSpawnerDef SpawnEffect(Pawn pawn) => (pawn.gender == Gender.Female && spawnEffectFemale != null) ? spawnEffectFemale : spawnEffect;
+
         public HediffStage stage;
 
         public override void PostLoad()

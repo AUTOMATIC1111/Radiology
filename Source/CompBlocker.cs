@@ -3,16 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Verse;
+using System;
 
 namespace Radiology
 {
-    class CompBlocker : ThingComp, ISelectMultiple<BodyPartRecord>
+    class CompBlocker : ThingComp, ISelectMultiple<BodyPartRecord>, IRadiationModifier
     {
         BodyDef bodyDef = BodyDefOf.Human;
 
         public new CompPropertiesBlocker props => base.props as CompPropertiesBlocker;
 
-        void assignAllParts(){
+        public void Modify(ref RadiationInfo info)
+        {
+            if (info.part != null && enabledParts.Contains(info.part) && Rand.Range(0.0f, 1.0f) < props.blockChance)
+            {
+                info.burn = 0;
+                info.normal = 0;
+                info.rare = 0;
+            }
+        }
+
+        void assignAllParts()
+        {
             allParts.Clear();
 
             List<Thing> irradiators = facility.LinkedBuildings();
@@ -20,7 +32,10 @@ namespace Radiology
             if (building == null) return;
 
             CompIrradiator comp = building.GetComp<CompIrradiator>();
-            var partsThatCanBeIrradiated = comp.props.bodyParts.Select(x => x.part);
+            Chamber chamber = comp.parent.Linked<Chamber>();
+            if (chamber == null) return;
+
+            var partsThatCanBeIrradiated = chamber.def.bodyParts.Select(x => x.part);
             IEnumerable<BodyPartRecord> parts = bodyDef.AllParts.Where(x => partsThatCanBeIrradiated.Contains(x.def));
 
             foreach (var v in parts) allParts.Add(v);
@@ -29,7 +44,7 @@ namespace Radiology
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             if (parent.Faction != Faction.OfPlayer) yield break;
-
+            
             assignAllParts();
             if (!allParts.Any()) yield break;
 
@@ -54,7 +69,7 @@ namespace Radiology
 
         public override string CompInspectStringExtra()
         {
-            string list = string.Join(",", enabledParts.Select(x => x.Label).ToArray());
+            string list = string.Join(", ", enabledParts.Select(x => x.Label).ToArray());
             if (list.Length == 0) list = "RadiologyFilterNone".Translate();
             return string.Format("RadiologyFilterBlocking".Translate(), list);
         }
