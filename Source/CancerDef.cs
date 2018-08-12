@@ -13,7 +13,9 @@ namespace Radiology
             hediffClass = typeof(Cancer);
         }
 
-        public List<CancerCompDef> defsPossible;
+        public List<CancerCompDef> symptomsPossible;
+        public IntRange symptomsCount;
+
         public float diagnoseDifficulty;
         public FloatRange initialSeverityRange;
     }

@@ -10,6 +10,7 @@ namespace Verse
     {
         public Type compClass;
         public string tag;
+        public float weight = 1.0f;
 
         public void Init(Type t)
         {
@@ -30,7 +31,9 @@ namespace Radiology
     {
         public CancerCompDef def;
 
-        public abstract object[] DescriptionArgs { get; }
+        public virtual object[] DescriptionArgs => null;
+
+        public virtual bool IsValid() => true;
 
         public abstract void Update(int passed);
 

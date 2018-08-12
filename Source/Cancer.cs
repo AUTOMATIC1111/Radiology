@@ -11,11 +11,18 @@ namespace Radiology
     {
         new CancerDef def => base.def as CancerDef;
 
+        public static Cancer GetCancerAt(Pawn pawn, BodyPartRecord part)
+        {
+            if (part == null) return null;
+            return pawn.health.hediffSet.GetHediffs<Cancer>().Where(x => x.Part == part).FirstOrDefault();
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
-            
+
             Scribe_Values.Look(ref diagnosed, "diagnosed");
+            Scribe_Values.Look(ref apparentGrowth, "apparentGrowth");
             Scribe_Collections.Look(ref apparentComps, "apparentComps", LookMode.Deep);
             Scribe_Collections.Look(ref actualComps, "actualComps", LookMode.Deep);
 
@@ -25,6 +32,18 @@ namespace Radiology
                 InitializeComps(actualComps);
             }
             
+            UpdateStage();
+        }
+
+        public void BecomeCopyOf(Cancer other)
+        {
+            diagnosed = other.diagnosed;
+            apparentGrowth = other.apparentGrowth;
+            Severity = other.Severity;
+
+            foreach (var comp in other.apparentComps) apparentComps.Add(CreateComp(comp.def));
+            foreach (var comp in other.actualComps) actualComps.Add(CreateComp(comp.def));
+
             UpdateStage();
         }
 
@@ -49,26 +68,39 @@ namespace Radiology
 
         public void CreateComps()
         {
-            HashSet<string> tagsUsed = new HashSet<string>();
-            
-            foreach (CancerCompDef def in def.defsPossible.OfType<CancerCompDef>())
-            {
-                if (Rand.Range(0f, 1f) < 0.5f) continue;
-                if (tagsUsed.Contains(def.tag)) continue;
+            apparentGrowth = false;
+            diagnosed = false;
+            actualComps.Clear();
+            apparentComps.Clear();
 
+            var list = def.symptomsPossible.Select(x => x);
+
+            int count = def.symptomsCount.Lerped(Rand.Value * Rand.Value);
+            for (int i = 0; i < count; i++)
+            {
+                if (!list.Any()) break;
+
+                CancerCompDef def = list.RandomElementByWeight(x => x.weight);
                 CancerComp comp = CreateComp(def);
                 if (comp == null) continue;
+                if (! comp.IsValid()) continue;
 
                 actualComps.Add(comp);
-                tagsUsed.Add(def.tag);
-            }
+                if (def.tag == "growthSpeed") apparentGrowth = true;
+
+                list = list.Where(x => x.tag != def.tag);
+             }
         }
 
         public override void PostAdd(DamageInfo? dinfo)
         {
-            CreateComps();
-            
-            Severity = def.initialSeverityRange.RandomInRange;
+            base.PostAdd(dinfo);
+
+            if (!actualComps.Any())
+            {
+                CreateComps();
+                Severity = def.initialSeverityRange.RandomInRange;
+            }
         }
 
         public override HediffStage CurStage
@@ -118,9 +150,9 @@ namespace Radiology
                 }
 
                 // 50% do diagnose wrongly, 50% to not notice
-                if (Rand.Range(0f, 1f) < 0.5f)
+                if (Rand.Value < 0.5f)
                 {
-                    CancerCompDef mistakenDef = def.defsPossible.OfType<CancerCompDef>().Where(x => !apparentTags.Contains(x.tag)).RandomElementWithFallback();
+                    CancerCompDef mistakenDef = def.symptomsPossible.OfType<CancerCompDef>().Where(x => !apparentTags.Contains(x.tag)).RandomElementWithFallback();
                     if (mistakenDef == null) continue;
 
                     CancerComp mistakenComp = CreateComp(mistakenDef);
@@ -133,7 +165,9 @@ namespace Radiology
         }
 
 
-        public override string LabelInBrackets => string.Format("{0}%", (int) (Severity * 100));
+        public override string LabelInBrackets => !diagnosed ?
+            "RadiologyCancerNotDiagnosed".Translate() :
+            apparentGrowth? string.Format("{0}%", (int) (Severity * 100)) : null;
 
         public override string TipStringExtra
         {
@@ -143,47 +177,46 @@ namespace Radiology
 
                 if (diagnosed)
                 {
-                    bool hasGrowthSpeed = false;
                     foreach (CancerComp comp in apparentComps)
                     {
                         object[] args = comp.DescriptionArgs;
                         stringBuilder.Append("- ");
                         stringBuilder.AppendLine(args == null ? comp.def.description : string.Format(comp.def.description, args));
-
-                        if (comp.def.tag == "growthSpeed") hasGrowthSpeed = true;
                     }
 
-                    if (!hasGrowthSpeed)
+                    if (!apparentGrowth)
                     {
                         stringBuilder.Append("- ");
                         stringBuilder.AppendLine("RadiologyCancerNotGrowing".Translate());
                     }
                 }
-                else
-                {
-                    stringBuilder.Append("- ");
-                    stringBuilder.AppendLine("RadiologyCancerNotDiagnosed".Translate());
-                }
-
+                
                 /*
-                stringBuilder.AppendLine(" <<< Actual >>> (debug):");
+                stringBuilder.AppendLine("<<< Actual >>> (debug):");
                 foreach (CancerComp comp in actualComps)
                 {
                     object[] args = comp.DescriptionArgs;
                     stringBuilder.Append("- ");
                     stringBuilder.AppendLine(args == null ? comp.def.description : string.Format(comp.def.description, args));
-                }
-                */
+                }*/
+                
                 return stringBuilder.ToString();
             }
+        }
+
+        public override bool CauseDeathNow()
+        {
+            return lethalSeverity >= 0f && Severity >= lethalSeverity;
         }
 
         int lastUpdateTick = -1;
         int nextUpdateTick = 0;
 
         public List<CancerComp> apparentComps = new List<CancerComp>();
+        public bool apparentGrowth = false;
         public List<CancerComp> actualComps = new List<CancerComp>();
 
+        public float lethalSeverity = -1f;
         public bool diagnosed = false;
 
         internal HediffStage stage = new HediffStage();

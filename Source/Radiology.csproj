@@ -56,9 +56,8 @@
     <Compile Include="AutomaticEffectSpawnerDef.cs" />
     <Compile Include="Cancer.cs" />
     <Compile Include="CancerComp.cs" />
-    <Compile Include="CancerCompCapacityOffset.cs" />
-    <Compile Include="CancerCompPartEfficiency.cs" />
-    <Compile Include="CancerCompSeverityChange.cs" />
+    <Compile Include="CancerCompsBasic.cs" />
+    <Compile Include="CancerCompSpreads.cs" />
     <Compile Include="CancerDef.cs" />
     <Compile Include="Chamber.cs" />
     <Compile Include="ChamberDef.cs" />

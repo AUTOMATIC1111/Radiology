@@ -196,9 +196,6 @@ namespace Radiology
                 var mutatedParts = RadiationHelper.MutatePawn(info.pawn, radiation, mutateAmount * props.mutate.multiplier, ratio, out mutation);
                 if (mutatedParts != null)
                 {
-                    if (mutation != null && mutation.def.SpawnEffect(info.pawn) != null)
-                        mutation.def.SpawnEffect(info.pawn).Spawn(info.pawn.Map, info.pawn.TrueCenter());
-
                     foreach (var anotherRadiation in info.pawn.health.hediffSet.GetHediffs<HediffRadiation>())
                     {
                         if (mutatedParts.Contains(anotherRadiation.Part) && radiation != anotherRadiation)

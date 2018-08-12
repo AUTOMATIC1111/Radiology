@@ -32,6 +32,6 @@
   <RadiologyFilterOperationModeSelected>Enabled</RadiologyFilterOperationModeSelected>
   <RadiologyFilterOperationModeNotSelected>Not enabled</RadiologyFilterOperationModeNotSelected>
 
-  <RadiologyCancerNotGrowing>not growing</RadiologyCancerNotGrowing>
+  <RadiologyCancerNotGrowing>doesn't grow</RadiologyCancerNotGrowing>
   <RadiologyCancerNotDiagnosed>not diagnosed</RadiologyCancerNotDiagnosed>
 </LanguageData>

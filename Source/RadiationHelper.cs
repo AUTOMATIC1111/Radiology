@@ -147,6 +147,13 @@ namespace Radiology
             foreach (var partToMutate in chosenParts)
             {
                 Debug.Log("Adding to part: " + partToMutate);
+
+                if(pawn.health.hediffSet.GetHediffs<Mutation>().Where(x => x.def == mutationDef && x.Part == partToMutate).Any())
+                {
+                    Debug.Log("  But it already has this mutation!");
+                    continue;
+                }
+
                 Mutation mutation = HediffMaker.MakeHediff(mutationDef, pawn, partToMutate) as Mutation;
                 if (mutation == null) continue;
 

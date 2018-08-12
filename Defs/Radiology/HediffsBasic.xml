@@ -11,7 +11,7 @@
     <stages>
       <li>
         <minSeverity>0</minSeverity>
-        <becomeVisible>true</becomeVisible>
+        <becomeVisible>false</becomeVisible>
       </li>
     </stages>
   </HediffDef>
