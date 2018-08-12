@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
-    <defName>MutationFastLegs</defName>
-    <label>fast legs</label>
-    <description>This is a description test</description>
+    <defName>MutationSuperSpeed</defName>
+    <label>Super Speed</label>
+    <description>The muscles and tendons in the colonist's legs have grown and strengthened giving this colonist insane speed and agility.</description>
     <relatedParts><li>Leg</li></relatedParts>
+    <affectsAllParts>true</affectsAllParts>
     <exclusive>speed</exclusive>
   
     <stage>
       <capMods>
-        <li><capacity>Moving</capacity><offset>0.25</offset></li>
+        <li><capacity>Moving</capacity><offset>0.50</offset></li>
       </capMods>
     </stage>
   </HediffDef>
   
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
-    <defName>MutationSlowLegs</defName>
-    <label>slow legs</label>
+    <defName>MutationCrippledLeg</defName>
+    <label>Crippled Legs</label>
+    <description>This colonists leg has grown but in a deformed way, crooked and weak, this colonist has difficulty moving.
     <relatedParts><li>Leg</li></relatedParts>
+    <affectsAllParts>false</affectsAllParts>
     <exclusive>speed</exclusive>
   
     <stage>
