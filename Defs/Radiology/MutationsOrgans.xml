@@ -35,5 +35,37 @@
       </capMods>
     </stage>
   </HediffDef>
-  
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+    <defName>MutationSuperVision</defName>
+    <label>Super Vision</label>
+    <description>The colonist's eye has mutated, allowing them to see more clearly and sharply, this allows colonists to have better reflexes and to see better.</description>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Eye</li></relatedParts>
+    <exclusive>eyes</exclusive>
+    <affectsAllParts>false</affectsAllParts>
+
+    <stage>
+      <capMods>
+        <li><capacity>Sight</capacity><offset>0.50</offset></li>
+        <li><capacity>Manipulation</capacity><offset>0.1</offset></li>
+      </capMods>
+    </stage>
+   </HediffDef>
+   
+<HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+    <defName>MutationEnhancedHearing</defName>
+    <label>Enhanced Hearing</label>
+    <description>The colonist's ears have mutated, allowing them to hear more clearly and sharply, this allows colonists to have better reflexes.</description>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Ear</li></relatedParts>
+    <exclusive>Ears</exclusive>
+    <affectsAllParts>true</affectsAllParts>
+
+    <stage>
+      <capMods>
+        <li><capacity>Hearing</capacity><offset>0.50</offset></li>
+      </capMods>
+    </stage>
+   </HediffDef>
  </Defs>
