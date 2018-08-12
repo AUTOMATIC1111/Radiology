@@ -12,28 +12,28 @@
     <stage>
       <capMods>
         <li><capacity>Breathing</capacity><offset>0.50</offset></li>
-		<li><capacity>BloodFiltration</capacity><offset>0.15</offset></li>
-		<li><capacity>Moving</capacity><offset>0.09</offset></li>
+        <li><capacity>BloodFiltration</capacity><offset>0.15</offset></li>
+        <li><capacity>Moving</capacity><offset>0.09</offset></li>
       </capMods>
     </stage>
   </HediffDef>
   
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
     <defName>MutationStrengthenedHeart</defName>
-	<label>Strengthened Heart</label>
-	<description>The muscle tissue has woven itself in such a way that the colonist's heart has strengthened and become superior.</description>
-	<relatedParts><li>Torso</li></relatedParts>
-	<affectedParts><li>Heart</li></relatedParts>
-	<exclusive>heart</exclusive>
-	<affectsAllParts>false</affectsAllParts>
-	
-	<stage>
-	  <capMods>
-	    <li><capacity>BloodPumping</capacity><offset>0.50</offset></li>
-		<li><capacity>Consciousness</capacity><offset>0.15</offset></li>
-		<li><capacity>Moving</capacity><offset>0.05</offset></li>
-	  </capMods>
-	</stage>
+    <label>Strengthened Heart</label>
+    <description>The muscle tissue has woven itself in such a way that the colonist's heart has strengthened and become superior.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Heart</li></relatedParts>
+    <exclusive>heart</exclusive>
+    <affectsAllParts>false</affectsAllParts>
+
+    <stage>
+      <capMods>
+        <li><capacity>BloodPumping</capacity><offset>0.50</offset></li>
+        <li><capacity>Consciousness</capacity><offset>0.15</offset></li>
+        <li><capacity>Moving</capacity><offset>0.05</offset></li>
+      </capMods>
+    </stage>
   </HediffDef>
   
  </Defs>
