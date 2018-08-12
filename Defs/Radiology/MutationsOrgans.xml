@@ -7,7 +7,7 @@
     <relatedParts><li>Torso</li></relatedParts>
     <affectedParts><li>Lung</li></affectedParts>
     <exclusive>breathing</exclusive>
-    <affectsAllParts>false</affectsAllParts>
+    <affectsAllParts>true</affectsAllParts>
   
     <stage>
       <capMods>
