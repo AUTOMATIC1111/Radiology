@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+    <defName>MutationEnhancedLungs</defName>
+    <label>Enhanced Lungs</label>
+    <description>The radiation has strengthened the tissues and muscle in the colonist's lungs and diaphram, causing their breathing to become unhuman.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Lung</li></affectedParts>
+    <exclusive>breathing</exclusive>
+    <affectsAllParts>false</affectsAllParts>
+  
+    <stage>
+      <capMods>
+        <li><capacity>Breathing</capacity><offset>0.50</offset></li>
+		<li><capacity>BloodFiltration</capacity><offset>0.15</offset></li>
+		<li><capacity>Moving</capacity><offset>0.09</offset></li>
+      </capMods>
+    </stage>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+    <defName>MutationStrengthenedHeart</defName>
+	<label>Strengthened Heart</label>
+	<description>The muscle tissue has woven itself in such a way that the colonist's heart has strengthened and become superior.</description>
+	<relatedParts><li>Torso</li></relatedParts>
+	<affectedParts><li>Heart</li></relatedParts>
+	<exclusive>heart</exclusive>
+	<affectsAllParts>false</affectsAllParts>
+	
+	<stage>
+	  <capMods>
+	    <li><capacity>BloodPumping</capacity><offset>0.50</offset></li>
+		<li><capacity>Consciousness</capacity><offset>0.15</offset></li>
+		<li><capacity>Moving</capacity><offset>0.05</offset></li>
+	  </capMods>
+	</stage>
+  </HediffDef>
+  
+ </Defs>
