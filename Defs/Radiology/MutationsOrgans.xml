@@ -23,7 +23,7 @@
     <label>Strengthened Heart</label>
     <description>The muscle tissue has woven itself in such a way that the colonist's heart has strengthened and become superior.</description>
     <relatedParts><li>Torso</li></relatedParts>
-    <affectedParts><li>Heart</li></relatedParts>
+    <affectedParts><li>Heart</li></affectedParts>
     <exclusive>heart</exclusive>
     <affectsAllParts>false</affectsAllParts>
 
@@ -41,7 +41,7 @@
     <label>Super Vision</label>
     <description>The colonist's eye has mutated, allowing them to see more clearly and sharply, this allows colonists to have better reflexes and to see better.</description>
     <relatedParts><li>Head</li></relatedParts>
-    <affectedParts><li>Eye</li></relatedParts>
+    <affectedParts><li>Eye</li></affectedParts>
     <exclusive>eyes</exclusive>
     <affectsAllParts>false</affectsAllParts>
 
@@ -58,7 +58,7 @@
     <label>Enhanced Hearing</label>
     <description>The colonist's ears have mutated, allowing them to hear more clearly and sharply, this allows colonists to have better reflexes.</description>
     <relatedParts><li>Head</li></relatedParts>
-    <affectedParts><li>Ear</li></relatedParts>
+    <affectedParts><li>Ear</li></affectedParts>
     <exclusive>Ears</exclusive>
     <affectsAllParts>true</affectsAllParts>
 

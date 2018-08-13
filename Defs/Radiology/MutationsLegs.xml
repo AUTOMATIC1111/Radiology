@@ -18,7 +18,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
     <defName>MutationCrippledLeg</defName>
     <label>Crippled Legs</label>
-    <description>This colonists leg has grown but in a deformed way, crooked and weak, this colonist has difficulty moving.
+    <description>This colonists leg has grown but in a deformed way, crooked and weak, this colonist has difficulty moving.</description>
     <relatedParts><li>Leg</li></relatedParts>
     <affectsAllParts>false</affectsAllParts>
     <exclusive>speed</exclusive>
