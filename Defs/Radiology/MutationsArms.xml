@@ -13,6 +13,10 @@
       <capMods>
         <li><capacity>Manipulation</capacity><offset>0.25</offset></li>
       </capMods>
+      
+      <statOffsets>
+        <ShootingAccuracyPawn>4</ShootingAccuracyPawn>
+      </statOffsets>
     </stage>
   </HediffDef>
   
@@ -44,6 +48,7 @@
     <stage>
       <statOffsets>
         <WorkSpeedGlobal>0.25</WorkSpeedGlobal>
+        <MeleeHitChance>8</MeleeHitChance>
       </statOffsets>
     </stage>
   </HediffDef>
