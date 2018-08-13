@@ -18,5 +18,16 @@ namespace Radiology
             if (def.SpawnEffect(pawn) != null)
                 def.SpawnEffect(pawn).Spawn(pawn.Map, pawn.TrueCenter());
         }
+
+        public virtual IEnumerable<Gizmo> GetGizmos()
+        {
+            yield break;
+        }
     }
+
+    public class Mutation<T> : HediffWithComps where T: HediffMutationDef
+    {
+        public new T def => base.def as T;
+    }
+
 }
