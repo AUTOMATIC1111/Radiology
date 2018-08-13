@@ -12,12 +12,16 @@
       <capMods>
         <li><capacity>Moving</capacity><offset>0.50</offset></li>
       </capMods>
+      
+      <statOffsets>
+        <MeleeDodgeChance>8</MeleeDodgeChance>
+      </statOffsets>
     </stage>
   </HediffDef>
   
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
     <defName>MutationCrippledLeg</defName>
-    <label>Crippled Legs</label>
+    <label>Crippled Leg</label>
     <description>This colonists leg has grown but in a deformed way, crooked and weak, this colonist has difficulty moving.</description>
     <relatedParts><li>Leg</li></relatedParts>
     <affectsAllParts>false</affectsAllParts>
@@ -27,6 +31,10 @@
       <capMods>
         <li><capacity>Moving</capacity><offset>-0.25</offset></li>
       </capMods>
+      
+      <statOffsets>
+        <MeleeDodgeChance>-4</MeleeDodgeChance>
+      </statOffsets>
     </stage>
   </HediffDef>
 
