@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBlinkDef">
+    <defName>MutationBlink</defName>
+    <label>controllable blink</label>
+    <relatedParts><li>Head</li></relatedParts>
+    <exclusive>blink</exclusive>
+    
+    <radius>40</radius>
+    <mtthDays>-1</mtthDays>
+    <controlled>true</controlled>
+    <effectOut>RadiologyEffectBlinkOut</effectOut>
+    <effectIn>RadiologyEffectBlinkIn</effectIn>
+  </HediffDef>
+</Defs>

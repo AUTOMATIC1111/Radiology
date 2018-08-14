@@ -16,7 +16,7 @@ namespace Radiology
         }
 
         public static HediffDef RadiologyRadiation;
-        public static HediffMutationDef MutationFastLegs;
+        public static HediffMutationDef MutationSuperSpeed;
         public static CancerDef RadiologyCancer;
     }
 }

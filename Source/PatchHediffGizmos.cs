@@ -10,15 +10,24 @@ namespace Radiology
     [HarmonyPatch(typeof(Pawn), "GetGizmos", new Type[] { }), StaticConstructorOnStartup]
     public static class PatchHediffGizmos
     {
-        /* ???
-        static void Prefix(ref IEnumerable<Gizmo> __result, ref Pawn __instance)
-        {
-            Mutation self = GetCompProperties(facilityDef);
 
-                yield break;
+        static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> list, Pawn __instance)
+        {
+            foreach (var v in list)
+                yield return v;
+
+            foreach (var mutation in __instance.health.hediffSet.GetHediffs<Mutation>())
+            {
+                foreach (var gizmo in mutation.GetGizmos())
+                {
+                    yield return gizmo;
+                }
+            }
+
+            yield break;
 
         }
-        */
+
     }
 
 }

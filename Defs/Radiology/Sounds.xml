@@ -83,6 +83,22 @@
         <sustainLoop>False</sustainLoop>
       </li>
     </subSounds>
+    
+  </SoundDef>
+    <SoundDef ParentName="RadiologySound">
+    <defName>RadiologyBlink</defName>  
+    <maxSimultaneous>8</maxSimultaneous>  
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>Radiology/Blink</clipFolderPath>
+          </li>
+        </grains>
+        <volumeRange><min>15</min><max>20</max></volumeRange>
+        <sustainLoop>False</sustainLoop>
+      </li>
+    </subSounds>
   </SoundDef>
   
 </Defs>

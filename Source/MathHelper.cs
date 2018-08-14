@@ -25,6 +25,7 @@ namespace Radiology
 
         public static bool CheckMtthDays(float mtthDays, int ticksPassed = 1)
         {
+            if (mtthDays < 0) return false;
             return ticksPassed >= Rand.Range(0, mtthDays*60000);
         }
 

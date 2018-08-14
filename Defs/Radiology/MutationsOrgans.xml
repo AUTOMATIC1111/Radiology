@@ -23,7 +23,7 @@
     <label>Strengthened Heart</label>
     <description>The muscle tissue has woven itself in such a way that the colonist's heart has strengthened and become superior.</description>
     <relatedParts><li>Torso</li></relatedParts>
-    <affectedParts><li>Heart</li></relatedParts>
+    <affectedParts><li>Heart</li></affectedParts>
     <exclusive>heart</exclusive>
     <affectsAllParts>false</affectsAllParts>
 

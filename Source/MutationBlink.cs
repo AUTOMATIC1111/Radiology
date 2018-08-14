@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,11 @@ namespace Radiology
 
         public float mtthDays;
         public float radius;
+        public bool controlled;
+        public bool aimed;
 
+        public AutomaticEffectSpawnerDef effectOut;
+        public AutomaticEffectSpawnerDef effectIn;
     }
 
     public class MutationBlink : Mutation<MutationBlinkDef>
@@ -25,6 +30,29 @@ namespace Radiology
 
             if (!MathHelper.CheckMtthDays(def.mtthDays)) return;
 
+            Blink();
+        }
+
+
+        public override IEnumerable<Gizmo> GetGizmos()
+        {
+            if (!def.controlled) yield break;
+
+            yield return new Command_Action
+            {
+                defaultLabel = "Blink!",
+                defaultDesc = "Immediately telepor to random location",
+                icon = ContentFinder<Texture2D>.Get("Radiology/Icons/BlinkIcon", true),
+                action = delegate ()
+                {
+                    Blink();
+                },
+            };
+
+            yield break;
+        }
+        private void Blink()
+        {
             Vector3 position = pawn.Position.ToVector3();
             int attempts = 5;
             while (--attempts > 0)
@@ -39,13 +67,16 @@ namespace Radiology
             }
         }
 
-        
-
         private void Blink(IntVec3 target)
         {
+            if (def.effectOut != null) def.effectOut.Spawn(pawn.Map, pawn.TrueCenter());
+
             /// XXX add job interrupt and visual effects
-            pawn.SetPositionDirect(target);
             pawn.jobs.StartJob(new Job(RimWorld.JobDefOf.Wait, 1, false), JobCondition.InterruptForced, null, true, false);
+            pawn.SetPositionDirect(target);
+            pawn.Drawer.tweener.ResetTweenedPosToRoot();
+
+            if (def.effectIn != null) def.effectIn.Spawn(pawn.Map, pawn.TrueCenter());
 
             //pawn.jobs.EndCurrentJob(Verse.AI.JobCondition.InterruptForced);
         }

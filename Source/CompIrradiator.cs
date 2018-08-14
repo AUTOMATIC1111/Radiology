@@ -88,8 +88,8 @@ namespace Radiology
                 icon = ContentFinder<Texture2D>.Get("Radiology/Effects/Mutate", true),
                 action = delegate ()
                 {
-                    if (HediffDefOf.MutationFastLegs.spawnEffect != null)
-                        HediffDefOf.MutationFastLegs.spawnEffect.Spawn(parent.Map, parent.Position.ToVector3());
+                    if (HediffDefOf.MutationSuperSpeed.spawnEffect != null)
+                        HediffDefOf.MutationSuperSpeed.spawnEffect.Spawn(parent.Map, parent.Position.ToVector3());
                 },
                 hotKey = KeyBindingDefOf.Misc3
             };

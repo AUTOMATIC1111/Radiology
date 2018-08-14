@@ -25,7 +25,7 @@ namespace Radiology
         }
     }
 
-    public class Mutation<T> : HediffWithComps where T: HediffMutationDef
+    public class Mutation<T> : Mutation where T: HediffMutationDef
     {
         public new T def => base.def as T;
     }
