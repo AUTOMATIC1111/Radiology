@@ -17,6 +17,7 @@ namespace Radiology
         public static string causeNoRoom = "ChamberNoRoom";
         public static string causePawnHurt = "ChamberPawnIsHurt";
         public static string causeNoIrradiator = "ChamberNoIrradiator";
+        public static string causePawnNotAssigned = "ChamberPawnNotAssigned";
 
         public string CanIrradiateNow(Pawn pawn = null)
         {
@@ -41,8 +42,14 @@ namespace Radiology
             if(count==0)
                 return intermediateProblem ?? causeNoIrradiator;
 
-            if (pawn != null && !IsHealthyEnoughForIrradiation(pawn)) {
+            if (pawn != null && !IsHealthyEnoughForIrradiation(pawn))
+            {
                 return causePawnHurt;
+            }
+
+            if (pawn != null && !assigned.Contains(pawn))
+            {
+                return causePawnNotAssigned;
             }
 
             return null;

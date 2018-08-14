@@ -48,12 +48,11 @@ namespace Radiology
             string reason = chamber.CanIrradiateNow(pawn);
             if (reason != null)
             {
-                JobFailReason.Is(string.Format(reason.Translate(), pawn.Name), null);
+                JobFailReason.Is(string.Format(reason.Translate(), pawn.LabelShortCap), null);
                 return false;
             }
 
             if (chamber.IsForbidden(pawn)) return false;
-            if (! chamber.AssignedAnything(pawn)) return false;
  
             LocalTargetInfo target = chamber;
             if (!pawn.CanReserve(target, 1, -1, null, forced)) return false;

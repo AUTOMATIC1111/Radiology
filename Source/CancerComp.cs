@@ -30,6 +30,7 @@ namespace Radiology
     public abstract class CancerComp : IExposable
     {
         public CancerCompDef def;
+        public bool doctorIsUnsure = false;
 
         public virtual object[] DescriptionArgs => null;
 
@@ -40,7 +41,10 @@ namespace Radiology
         public void ExposeData()
         {
             Scribe_Defs.Look(ref def, "def");
+            Scribe_Values.Look(ref doctorIsUnsure, "doctorIsUnsure");
         }
+
+        public abstract CancerComp CreateCopy();
 
         public Cancer cancer;
     }
@@ -48,5 +52,16 @@ namespace Radiology
     public abstract class CancerComp<T> : CancerComp where T : CancerCompDef
     {
         new public T def => base.def as T;
+
+        public override CancerComp CreateCopy()
+        {
+            CancerComp copy = Activator.CreateInstance(def.compClass) as CancerComp;
+            if (copy == null) return null;
+
+            copy.def = def;
+            copy.cancer = cancer;
+
+            return copy;
+        }
     }
 }

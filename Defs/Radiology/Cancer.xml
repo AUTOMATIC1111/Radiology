@@ -1,68 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Defs>
 
-   <HediffDef Class="Radiology.CancerDef">
-      <defName>RadiologyCancer</defName>
-      <label>cancer</label>
-      
-      <defaultLabelColor>(255,66,168)</defaultLabelColor>
-      <isBad>true</isBad>
-      <scenarioCanAdd>false</scenarioCanAdd>
-      
-      <likelihood>2.0</likelihood>
-      <affectsAllParts>false</affectsAllParts>
-      
-      <initialSeverityRange><min>0.05</min><max>0.5</max></initialSeverityRange>
-      <maxSeverity>1.0</maxSeverity>
-      
-      <exclusive>cancer</exclusive>
+  <HediffDef Class="Radiology.CancerDef">
+    <defName>RadiologyCancer</defName>
+    <label>cancer</label>
+    <defaultLabelColor>(255,66,168)</defaultLabelColor>
+    
+    <isBad>true</isBad>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <likelihood>2.0</likelihood>
+    <affectsAllParts>false</affectsAllParts>
+    
+    <initialSeverityRange><min>0.05</min><max>0.5</max></initialSeverityRange>
+    <maxSeverity>1.0</maxSeverity>
+    
+    <exclusive>cancer</exclusive>
+    <spawnEffect>RadiologyEffectCancerMale</spawnEffect>
+    <spawnEffectFemale>RadiologyEffectCancerFemale</spawnEffectFemale>
+    
+    <symptomsCount><min>1</min><max>8</max></symptomsCount>
+    
+    <symptomsPossible>
+      <li>CancerCompPartEfficiency</li>
+      <li>CancerCompCapacityOffset</li>
+      <li>CancerCompGrowing</li>
+      <li>CancerCompGrowingFast</li>
+      <li>CancerCompShrinking</li>
+      <li>CancerCompDestroyBodyPartAt100</li>
+      <li>CancerCompHunger</li>
+      <li>CancerCompMentalBreakDaily</li>
+      <li>CancerCompMentalBreakTwoDays</li>
+      <li>CancerCompMentalBreakThreeDays</li>
+      <li>CancerCompMentalBreakTwiceADay</li>
+      <li>CancerCompMentalBreakThriceADay</li>
+      <li>CancerCompPainLow</li>
+      <li>CancerCompPainMedium</li>
+      <li>CancerCompPainHigh</li>
+      <li>CancerCompPainExtreme</li>
+      <li>CancerCompAggressiveness</li>
+      <li>CancerCompVomitingOften</li>
+      <li>CancerCompVomitingSometimes</li>
+      <li>CancerCompVomitingDaily</li>
+      <li>CancerCompDeathAt100</li>
+      <li>CancerCompSpreadsUpwards</li>
+      <li>CancerCompSpreadsDownwards</li>
+      <li>CancerCompSpreads</li>
+      <li>CancerCompSpreadsMutatesUpwards</li>
+      <li>CancerCompSpreadsMutatesDownwards</li>
+      <li>CancerCompMutatesSpreads</li>
+    </symptomsPossible>
+    
+    <diagnoseDifficulty><min>0</min><max>0.8</max></diagnoseDifficulty>
+    
+    <diagnoseUnsureWindow>0.2</diagnoseUnsureWindow>
+  </HediffDef>
+	
+  <RecipeDef>
+    <defName>RadiologyRedoCancerDiagnosis</defName>
+    <label>Redo cancer diagnosis</label>
+    <description>Redo previous diagnosis.</description>
+    <workerClass>Radiology.RecipeRedoDiagnosis</workerClass>
+    
+    <effectWorking>Surgery</effectWorking>
+    <soundWorking>Recipe_Surgery</soundWorking>
+    <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+    <workSkill>Medicine</workSkill>
+    <workSkillLearnFactor>16</workSkillLearnFactor>
+    <jobString>Redoing cancer diagnosis.</jobString>
+    <workAmount>200</workAmount>
+    
+    <removesHediff>RadiologyCancer</removesHediff>
+    <anesthetize></anesthetize>
+    
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Medicine</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+    </fixedIngredientFilter>
 
-      <spawnEffect>RadiologyEffectCancerMale</spawnEffect>
-      <spawnEffectFemale>RadiologyEffectCancerFemale</spawnEffectFemale>
-      
-   
-      <symptomsCount><min>1</min><max>8</max></symptomsCount>
-      <symptomsPossible>
-        <li>CancerCompPartEfficiency</li>
-        <li>CancerCompCapacityOffset</li>
-        <li>CancerCompGrowing</li>
-        <li>CancerCompGrowingFast</li>
-        <li>CancerCompShrinking</li>
-        <li>CancerCompDestroyBodyPartAt75</li>
-        <li>CancerCompDestroyBodyPartAt100</li>
-        <li>CancerCompHunger</li>
-        <li>CancerCompMentalBreakDaily</li>
-        <li>CancerCompMentalBreakTwoDays</li>
-        <li>CancerCompMentalBreakThreeDays</li>
-        <li>CancerCompMentalBreakTwiceADay</li>
-        <li>CancerCompMentalBreakThriceADay</li>
-        <li>CancerCompPainLow</li>
-        <li>CancerCompPainMedium</li>
-        <li>CancerCompPainHigh</li>
-        <li>CancerCompPainExtreme</li>
-        <li>CancerCompAggressiveness</li>
-        <li>CancerCompVomitingOften</li>
-        <li>CancerCompVomitingSometimes</li>
-        <li>CancerCompVomitingDaily</li>
-        <li>CancerCompDeathAt50</li>
-        <li>CancerCompDeathAt75</li>
-        <li>CancerCompDeathAt100</li>
-        <li>CancerCompSpreadsUpwards</li>
-        <li>CancerCompSpreadsDownwards</li>
-        <li>CancerCompSpreads</li>
-        <li>CancerCompSpreadsMutatesUpwards</li>
-        <li>CancerCompSpreadsMutatesDownwards</li>
-        <li>CancerCompMutatesSpreads</li>
-      </symptomsPossible>
-      <diagnoseDifficulty>0.8</diagnoseDifficulty>
-      
-      <!--
-      <comps>
-        <li Class="HediffCompProperties_Discoverable">
-          <sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
-        </li>
-      </comps>-->
-   </HediffDef>
-   
+    <recipeUsers>
+      <li>Human</li>
+    </recipeUsers>
+  </RecipeDef>
 
 </Defs>

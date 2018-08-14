@@ -11,6 +11,8 @@
   <ChamberNoRoom>must be inside a room</ChamberNoRoom>
   <ChamberNoIrradiator>no irradiator linked</ChamberNoIrradiator>
   <ChamberPawnIsHurt>{0} is too hurt</ChamberPawnIsHurt>
+  <ChamberPawnNotAssigned>{0} is not assigned</ChamberPawnNotAssigned>
+  
   
   
   <CommandRadiologyAssignRadiationBlockingLabel>Setup blocking</CommandRadiologyAssignRadiationBlockingLabel>
@@ -34,6 +36,10 @@
 
   <RadiologyCancerNotGrowing>doesn't grow</RadiologyCancerNotGrowing>
   <RadiologyCancerNotDiagnosed>not diagnosed</RadiologyCancerNotDiagnosed>
+  <RadiologyCancerDoctorUnsure> (unsure)</RadiologyCancerDoctorUnsure>
+  <RadiologyCancerMisdiagnosed> (misdiagnosed)</RadiologyCancerMisdiagnosed>
+  <RadiologyCancerMissed> (missed)</RadiologyCancerMissed>
+  
   
   <RadiologyMutationBlinkCommand>Blink!</RadiologyMutationBlinkCommand>
   <RadiologyMutationBlinkDesc>Immediately teleport to a random location.</RadiologyMutationBlinkDesc>

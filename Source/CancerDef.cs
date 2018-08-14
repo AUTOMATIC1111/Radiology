@@ -16,7 +16,8 @@ namespace Radiology
         public List<CancerCompDef> symptomsPossible;
         public IntRange symptomsCount;
 
-        public float diagnoseDifficulty;
+        public FloatRange diagnoseDifficulty;
+        public float diagnoseUnsureWindow;
         public FloatRange initialSeverityRange;
     }
 }

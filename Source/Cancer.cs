@@ -41,8 +41,8 @@ namespace Radiology
             apparentGrowth = other.apparentGrowth;
             Severity = other.Severity;
 
-            foreach (var comp in other.apparentComps) apparentComps.Add(CreateComp(comp.def));
-            foreach (var comp in other.actualComps) actualComps.Add(CreateComp(comp.def));
+            foreach (var comp in other.apparentComps) apparentComps.Add(comp.CreateCopy());
+            foreach (var comp in other.actualComps) actualComps.Add(comp.CreateCopy());
 
             UpdateStage();
         }
@@ -86,7 +86,6 @@ namespace Radiology
                 if (! comp.IsValid()) continue;
 
                 actualComps.Add(comp);
-                if (def.tag == "growthSpeed") apparentGrowth = true;
 
                 list = list.Where(x => x.tag != def.tag);
              }
@@ -133,17 +132,25 @@ namespace Radiology
         {
             return !diagnosed;
         }
+
         public override void Tended(float quality, int batchPosition)
         {
             diagnosed = true;
+
             HashSet<string> apparentTags = new HashSet<string>();
+            apparentComps.Clear();
 
             foreach (CancerComp comp in actualComps)
             {
-                bool mistake = Rand.Range(0f, def.diagnoseDifficulty) > quality;
+                float score = def.diagnoseDifficulty.RandomInRange;
+                bool mistake = score > quality;
+                bool unsure = Math.Abs(score-quality) < def.diagnoseUnsureWindow;
 
                 if (!mistake)
                 {
+                    CancerComp copy = comp.CreateCopy();
+                    copy.doctorIsUnsure = unsure;
+
                     apparentComps.Add(comp);
                     apparentTags.Add(comp.def.tag);
                     continue;
@@ -158,16 +165,18 @@ namespace Radiology
                     CancerComp mistakenComp = CreateComp(mistakenDef);
                     if (mistakenComp == null) continue;
 
+                    mistakenComp.doctorIsUnsure = unsure;
                     apparentComps.Add(mistakenComp);
+                    apparentTags.Add(mistakenComp.def.tag);
                 }
             }
-            
+
+            apparentGrowth = apparentTags.Contains("growthSpeed");
         }
 
-
-        public override string LabelInBrackets => !diagnosed ?
+        public override string LabelInBrackets => (!diagnosed && !pawn.Dead) ?
             "RadiologyCancerNotDiagnosed".Translate() :
-            apparentGrowth? string.Format("{0}%", (int) (Severity * 100)) : null;
+            (apparentGrowth || pawn.Dead)? string.Format("{0}%", (int) (Severity * 100)) : null;
 
         public override string TipStringExtra
         {
@@ -175,31 +184,64 @@ namespace Radiology
             {
                 StringBuilder stringBuilder = new StringBuilder();
 
-                if (diagnosed)
+                HashSet<CancerCompDef> actualCompsMap = null;
+
+                bool isDead = pawn.Dead;
+                if (isDead)
+                {
+                    actualCompsMap = new HashSet<CancerCompDef>();
+                    foreach (CancerComp comp in actualComps)
+                    {
+                        actualCompsMap.Add(comp.def);
+                    }
+                }
+
+                if (diagnosed || isDead)
                 {
                     foreach (CancerComp comp in apparentComps)
                     {
                         object[] args = comp.DescriptionArgs;
                         stringBuilder.Append("- ");
-                        stringBuilder.AppendLine(args == null ? comp.def.description : string.Format(comp.def.description, args));
-                    }
-
-                    if (!apparentGrowth)
-                    {
-                        stringBuilder.Append("- ");
-                        stringBuilder.AppendLine("RadiologyCancerNotGrowing".Translate());
+                        stringBuilder.Append(args == null ? comp.def.description : string.Format(comp.def.description, args));
+                        if(isDead)
+                        {
+                            if (actualCompsMap.Contains(comp.def))
+                            {
+                                actualCompsMap.Remove(comp.def);
+                            }
+                            else
+                            {
+                                stringBuilder.Append("RadiologyCancerMisdiagnosed".Translate());
+                            }
+                        }
+                        else if (comp.doctorIsUnsure)
+                        {
+                            stringBuilder.Append("RadiologyCancerDoctorUnsure".Translate());
+                        }
+                        stringBuilder.AppendLine();
                     }
                 }
-                
-                /*
-                stringBuilder.AppendLine("<<< Actual >>> (debug):");
-                foreach (CancerComp comp in actualComps)
+
+                if (isDead)
                 {
-                    object[] args = comp.DescriptionArgs;
+                    foreach (CancerComp comp in actualComps)
+                    {
+                        if (!actualCompsMap.Contains(comp.def)) continue;
+
+                        object[] args = comp.DescriptionArgs;
+                        stringBuilder.Append("- ");
+                        stringBuilder.Append(args == null ? comp.def.description : string.Format(comp.def.description, args));
+                        stringBuilder.Append("RadiologyCancerMissed".Translate());
+                        stringBuilder.AppendLine();
+                    }
+                }
+                else if (diagnosed && !apparentGrowth)
+                {
                     stringBuilder.Append("- ");
-                    stringBuilder.AppendLine(args == null ? comp.def.description : string.Format(comp.def.description, args));
-                }*/
-                
+                    stringBuilder.AppendLine("RadiologyCancerNotGrowing".Translate());
+                }
+
+
                 return stringBuilder.ToString();
             }
         }

@@ -22,7 +22,7 @@ namespace Radiology
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
-            this.FailOn(delegate () { return Chamber.CanIrradiateNow() != null || !Chamber.IsHealthyEnoughForIrradiation(pawn); });
+            this.FailOn(delegate () { return Chamber.CanIrradiateNow(pawn) != null; });
 
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell).FailOnDespawnedOrNull(TargetIndex.A);
             Toil work = new Toil();
