@@ -2,11 +2,11 @@
 <Defs>
   <WorkGiverDef>
     <defName>RadiologyIrradiate</defName>
-    <label>get irradiated</label>
+    <label>get irradiated in</label>
     <giverClass>Radiology.WorkGiverIrradiate</giverClass>
     <workType>PatientBedRest</workType>
     <priorityInType>50</priorityInType>
     <verb>get irradiated in</verb>
-    <gerund>getting irradiated</gerund>
+    <gerund>getting irradiated in</gerund>
   </WorkGiverDef>
 </Defs>
