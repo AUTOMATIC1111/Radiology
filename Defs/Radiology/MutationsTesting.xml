@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationSetSkillDef">
+    <defName>MutationSetGrowing</defName>
+    <label>set growing skill test</label>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Brain</li></affectedParts>
+    <exclusive>blink</exclusive>
+    
+    <skill>Plants</skill>
+    <setTo>19</setTo>
+  </HediffDef>
+</Defs>

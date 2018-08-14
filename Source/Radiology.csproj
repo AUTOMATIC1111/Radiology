@@ -61,6 +61,7 @@
     <Compile Include="CancerDef.cs" />
     <Compile Include="Chamber.cs" />
     <Compile Include="ChamberDef.cs" />
+    <Compile Include="Command_Target_Location.cs" />
     <Compile Include="CompBlocker.cs" />
     <Compile Include="CompFilter.cs" />
     <Compile Include="CompFilterOperationModes.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="CompRadiationMonitor.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="DialogSelectMultiple.cs" />
+    <Compile Include="Graphic_Mote_Random.cs" />
     <Compile Include="HealthHelper.cs" />
     <Compile Include="HediffDefOf.cs" />
     <Compile Include="HelperCompFacility.cs" />
@@ -84,8 +86,13 @@
     <Compile Include="HediffRadiation.cs" />
     <Compile Include="JobDefOf.cs" />
     <Compile Include="JobDriverIrradiate.cs" />
+    <Compile Include="MutationBlink.cs" />
+    <Compile Include="MutationSetSkill.cs" />
     <Compile Include="MutationsHelper.cs" />
+    <Compile Include="MutationVomitItems.cs" />
     <Compile Include="PatchFacilities.cs" />
+    <Compile Include="PatchHediffGizmos.cs" />
+    <Compile Include="PatchVomiting.cs" />
     <Compile Include="PlaceWorkerShowFacilitiesConnections.cs" />
     <Compile Include="RadiationCompProperties.cs" />
     <Compile Include="RadiationHelper.cs" />

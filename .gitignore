@@ -2,3 +2,4 @@
 .vs
 Source/obj
 *.csproj.user
+*.suo

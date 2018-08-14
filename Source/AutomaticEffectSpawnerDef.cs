@@ -37,6 +37,8 @@ namespace Verse
                 MoteThrown moteThrown = ThingMaker.MakeThing(mote, null) as MoteThrown;
                 if (moteThrown == null) return;
 
+                moteThrown.thingIDNumber = -1 - i;
+
                 float angle = Rand.Range(0f, 360f);
                 Vector3 dir = new Vector3(1f, 0f, 0f).RotatedBy(angle);
 

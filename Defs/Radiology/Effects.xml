@@ -220,4 +220,109 @@
     <offset><min>0</min><max>0</max></offset>
   </AutomaticEffectSpawnerDef>
 
+
+
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteBlink</defName>
+    <graphicData>
+      <graphicClass>Radiology.Graphic_Mote_Random</graphicClass>
+      <texPath>Radiology/Effects/Blink</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.05</fadeInTime>
+      <solidTime>0.05</solidTime>
+      <fadeOutTime>0.15</fadeOutTime>
+    </mote>
+  </ThingDef>
+  
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteBlinkLong</defName>
+    <graphicData>
+      <graphicClass>Radiology.Graphic_Mote_Random</graphicClass>
+      <texPath>Radiology/Effects/Blink</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.05</fadeInTime>
+      <solidTime>0.1</solidTime>
+      <fadeOutTime>0.05</fadeOutTime>
+    </mote>
+  </ThingDef>
+  
+  <AutomaticEffectSpawnerDef>
+    <defName>RadiologyEffectBlinkOut</defName>
+      
+    <subEffects>
+      <li Class="AutomaticSubEffectRadial">
+        <mote>RadiologyMoteBlinkLong</mote>
+        <moteCount>12</moteCount>
+        <radius><min>0.2</min><max>0.5</max></radius>
+        <scale><min>0.6</min><max>0.8</max></scale>
+        <speed>4.5</speed>
+      </li>
+      <li Class="AutomaticSubEffectRadial">
+        <mote>RadiologyMoteBlink</mote>
+        <moteCount>12</moteCount>
+        <radius><min>0.01</min><max>0.02</max></radius>
+        <scale><min>0.6</min><max>0.8</max></scale>
+        <speed>12.5</speed>
+      </li>
+      <li Class="AutomaticSubEffectRadial">
+        <mote>RadiologyMoteBlinkLong</mote>
+        <moteCount>12</moteCount>
+        <radius><min>0.2</min><max>0.6</max></radius>
+        <scale><min>0.6</min><max>0.8</max></scale>
+        <speed>4</speed>
+      </li>
+      <li Class="AutomaticSubEffectSound">
+        <sound>RadiologyBlink</sound>
+      </li>
+    </subEffects>
+    <alsoSpawn>
+      <li>RadiologyEffectSmoke</li>
+    </alsoSpawn>
+
+    <offset><min>0</min><max>0</max></offset>
+  </AutomaticEffectSpawnerDef>
+  
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteBlinkIn</defName>
+    <graphicData>
+      <graphicClass>Radiology.Graphic_Mote_Random</graphicClass>
+      <texPath>Radiology/Effects/Blink</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.25</fadeInTime>
+      <solidTime>0.05</solidTime>
+      <fadeOutTime>0.25</fadeOutTime>
+    </mote>
+  </ThingDef>
+  
+  <AutomaticEffectSpawnerDef>
+    <defName>RadiologyEffectBlinkIn</defName>
+      
+    <subEffects>
+      <li Class="AutomaticSubEffectRadial">
+        <mote>RadiologyMoteBlinkIn</mote>
+        <moteCount>36</moteCount>
+        <radius><min>0.75</min><max>1.5</max></radius>
+        <scale><min>0.6</min><max>0.8</max></scale>
+        <speed>-12.5</speed>
+      </li>
+      <li Class="AutomaticSubEffectSound">
+        <sound>RadiologyBlink</sound>
+      </li>
+    </subEffects>
+    <alsoSpawn>
+      <li>RadiologyEffectSmoke</li>
+    </alsoSpawn>
+
+    <offset><min>0</min><max>0</max></offset>
+  </AutomaticEffectSpawnerDef>
+
 </Defs>
