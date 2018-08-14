@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <AutomaticEffectSpawnerDef>
+    <defName>RadiologyEffectVomitBricks</defName>
+      
+    <subEffects>
+      <li Class="AutomaticSubEffectSound">
+        <sound>Stone_Drop</sound>
+      </li>
+      <li Class="AutomaticSubEffectRadial">
+        <mote>RadiologyMoteAirPuff</mote>
+        <moteCount>24</moteCount>
+        <radius><min>0.1</min><max>0.5</max></radius>
+        <scale><min>0.5</min><max>1.0</max></scale>
+        <speed>1.0</speed>
+      </li>
+      <li Class="AutomaticSubEffectRadial">
+        <mote>RadiologyMoteAirPuff</mote>
+        <moteCount>12</moteCount>
+        <radius><min>0.01</min><max>0.04</max></radius>
+        <scale><min>1.50</min><max>2.0</max></scale>
+        <speed>0.3</speed>
+      </li>
+    </subEffects>
+    
+    <offset><min>0</min><max>0</max></offset>
+  </AutomaticEffectSpawnerDef>
+
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationVomitItemsDef">
+    <defName>MutationVomitMarbleBricks</defName>
+    <label>marble factory</label>
+    <description>The colonist's stomach has mutated to produce marble bricks. Some of the product is ejected during vomiting. Marble is a soft, beautiful stone, known for being easy to sculpt.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Stomach</li></affectedParts>
+    
+    <item>BlocksMarble</item>
+    <count><min>5</min><max>20</max></count>
+    <damage><min>0.5</min><max>1</max></damage>
+    
+    <hurtParts><li>Neck</li></hurtParts>
+    <hurtChance>0.3</hurtChance>
+    
+    <effect>RadiologyEffectVomitBricks</effect>
+  </HediffDef>
+</Defs>

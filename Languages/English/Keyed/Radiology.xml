@@ -34,4 +34,8 @@
 
   <RadiologyCancerNotGrowing>doesn't grow</RadiologyCancerNotGrowing>
   <RadiologyCancerNotDiagnosed>not diagnosed</RadiologyCancerNotDiagnosed>
+  
+  <RadiologyMutationBlinkCommand>Blink!</RadiologyMutationBlinkCommand>
+  <RadiologyMutationBlinkDesc>Immediately teleport to a random location.</RadiologyMutationBlinkDesc>
+  <RadiologyMutationBlinkTargetedDesc>Immediately teleport to a selected location.</RadiologyMutationBlinkTargetedDesc>
 </LanguageData>
