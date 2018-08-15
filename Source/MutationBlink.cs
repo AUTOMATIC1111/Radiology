@@ -106,22 +106,29 @@ namespace Radiology
 
         private void BlinkTargeted(IntVec3 target)
         {
-            if (target.DistanceTo(pawn.Position) <= def.radius)
+            float distanceToTarget = target.DistanceTo(pawn.Position);
+            if (distanceToTarget <= def.radius && !target.Impassable(pawn.Map))
             {
                 Blink(target);
                 return;
             }
 
             Vector3 pos = pawn.Position.ToVector3();
-            pos = pos + (target.ToVector3() - pos).normalized * def.radius;
-            IntVec3 newTarget = pos.ToIntVec3();
-            if (newTarget.Walkable(pawn.Map))
+            Vector3 dest = target.ToVector3();
+            Vector3 dir = (dest - pos).normalized;
+            pos = pos + dir * Mathf.Min(distanceToTarget, def.radius);
+            for (float distance = distanceToTarget; distance >= 0; distance -= 1)
             {
-                Blink(newTarget);
-                return;
+                IntVec3 newTarget = pos.ToIntVec3();
+                if (! newTarget.Impassable(pawn.Map))
+                {
+                    Blink(newTarget);
+                    return;
+                }
+                pos -= dir; 
             }
 
-            BlinkRandomly(pos, 8);
+            Blink(pawn.Position);
         }
 
         private void Blink(IntVec3 target)
