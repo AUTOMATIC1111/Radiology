@@ -7,7 +7,15 @@
     <affectedParts><li>Brain</li></affectedParts>
     <exclusive>blink</exclusive>
     
-    <skill>Plants</skill>
-    <setTo>19</setTo>
+    <skills>
+      <li>
+        <skill>Animals</skill>
+        <setTo>19</setTo>
+      </li>
+      <li>
+        <skill>Plants</skill>
+        <setTo>-1</setTo>
+      </li>
+    </skills>
   </HediffDef>
 </Defs>

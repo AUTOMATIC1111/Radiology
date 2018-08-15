@@ -92,6 +92,7 @@
     <Compile Include="MutationVomitItems.cs" />
     <Compile Include="PatchFacilities.cs" />
     <Compile Include="PatchHediffGizmos.cs" />
+    <Compile Include="PatchSkillDiabled.cs" />
     <Compile Include="PatchVomiting.cs" />
     <Compile Include="PlaceWorkerShowFacilitiesConnections.cs" />
     <Compile Include="RadiationCompProperties.cs" />
