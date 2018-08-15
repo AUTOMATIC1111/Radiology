@@ -42,4 +42,57 @@
     <effectOut>RadiologyEffectBlinkOut</effectOut>
     <effectIn>RadiologyEffectBlinkIn</effectIn>
   </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationGlowerDef">
+    <defName>MutationGlowRed</defName>
+    <label>glow red</label>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Head</li></affectedParts>
+    <exclusive>glow</exclusive>
+    
+    <glow>
+      <glowRadius>8</glowRadius>
+      <glowColor>(255,0,0,0)</glowColor>
+    </glow>
+  </HediffDef>
+    
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationGlowerDef">
+    <defName>MutationGlowGreen</defName>
+    <label>glow green</label>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Head</li></affectedParts>
+    <exclusive>glow</exclusive>
+    
+    <glow>
+      <glowRadius>8</glowRadius>
+      <glowColor>(0,255,0,0)</glowColor>
+    </glow>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationGlowerDef">
+    <defName>MutationGlowBlue</defName>
+    <label>glow blue</label>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Head</li></affectedParts>
+    <exclusive>glow</exclusive>
+    
+    <glow>
+      <glowRadius>8</glowRadius>
+      <glowColor>(0,0,255,0)</glowColor>
+    </glow>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationGlowerDef">
+    <defName>MutationGlow</defName>
+    <label>glow</label>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Head</li></affectedParts>
+    <exclusive>glow</exclusive>
+    
+    <glow>
+      <glowRadius>12</glowRadius>
+      <glowColor>(255,255,255,0)</glowColor>
+    </glow>
+  </HediffDef>
+
 </Defs>

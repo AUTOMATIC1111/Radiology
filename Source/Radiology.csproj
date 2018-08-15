@@ -87,13 +87,16 @@
     <Compile Include="JobDefOf.cs" />
     <Compile Include="JobDriverIrradiate.cs" />
     <Compile Include="MutationBlink.cs" />
+    <Compile Include="MutationGlower.cs" />
     <Compile Include="MutationSetSkill.cs" />
     <Compile Include="MutationsHelper.cs" />
     <Compile Include="MutationVomitItems.cs" />
     <Compile Include="PatchFacilities.cs" />
     <Compile Include="PatchHediffGizmos.cs" />
+    <Compile Include="PatchHediffSet.cs" />
     <Compile Include="PatchSkillDiabled.cs" />
     <Compile Include="PatchVomiting.cs" />
+    <Compile Include="PawnHelper.cs" />
     <Compile Include="PlaceWorkerShowFacilitiesConnections.cs" />
     <Compile Include="RadiationCompProperties.cs" />
     <Compile Include="RadiationHelper.cs" />
