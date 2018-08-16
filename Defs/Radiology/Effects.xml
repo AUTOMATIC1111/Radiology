@@ -114,7 +114,7 @@
     </mote>
   </ThingDef>
 
-  <AutomaticEffectSpawnerDef>
+  <RadiologyEffectSpawnerDef>
     <defName>RadiologyEffectBurn</defName>
       
     <subEffects>
@@ -134,9 +134,9 @@
     </alsoSpawn>
     
     <offset><min>0</min><max>0.25</max></offset>
-  </AutomaticEffectSpawnerDef>
+  </RadiologyEffectSpawnerDef>
 
-  <AutomaticEffectSpawnerDef>
+  <RadiologyEffectSpawnerDef>
     <defName>RadiologyEffectMutate</defName>
       
     <subEffects>
@@ -160,9 +160,9 @@
     </subEffects>
     
     <offset><min>0</min><max>0</max></offset>
-  </AutomaticEffectSpawnerDef>
+  </RadiologyEffectSpawnerDef>
   
-  <AutomaticEffectSpawnerDef Abstract="True" Name="RadiologyEffectCancerBase">
+  <RadiologyEffectSpawnerDef Abstract="True" Name="RadiologyEffectCancerBase">
     <subEffects>
       <li Class="AutomaticSubEffectRadial">
         <mote>RadiologyMoteCancer</mote>
@@ -177,27 +177,27 @@
     </alsoSpawn>
     
     <offset><min>0</min><max>0.25</max></offset>
-  </AutomaticEffectSpawnerDef>
+  </RadiologyEffectSpawnerDef>
 
-  <AutomaticEffectSpawnerDef ParentName="RadiologyEffectCancerBase">
+  <RadiologyEffectSpawnerDef ParentName="RadiologyEffectCancerBase">
     <defName>RadiologyEffectCancerMale</defName>
     <subEffects>
       <li Class="AutomaticSubEffectSound">
         <sound>RadiologyCancerMale</sound>
       </li>
     </subEffects>
-  </AutomaticEffectSpawnerDef>
+  </RadiologyEffectSpawnerDef>
 
-  <AutomaticEffectSpawnerDef ParentName="RadiologyEffectCancerBase">
+  <RadiologyEffectSpawnerDef ParentName="RadiologyEffectCancerBase">
     <defName>RadiologyEffectCancerFemale</defName>
     <subEffects>
       <li Class="AutomaticSubEffectSound">
         <sound>RadiologyCancerFemale</sound>
       </li>
     </subEffects>
-  </AutomaticEffectSpawnerDef>
+  </RadiologyEffectSpawnerDef>
 
-  <AutomaticEffectSpawnerDef>
+  <RadiologyEffectSpawnerDef>
     <defName>RadiologyEffectSmoke</defName>
       
     <subEffects>
@@ -218,7 +218,7 @@
     </subEffects>
     
     <offset><min>0</min><max>0</max></offset>
-  </AutomaticEffectSpawnerDef>
+  </RadiologyEffectSpawnerDef>
 
 
 
@@ -252,7 +252,7 @@
     </mote>
   </ThingDef>
   
-  <AutomaticEffectSpawnerDef>
+  <RadiologyEffectSpawnerDef>
     <defName>RadiologyEffectBlinkOut</defName>
       
     <subEffects>
@@ -286,7 +286,7 @@
     </alsoSpawn>
 
     <offset><min>0</min><max>0</max></offset>
-  </AutomaticEffectSpawnerDef>
+  </RadiologyEffectSpawnerDef>
   
   <ThingDef ParentName="RadiologyMoteBase">
     <defName>RadiologyMoteBlinkIn</defName>
@@ -303,7 +303,7 @@
     </mote>
   </ThingDef>
   
-  <AutomaticEffectSpawnerDef>
+  <RadiologyEffectSpawnerDef>
     <defName>RadiologyEffectBlinkIn</defName>
       
     <subEffects>
@@ -323,6 +323,6 @@
     </alsoSpawn>
 
     <offset><min>0</min><max>0</max></offset>
-  </AutomaticEffectSpawnerDef>
+  </RadiologyEffectSpawnerDef>
 
 </Defs>

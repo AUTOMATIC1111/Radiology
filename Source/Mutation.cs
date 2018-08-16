@@ -18,7 +18,10 @@ namespace Radiology
 
             foreach (ThingComp comp in comps)
             {
-                ThingComp existing = pawn.Comps().FirstOrDefault(x => x.props == comp.props);
+                ThingComp existing = pawn.Comps().FirstOrDefault(x =>
+                    x.GetType() == comp.GetType() && x.props == comp.props
+                );
+                
                 if (existing != null) continue;
 
                 comp.parent = pawn;
@@ -32,8 +35,7 @@ namespace Radiology
         {
             base.PostAdd(dinfo);
 
-            if (def.SpawnEffect(pawn) != null)
-                def.SpawnEffect(pawn).Spawn(pawn.Map, pawn.TrueCenter());
+            AutomaticEffectSpawnerDef.Spawn(def.SpawnEffect(pawn), pawn);
 
             InitializeThingComps();
         }
@@ -58,10 +60,9 @@ namespace Radiology
             return null;
         }
     }
-
-    public class Mutation<T> : Mutation where T: HediffMutationDef
+    
+    public class Mutation<T> : Mutation where T : HediffMutationDef
     {
         public new T def => base.def as T;
     }
-
 }

@@ -29,5 +29,9 @@ namespace Radiology
             return ticksPassed >= Rand.Range(0, mtthDays*60000);
         }
 
+        public static float AngleDifference(float a, float b)
+        {
+            return ((a - b + 180) % 360 - 180);
+        }
     }
 }

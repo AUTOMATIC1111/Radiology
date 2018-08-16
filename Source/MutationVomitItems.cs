@@ -31,7 +31,7 @@ namespace Radiology
             thing.stackCount = def.count.RandomInRange;
             GenPlace.TryPlaceThing(thing, cell, pawn.Map, ThingPlaceMode.Direct, null, null);
 
-            if (def.effect != null) def.effect.Spawn(pawn.Map, cell.ToVector3Shifted());
+            AutomaticEffectSpawnerDef.Spawn(def.effect, pawn);
 
             if (def.hurtParts == null) return;
 

@@ -135,13 +135,13 @@ namespace Radiology
         {
             cooldown = def.cooldownTicks;
 
-            if (def.effectOut != null) def.effectOut.Spawn(pawn.Map, pawn.TrueCenter());
+            AutomaticEffectSpawnerDef.Spawn(def.effectOut, pawn);
 
             pawn.jobs.StartJob(new Job(RimWorld.JobDefOf.Wait, 1, false), JobCondition.InterruptForced, null, true, false);
             pawn.SetPositionDirect(target);
             pawn.Drawer.tweener.ResetTweenedPosToRoot();
 
-            if (def.effectIn != null) def.effectIn.Spawn(pawn.Map, pawn.TrueCenter());
+            AutomaticEffectSpawnerDef.Spawn(def.effectIn, pawn);
         }
 
         public int cooldown = 0;

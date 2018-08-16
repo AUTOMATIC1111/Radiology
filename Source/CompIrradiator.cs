@@ -62,67 +62,6 @@ namespace Radiology
             yield break;
         }
 
-
-        public override IEnumerable<Gizmo> CompGetGizmosExtra()
-        {
-            if (parent.Faction != Faction.OfPlayer) yield break;
-
-            yield return new Command_Action
-            {
-                defaultLabel = "burn",
-                defaultDesc = "Play the burn effect.",
-                icon = ContentFinder<Texture2D>.Get("Radiology/Effects/Burn", true),
-                action = delegate ()
-                {
-                    Chamber chamber = parent.Linked<Chamber>();
-                    if (chamber != null && chamber.def.burnEffect!=null)
-                        chamber.def.burnEffect.Spawn(parent.Map, parent.Position.ToVector3());
-
-                },
-                hotKey = KeyBindingDefOf.Misc3
-            };
-            yield return new Command_Action
-            {
-                defaultLabel = "mutate",
-                defaultDesc = "Play the mutate effect.",
-                icon = ContentFinder<Texture2D>.Get("Radiology/Effects/Mutate", true),
-                action = delegate ()
-                {
-                    if (HediffDefOf.MutationSuperSpeed.spawnEffect != null)
-                        HediffDefOf.MutationSuperSpeed.spawnEffect.Spawn(parent.Map, parent.Position.ToVector3());
-                },
-                hotKey = KeyBindingDefOf.Misc3
-            };
-            yield return new Command_Action
-            {
-                defaultLabel = "cancer male",
-                defaultDesc = "Play the cancer male effect.",
-                icon = ContentFinder<Texture2D>.Get("Radiology/Effects/Cancer", true),
-                action = delegate ()
-                {
-                    Chamber chamber = parent.Linked<Chamber>();
-                    if (HediffDefOf.RadiologyCancer.spawnEffect != null)
-                        HediffDefOf.RadiologyCancer.spawnEffect.Spawn(parent.Map, parent.Position.ToVector3());
-                },
-                hotKey = KeyBindingDefOf.Misc3
-            };
-            yield return new Command_Action
-            {
-                defaultLabel = "cancer female",
-                defaultDesc = "Play the cancer female effect.",
-                icon = ContentFinder<Texture2D>.Get("Radiology/Effects/Cancer", true),
-                action = delegate ()
-                {
-                    if (HediffDefOf.RadiologyCancer.spawnEffectFemale != null)
-                        HediffDefOf.RadiologyCancer.spawnEffectFemale.Spawn(parent.Map, parent.Position.ToVector3());
-                },
-                hotKey = KeyBindingDefOf.Misc3
-            };
-
-
-            yield break;
-        }
-
         IEnumerable<T> GetModifiers<T, X>(Chamber chamber) where X: class where T : ThingComp
         {
             foreach (ThingWithComps thing in GetFacilitiesBetweenThisAndChamber(chamber))
@@ -180,8 +119,8 @@ namespace Radiology
                 DamageInfo dinfo = new DamageInfo(DamageDefOf.Burn, burnAmount * props.burn.multiplier, 999999f, -1f, info.chamber, radiation.Part, null, DamageInfo.SourceCategory.ThingOrUnknown, null);
                 info.pawn.TakeDamage(dinfo);
 
-                if (chamber != null && chamber.def.burnEffect != null)
-                    chamber.def.burnEffect.Spawn(info.pawn.Map, info.pawn.TrueCenter());
+                if (chamber != null)
+                    AutomaticEffectSpawnerDef.Spawn(chamber.def.burnEffect, info.pawn);
             }
 
             float mutateThreshold = info.chamber.def.mutateThreshold.RandomInRange;
