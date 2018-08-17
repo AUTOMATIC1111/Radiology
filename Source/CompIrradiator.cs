@@ -120,7 +120,7 @@ namespace Radiology
                 info.pawn.TakeDamage(dinfo);
 
                 if (chamber != null)
-                    AutomaticEffectSpawnerDef.Spawn(chamber.def.burnEffect, info.pawn);
+                    RadiologyEffectSpawnerDef.Spawn(chamber.def.burnEffect, info.pawn);
             }
 
             float mutateThreshold = info.chamber.def.mutateThreshold.RandomInRange;

@@ -35,7 +35,7 @@ namespace Radiology
         {
             base.PostAdd(dinfo);
 
-            AutomaticEffectSpawnerDef.Spawn(def.SpawnEffect(pawn), pawn);
+            RadiologyEffectSpawnerDef.Spawn(def.SpawnEffect(pawn), pawn);
 
             InitializeThingComps();
         }

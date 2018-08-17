@@ -25,7 +25,7 @@ namespace Radiology
         }
 
         public float ratio;
-        public AutomaticEffectSpawnerDef effectReflect;
+        public RadiologyEffectSpawnerDef effectReflect;
     }
 
     public class MutationCarapace : Mutation<MutationCarapaceDef>
@@ -37,15 +37,15 @@ namespace Radiology
 
         public void ApplyDamage(DamageInfo dinfo, out bool absorbed)
         {
-            if (Mathf.Abs(MathHelper.AngleDifference(dinfo.Angle, pawn.Rotation.AsAngle)) < 45)
+            absorbed = false;
+
+            if (Mathf.Abs(MathHelper.AngleDifference(dinfo.Angle + 180, pawn.Rotation.AsAngle)) < 45)
             {
-                absorbed = false;
                 return;
             }
 
-            AutomaticEffectSpawnerDef.Spawn(def.effectReflect, pawn, dinfo.Angle);
+            RadiologyEffectSpawnerDef.Spawn(def.effectReflect, pawn, dinfo.Angle + 180);
             dinfo.SetAmount(dinfo.Amount * def.ratio);
-            absorbed = false;
         }
     }
 }

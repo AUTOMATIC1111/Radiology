@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <SoundDef ParentName="RadiologySound">
+    <defName>RadiologyCarapaceImpact</defName>  
+    <maxSimultaneous>8</maxSimultaneous>  
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>Radiology/CarapaceImpact</clipFolderPath>
+          </li>
+        </grains>
+        <volumeRange><min>10</min><max>12</max></volumeRange>
+        <sustainLoop>False</sustainLoop>
+      </li>
+    </subSounds>
+  </SoundDef>
+
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteImpact</defName>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0</fadeInTime>
+      <solidTime>0.25</solidTime>
+      <fadeOutTime>0.35</fadeOutTime>
+    </mote>
+    <graphicData>
+      <texPath>Radiology/Effects/Impact</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+  </ThingDef>
+  
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteDebris</defName>
+    <graphicData>
+      <texPath>Radiology/Effects/Debris</texPath>
+    </graphicData>
+    <mote>
+      <fadeInTime>0.05</fadeInTime>
+      <solidTime>0.45</solidTime>
+      <fadeOutTime>0.35</fadeOutTime>
+    </mote>
+  </ThingDef>
+  
+  <RadiologyEffectSpawnerDef>
+    <defName>RadiologyCarapace</defName>
+      
+    <subEffects>
+      <li Class="Radiology.AutomaticSubEffectSound">
+        <sound>RadiologyCarapaceImpact</sound>
+      </li>
+      <li Class="Radiology.AutomaticSubEffectRadial">
+        <mote>RadiologyMoteDebris</mote>
+        <moteCount>5</moteCount>
+        <radius><min>0.4</min><max>0.65</max></radius>
+        <scale><min>0.15</min><max>0.65</max></scale>
+        <rotationRate><min>-720</min><max>720</max></rotationRate>
+        <speed>1.4</speed>
+        <arc>120</arc>
+      </li>
+      <li Class="Radiology.AutomaticSubEffectRadial">
+        <mote>RadiologyMoteImpact</mote>
+        <moteCount>6</moteCount>
+        <radius><min>0.4</min><max>0.7</max></radius>
+        <scale><min>0.5</min><max>0.9</max></scale>
+        <speed>0.25</speed>
+        <arc>45</arc>
+      </li>
+    </subEffects>
+    <alsoSpawn>
+      <li>RadiologyEffectSmoke</li>
+    </alsoSpawn>
+    <offset><min>0</min><max>0</max></offset>
+  </RadiologyEffectSpawnerDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationCarapaceDef">
+    <defName>MutationCarapace</defName>
+    <label>carapace</label>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Torso</li></affectedParts>
+    
+    <ratio>0.5</ratio>
+    <effectReflect>RadiologyCarapace</effectReflect>
+  </HediffDef>
+</Defs>

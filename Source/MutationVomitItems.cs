@@ -18,7 +18,7 @@ namespace Radiology
         public List<BodyPartDef> hurtParts;
         public float hurtChance;
 
-        public AutomaticEffectSpawnerDef effect;
+        public RadiologyEffectSpawnerDef effect;
     }
 
     public class MutationVomitItems : Mutation<MutationVomitItemsDef>
@@ -31,7 +31,7 @@ namespace Radiology
             thing.stackCount = def.count.RandomInRange;
             GenPlace.TryPlaceThing(thing, cell, pawn.Map, ThingPlaceMode.Direct, null, null);
 
-            AutomaticEffectSpawnerDef.Spawn(def.effect, pawn);
+            RadiologyEffectSpawnerDef.Spawn(def.effect, pawn);
 
             if (def.hurtParts == null) return;
 

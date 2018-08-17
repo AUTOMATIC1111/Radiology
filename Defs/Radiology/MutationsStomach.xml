@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <AutomaticEffectSpawnerDef>
+  <RadiologyEffectSpawnerDef>
     <defName>RadiologyEffectVomitBricks</defName>
       
     <subEffects>
-      <li Class="AutomaticSubEffectSound">
+      <li Class="Radiology.AutomaticSubEffectSound">
         <sound>Stone_Drop</sound>
       </li>
-      <li Class="AutomaticSubEffectRadial">
+      <li Class="Radiology.AutomaticSubEffectRadial">
         <mote>RadiologyMoteAirPuff</mote>
         <moteCount>24</moteCount>
         <radius><min>0.1</min><max>0.5</max></radius>
         <scale><min>0.5</min><max>1.0</max></scale>
         <speed>1.0</speed>
       </li>
-      <li Class="AutomaticSubEffectRadial">
+      <li Class="Radiology.AutomaticSubEffectRadial">
         <mote>RadiologyMoteAirPuff</mote>
         <moteCount>12</moteCount>
         <radius><min>0.01</min><max>0.04</max></radius>
@@ -24,8 +24,7 @@
     </subEffects>
     
     <offset><min>0</min><max>0</max></offset>
-  </AutomaticEffectSpawnerDef>
-
+  </RadiologyEffectSpawnerDef>
 
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationVomitItemsDef">
     <defName>MutationVomitMarbleBricks</defName>

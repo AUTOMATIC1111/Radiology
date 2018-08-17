@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+
+  <ThingDef Name="RadiologyMoteShield" ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteShield</defName>
+    <graphicData>
+      <texPath>Radiology/Effects/Shield</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.05</fadeInTime>
+      <solidTime>0.01</solidTime>
+      <fadeOutTime>0.05</fadeOutTime>
+    </mote>
+  </ThingDef>
+  
+  <RadiologyEffectSpawnerDef>
+    <defName>RadiologyEffectShieldAbsorbed</defName>
+      
+    <subEffects>
+      <li Class="Radiology.AutomaticSubEffectRadial">
+        <mote>RadiologyMoteShield</mote>
+        <moteCount>1</moteCount>
+        <radius><min>0.5</min><max>0.5</max></radius>
+        <scale><min>1.75</min><max>1.75</max></scale>
+        <speed>0.25</speed>
+        <arc>0</arc>
+      </li>
+      <li Class="Radiology.AutomaticSubEffectSound">
+        <sound>EnergyShield_AbsorbDamage</sound>
+      </li>
+    </subEffects>
+    <alsoSpawn>
+      <li>RadiologyEffectSmoke</li>
+    </alsoSpawn>
+
+    <offset><min>0</min><max>0</max></offset>
+  </RadiologyEffectSpawnerDef>
+
+
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteShieldPiece</defName>
+    <graphicData>
+      <texPath>Radiology/Effects/ShieldPiece</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.05</fadeInTime>
+      <solidTime>0.15</solidTime>
+      <fadeOutTime>0.75</fadeOutTime>
+    </mote>
+  </ThingDef>
+  
+  <RadiologyEffectSpawnerDef>
+    <defName>RadiologyEffectShieldBroken</defName>
+      
+    <subEffects>
+      <li Class="Radiology.AutomaticSubEffectRadial">
+        <mote>RadiologyMoteShieldPiece</mote>
+        <moteCount>12</moteCount>
+        <radius><min>0.4</min><max>0.6</max></radius>
+        <scale><min>0.15</min><max>0.65</max></scale>
+        <rotationRate><min>-720</min><max>720</max></rotationRate>
+        <speed>1.4</speed>
+        <arc>120</arc>
+      </li>
+      <li Class="Radiology.AutomaticSubEffectSound">
+        <sound>EnergyShield_Broken</sound>
+      </li>
+    </subEffects>
+    <offset><min>0</min><max>0</max></offset>
+  </RadiologyEffectSpawnerDef>
+
+
+
+  <ThingDef ParentName="RadiologyMoteShield">
+    <defName>RadiologyMoteShieldRestored</defName>
+    <mote>
+      <fadeInTime>0.3</fadeInTime>
+      <solidTime>0.1</solidTime>
+      <fadeOutTime>0.3</fadeOutTime>
+    </mote>
+  </ThingDef>
+
+  <RadiologyEffectSpawnerDef>
+    <defName>RadiologyEffectShieldRestored</defName>
+      
+    <subEffects>
+      <li Class="Radiology.AutomaticSubEffectRadial">
+        <mote>RadiologyMoteShieldRestored</mote>
+        <moteCount>12</moteCount>
+        <radius><min>1</min><max>1</max></radius>
+        <scale><min>1.75</min><max>1.75</max></scale>
+        <speed>-0.25</speed>
+      </li>
+      <li Class="Radiology.AutomaticSubEffectSound">
+        <sound>EnergyShield_Reset</sound>
+      </li>
+    </subEffects>
+
+    <offset><min>0</min><max>0</max></offset>
+  </RadiologyEffectSpawnerDef>
+
+  <HediffDef Name="RadiologyPsionicShield" ParentName="RadiologyMutation" Class="Radiology.MutationPsionicShieldDef">
+    <defName>MutationPsionicShield</defName>
+    <label>psionic shield</label>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Brain</li></affectedParts>
+    
+    <health>100</health>
+    <regenratedPerSecond>50</regenratedPerSecond>
+    <regenerationDelayTicks>600</regenerationDelayTicks>
+    
+    <effectAbsorbed>RadiologyEffectShieldAbsorbed</effectAbsorbed>
+    <effectBroken>RadiologyEffectShieldBroken</effectBroken>
+    <effectRestored>RadiologyEffectShieldRestored</effectRestored>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyPsionicShield" Class="Radiology.MutationPsionicShieldDef">
+    <defName>MutationPsionicShieldSmall</defName>
+    <label>small psionic shield</label>
+    
+    <health>40</health>
+    <regenerationDelayTicks>200</regenerationDelayTicks>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyPsionicShield" Class="Radiology.MutationPsionicShieldDef">
+    <defName>MutationPsionicShieldSmall</defName>
+    <label>large psionic shield</label>
+    
+    <health>125</health>
+    <regenratedPerSecond>40</regenratedPerSecond>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyPsionicShield" Class="Radiology.MutationPsionicShieldDef">
+    <defName>MutationPsionicShieldSmall</defName>
+    <label>huge psionic shield</label>
+    
+    <health>200</health>
+    <regenratedPerSecond>10</regenratedPerSecond>
+  </HediffDef>
+
+</Defs>

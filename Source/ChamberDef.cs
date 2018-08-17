@@ -15,7 +15,7 @@ namespace Radiology
     {
         public FloatRange burnThreshold;
         public FloatRange mutateThreshold;
-        public AutomaticEffectSpawnerDef burnEffect;
+        public RadiologyEffectSpawnerDef burnEffect;
 
         public List<AffectedBodyPart> bodyParts;
 

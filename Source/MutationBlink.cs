@@ -19,8 +19,8 @@ namespace Radiology
         public bool aimed;
         public int cooldownTicks = 240;
 
-        public AutomaticEffectSpawnerDef effectOut;
-        public AutomaticEffectSpawnerDef effectIn;
+        public RadiologyEffectSpawnerDef effectOut;
+        public RadiologyEffectSpawnerDef effectIn;
     }
 
     public class MutationBlink : Mutation<MutationBlinkDef>
@@ -135,13 +135,13 @@ namespace Radiology
         {
             cooldown = def.cooldownTicks;
 
-            AutomaticEffectSpawnerDef.Spawn(def.effectOut, pawn);
+            RadiologyEffectSpawnerDef.Spawn(def.effectOut, pawn);
 
             pawn.jobs.StartJob(new Job(RimWorld.JobDefOf.Wait, 1, false), JobCondition.InterruptForced, null, true, false);
             pawn.SetPositionDirect(target);
             pawn.Drawer.tweener.ResetTweenedPosToRoot();
 
-            AutomaticEffectSpawnerDef.Spawn(def.effectIn, pawn);
+            RadiologyEffectSpawnerDef.Spawn(def.effectIn, pawn);
         }
 
         public int cooldown = 0;
