@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationNightDwellerDef">
+    <defName>MutationNightDweller</defName>
+    <label>night dweller</label>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Brain</li></affectedParts>
+    
+    <positiveMultiplier>1.0</positiveMultiplier>
+    <negativeMultiplier>0.5</negativeMultiplier>
+    
+    <stage>
+      <capMods>
+        <li>
+          <capacity>Moving</capacity>
+          <offset>0.5</offset>
+        </li>
+        <li>
+          <capacity>Sight</capacity>
+          <offset>0.5</offset>
+        </li>
+        <li>
+          <capacity>BloodPumping</capacity>
+          <offset>1.0</offset>
+        </li>
+      </capMods>
+    </stage>
+  </HediffDef>
+
+</Defs>
