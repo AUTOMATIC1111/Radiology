@@ -109,6 +109,7 @@
     <Compile Include="Radiology.cs" />
     <Compile Include="RecipeRedoDiagnosis.cs" />
     <Compile Include="ResearchDefOf.cs" />
+    <Compile Include="RoomRoleWorker_RadiologyChamber.cs" />
     <Compile Include="SoundDefOf.cs" />
     <Compile Include="ThingDefOf.cs" />
     <Compile Include="ThingHelper.cs" />

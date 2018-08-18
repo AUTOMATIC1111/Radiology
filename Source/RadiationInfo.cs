@@ -15,5 +15,6 @@ namespace Radiology
         public float burn;
         public float normal;
         public float rare;
+        public bool secondHand;
     }     
 }

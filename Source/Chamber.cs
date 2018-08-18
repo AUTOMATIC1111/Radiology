@@ -74,9 +74,15 @@ namespace Radiology
         public void Irradiate(Pawn pawn, int ticksCooldown)
         {
             radiationTracker.Clear();
+
+            Room room = Position.GetRoom(Map);
+            Pawn actualPawn = Map.mapPawns.AllPawns.Where(x => x.GetRoom() == room).RandomElementWithFallback(pawn);
+
+            Debug.Log(actualPawn);
+
             foreach (CompIrradiator comp in GetIrradiators())
             {
-                RadiationInfo info = new RadiationInfo { chamber = this, pawn = pawn, part = null };
+                RadiationInfo info = new RadiationInfo { chamber = this, pawn = actualPawn, part = null, secondHand = actualPawn!=pawn };
                 comp.Irradiate(info, ticksCooldown);
 
                 radiationTracker.burn += info.burn;

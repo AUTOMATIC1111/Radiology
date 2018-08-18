@@ -63,12 +63,5 @@ namespace Radiology
                 return stage;
             }
         }
-        /*
-        public override void Tick()
-        {
-            base.Tick();
-
-        }*/
-        
     }
 }

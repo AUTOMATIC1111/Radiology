@@ -16,7 +16,7 @@
   <ThingDef ParentName="RadiologyBuildingBase" Class="Radiology.ChamberDef">
     <defName>RadiologyRadiationChamber</defName>
     <description>A place to stand on for a prescripted dose of radiation.</description>
-    <label>radiation chamber</label>
+    <label>irradiation chamber</label>
     <thingClass>Radiology.Chamber</thingClass>
     <researchPrerequisites><li>RadiologyBasic</li></researchPrerequisites>
 
