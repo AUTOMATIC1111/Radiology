@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ThingDef Name="RadiologyMutationApparelBase" Abstract="True">
+    <thingClass>Radiology.ApparelBodyPart</thingClass>
+    <category>Item</category>
+    <selectable>True</selectable>
+    <pathCost>10</pathCost>
+    <useHitPoints>False</useHitPoints>
+    <techLevel>Medieval</techLevel>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <DeteriorationRate>0</DeteriorationRate>
+    </statBases>
+    <altitudeLayer>Item</altitudeLayer>
+    <tickerType>Never</tickerType>
+  </ThingDef>
+  
+  <ThingDef ParentName="RadiologyMutationApparelBase">
+    <defName>RadiologyHorns</defName>
+    <label>horns</label>
+    <description>Horns.</description>
+    <thingCategories><li>Headgear</li></thingCategories>
+    <graphicData>
+      <texPath>Radiology/Parts/Horns</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    
+    <equippedStatOffsets><SocialImpact>-0.2</SocialImpact></equippedStatOffsets>
+    
+    <apparel>
+      <bodyPartGroups><li>UpperHead</li></bodyPartGroups>
+      <wornGraphicPath>Radiology/Parts/Horns</wornGraphicPath>
+      <layers><li>Overhead</li></layers>
+      <hatRenderedFrontOfFace>True</hatRenderedFrontOfFace>
+    </apparel>
+  </ThingDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationHorns</defName>
+    <label>horns</label>
+    <relatedParts><li>Head</li></relatedParts>
+    <exclusive>apparel</exclusive>
+    
+    <apparel>
+      <li>RadiologyHorns</li>
+    </apparel>
+    
+    <comps>
+      <li Class="HediffCompProperties_VerbGiver">
+        <tools>
+          <li>
+            <label>tip</label>
+            <labelUsedInLogging>False</labelUsedInLogging>
+            <capacities>
+              <li>Poke</li>
+              <li>Blunt</li>
+            </capacities>
+            <power>15.0</power>
+            <cooldownTime>1.5</cooldownTime>
+            <alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+          </li>
+        </tools>
+      </li>
+    </comps>
+    <addedPartProps>
+      <isGoodWeapon>true</isGoodWeapon>
+    </addedPartProps>
+
+  </HediffDef>
+
+</Defs>

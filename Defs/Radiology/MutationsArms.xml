@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationEnhancedDex</defName>
     <label>Enhanced Dexterity</label>
     <description>The radiation has strengthened the tendons and muscles in this colonist's hand, making them more dexterous.</description>
@@ -20,7 +20,7 @@
     </stage>
   </HediffDef>
   
-  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationTumorousHand</defName>
     <label>Tumorous Fingers</label>
     <description>The radiation has caused benign tumours to grow on the colonist's hand, destroying nerves and muscle tissue causing the hang to become crippled.</description>
@@ -36,7 +36,7 @@
     </stage>
   </HediffDef>
 
-  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationStrengthenedArm</defName>
     <label>Strengthened Arms</label>
     <description>The muscle tissue in the arm has mutated and grown unnaturally, causing the colonist to have increased strength and control.</description>
@@ -53,7 +53,7 @@
     </stage>
   </HediffDef>
   
-  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationWeakenedArm</defName>
     <label>Weakened Arms</label>
     <description>The radiation has caused the muscle tissue in this colonist's arm to deteriorate, weakening the colonist's strength and control.</description>

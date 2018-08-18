@@ -17,7 +17,7 @@ namespace Radiology
         }
     }
 
-    public class MutationCarapaceDef : HediffMutationDef
+    public class MutationCarapaceDef : MutationDef
     {
         public MutationCarapaceDef()
         {

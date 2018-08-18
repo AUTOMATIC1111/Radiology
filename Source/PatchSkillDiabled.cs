@@ -9,7 +9,9 @@ using Verse;
 
 namespace Radiology
 {
-
+    /// <summary>
+    /// hook to check if a mutation disables a skill
+    /// </summary>
     [HarmonyPatch(typeof(SkillRecord), "CalculateTotallyDisabled", new Type[] { }), StaticConstructorOnStartup]
     public static class PatchSkillDiabled
     {

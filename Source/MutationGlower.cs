@@ -29,7 +29,7 @@ namespace Radiology
         }
     }
 
-    public class MutationGlowerDef : HediffMutationDef
+    public class MutationGlowerDef : MutationDef
     {
         public MutationGlowerDef() { hediffClass = typeof(MutationGlower); }
 

@@ -10,6 +10,9 @@ using Verse.AI;
 
 namespace Radiology
 {
+    /// <summary>
+    /// Hook to call vomiting mutation when the pawn is vomiting
+    /// </summary>
     [HarmonyPatch(typeof(JobDriver_Vomit), "MakeNewToils", new Type[] { }), StaticConstructorOnStartup]
     public static class PatchVomiting
     {

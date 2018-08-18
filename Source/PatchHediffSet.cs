@@ -7,10 +7,12 @@ using Verse;
 
 namespace Radiology
 {
+    /// <summary>
+    /// Call PostLoad for mutations that need it.
+    /// </summary>
     [HarmonyPatch(typeof(HediffSet), "ExposeData", new Type[] { }), StaticConstructorOnStartup]
     public static class PatchHediffSet
     {
-
         static void Postfix(HediffSet __instance)
         {
             if (Scribe.mode == LoadSaveMode.ResolvingCrossRefs)

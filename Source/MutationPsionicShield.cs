@@ -11,9 +11,11 @@ namespace Radiology
     [StaticConstructorOnStartup]
     public class GizmoPsionicShieldStatus : Gizmo
     {
+        static int ID = 10984688;
+
         public GizmoPsionicShieldStatus()
         {
-            order = -100f;
+            order = -200f;
         }
 
         public override float GetWidth(float maxWidth)
@@ -24,7 +26,7 @@ namespace Radiology
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth)
         {
             Rect overRect = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), 75f);
-            Find.WindowStack.ImmediateWindow(984688, overRect, WindowLayer.GameUI, delegate
+            Find.WindowStack.ImmediateWindow(ID, overRect, WindowLayer.GameUI, delegate
             {
                 Rect rect = overRect.AtZero().ContractedBy(6f);
 
@@ -88,7 +90,7 @@ namespace Radiology
 
     }
 
-    public class MutationPsionicShieldDef : HediffMutationDef
+    public class MutationPsionicShieldDef : MutationDef
     {
         public MutationPsionicShieldDef(){ hediffClass = typeof(MutationPsionicShield); }
 

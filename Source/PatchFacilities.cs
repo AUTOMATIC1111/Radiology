@@ -8,7 +8,9 @@ using Verse;
 
 namespace Radiology
 {
-
+    /// <summary>
+    /// Let a nuilding be both facility and affected by facilities when placing it.
+    /// </summary>
     [HarmonyPatch(typeof(CompAffectedByFacilities), "CanPotentiallyLinkTo_Static", new Type[] { typeof(ThingDef), typeof(IntVec3), typeof(Rot4), typeof(ThingDef), typeof(IntVec3), typeof(Rot4) }), StaticConstructorOnStartup]
     public static class PatchFacilities
     {

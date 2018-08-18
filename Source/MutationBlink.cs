@@ -9,7 +9,7 @@ using Verse.AI;
 
 namespace Radiology
 {
-    public class MutationBlinkDef : HediffMutationDef
+    public class MutationBlinkDef : MutationDef
     {
         public MutationBlinkDef() { hediffClass = typeof(MutationBlink); }
 

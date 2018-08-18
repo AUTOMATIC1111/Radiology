@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationEnhancedLungs</defName>
     <label>Enhanced Lungs</label>
     <description>The radiation has strengthened the tissues and muscle in the colonist's lungs and diaphram, causing their breathing to become unhuman.</description>
@@ -18,7 +18,7 @@
     </stage>
   </HediffDef>
   
-  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationStrengthenedHeart</defName>
     <label>Strengthened Heart</label>
     <description>The muscle tissue has woven itself in such a way that the colonist's heart has strengthened and become superior.</description>
@@ -36,7 +36,7 @@
     </stage>
   </HediffDef>
 
-  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationSuperVision</defName>
     <label>Super Vision</label>
     <description>The colonist's eye has mutated, allowing them to see more clearly and sharply, this allows colonists to have better reflexes and to see better.</description>
@@ -57,7 +57,7 @@
     </stage>
    </HediffDef>
    
-  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationEnhancedHearing</defName>
     <label>Enhanced Hearing</label>
     <description>The colonist's ears have mutated, allowing them to hear more clearly and sharply, this allows colonists to have better reflexes.</description>
@@ -73,7 +73,7 @@
     </stage>
    </HediffDef>
    
-   <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationBrain</defName>
     <label>Brain Mutation</label>
     <description>The colonist's brain has mutated, causing the synapses to fire quicker and more efficiently, making the colonist better overall.</description>
@@ -96,7 +96,7 @@
    <!-- Start of bad organ mutations -->
    <!-- ++++++++++++++++++++++++++++ -->
    
-  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationDamagedLung</defName>
     <label>Damaged Lungs</label>
     <description>The radiation has destroyed much of this colonist's lung tissue making it difficult for them to breath.</description>
@@ -114,7 +114,7 @@
     </stage>
   </HediffDef>
   
-  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationWeakenedHeart</defName>
     <label>Weakened Heart</label>
     <description>The muscle tissue has been weakened and damaged by the radiation, making this colonist's heart less efficient and damaged.</description>
@@ -144,7 +144,7 @@
     </stage>
   </HediffDef>
   
-  <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationDamagedVision</defName>
     <label>Damaged Vision</label>
     <description>The colonist's eye tissue has been damaged, leaving the colonist's eye useless. If both eyes are damaged, the colonist will be blind.</description>
@@ -164,7 +164,7 @@
     </stage>
    </HediffDef>
    
-   <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationDamagedHearing</defName>
     <label>Damaged Hearing</label>
     <description>The colonist's ears have been damaged leaving the colonist with poor hearing.</description>
@@ -180,7 +180,7 @@
     </stage>
    </HediffDef>
    
-   <HediffDef ParentName="RadiologyMutation" Class="Radiology.HediffMutationDef">
+   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationBrainDamage</defName>
     <label>Brain Damage</label>
     <description>The colonist's brain tissue has deteriorated, causing the synapses to fire slower and less efficiently, causing the colonist to become deaf and mute.</description>

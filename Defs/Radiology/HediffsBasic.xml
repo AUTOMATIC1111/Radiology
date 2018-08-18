@@ -16,7 +16,7 @@
     </stages>
   </HediffDef>
 
-  <HediffDef Abstract="True" Name="RadiologyMutation" Class="Radiology.HediffMutationDef">
+  <HediffDef Abstract="True" Name="RadiologyMutation" Class="Radiology.MutationDef">
     <defaultLabelColor>(255,138,0)</defaultLabelColor>
     <isBad>false</isBad>
     <spawnEffect>RadiologyEffectMutate</spawnEffect>

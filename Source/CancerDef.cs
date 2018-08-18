@@ -6,7 +6,7 @@ using Verse;
 
 namespace Radiology
 {
-    public class CancerDef : HediffMutationDef
+    public class CancerDef : MutationDef
     {
         public CancerDef()
         {

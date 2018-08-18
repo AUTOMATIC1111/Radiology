@@ -7,6 +7,9 @@ using Verse;
 
 namespace Radiology
 {
+    /// <summary>
+    /// Allows hediffs to add gizmos (should really be removed and re-implemented using existing comps mechanism)
+    /// </summary>
     [HarmonyPatch(typeof(Pawn), "GetGizmos", new Type[] { }), StaticConstructorOnStartup]
     public static class PatchHediffGizmos
     {
@@ -27,7 +30,5 @@ namespace Radiology
             yield break;
 
         }
-
     }
-
 }

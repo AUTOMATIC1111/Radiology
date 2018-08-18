@@ -9,6 +9,19 @@ namespace Radiology
 {
     public static class RadiationHelper
     {
+        public static List<MutationDef> Mutations
+        {
+            get
+            {
+                if (allMutations != null) return allMutations;
+
+                allMutations = new List<MutationDef>();
+                allMutations.AddRange(GenDefDatabase.GetAllDefsInDatabaseForDef(typeof(MutationDef)).Cast<MutationDef>());
+                return allMutations;
+            }
+        }
+
+        static List<MutationDef> allMutations;
 
         private static IEnumerable<BodyPartRecord> GetChildBodyParts(BodyPartRecord part)
         {
@@ -30,7 +43,7 @@ namespace Radiology
 
         private static IEnumerable<BodyPartRecord> WhichPartsMutationIsAllowedOn(
             Pawn pawn,
-            HediffMutationDef def,
+            MutationDef def,
             BodyPartRecord part,
             Dictionary<string, HashSet<BodyPartDef>> excludedPartDefsForTag,
             Dictionary<string, HashSet<BodyPartRecord>> excludedPartsForTag
@@ -104,12 +117,11 @@ namespace Radiology
             Debug.Log("Excluded parts for tags: " + Debug.AsText(excludedPartsForTag));
             Debug.Log("Excluded defs for tags: " + Debug.AsText(excludedPartDefsForTag));
 
-            var mutations =
-                MutationsHelper.Mutations.Where(x => x.relatedParts==null || x.relatedParts.Contains(part.def));
+            var mutations = Mutations.Where(x => x.relatedParts==null || x.relatedParts.Contains(part.def));
 
             Debug.Log("All applicable mutations: " + Debug.AsText(mutations));
 
-            Dictionary<HediffMutationDef, IEnumerable<BodyPartRecord>> allowedMutations = new Dictionary<HediffMutationDef, IEnumerable<BodyPartRecord>>();
+            Dictionary<MutationDef, IEnumerable<BodyPartRecord>> allowedMutations = new Dictionary<MutationDef, IEnumerable<BodyPartRecord>>();
             foreach (var mutation in mutations)
             {
                 var parts = WhichPartsMutationIsAllowedOn(pawn, mutation, part, excludedPartDefsForTag, excludedPartsForTag);
@@ -126,7 +138,7 @@ namespace Radiology
                 return null;
             }
 
-            HediffMutationDef mutationDef = allowedMutations.Keys.RandomElementByWeight(x => (float)Math.Pow(x.likelihood, 1f - rareRatio));
+            MutationDef mutationDef = allowedMutations.Keys.RandomElementByWeight(x => (float)Math.Pow(x.likelihood, 1f - rareRatio));
             Debug.Log("Chose mutation: " + mutationDef);
 
             var applicableParts = allowedMutations[mutationDef];

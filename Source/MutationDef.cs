@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,9 @@ using Verse;
 
 namespace Radiology
 {
-    public class HediffMutationDef :HediffDef
+    public class MutationDef :HediffDef
     {
-        public HediffMutationDef()
+        public MutationDef()
         {
             hediffClass = typeof(Mutation);
         }
@@ -27,6 +28,8 @@ namespace Radiology
         public RadiologyEffectSpawnerDef SpawnEffect(Pawn pawn) => (pawn.gender == Gender.Female && spawnEffectFemale != null) ? spawnEffectFemale : spawnEffect;
 
         public HediffStage stage;
+
+        public List<ThingDef> apparel;
 
         public override void PostLoad()
         {

@@ -7,7 +7,7 @@ using Verse;
 
 namespace Radiology
 {
-    public class MutationVomitItemsDef : HediffMutationDef
+    public class MutationVomitItemsDef : MutationDef
     {
         public MutationVomitItemsDef() { hediffClass = typeof(MutationVomitItems); }
 

@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApparelBodyPart.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AutomaticEffectSpawnerDef.cs" />
     <Compile Include="Cancer.cs" />
@@ -82,7 +83,7 @@
     <Compile Include="MathHelper.cs" />
     <Compile Include="MoteRadiation.cs" />
     <Compile Include="Mutation.cs" />
-    <Compile Include="HediffMutationDef.cs" />
+    <Compile Include="MutationDef.cs" />
     <Compile Include="HediffRadiation.cs" />
     <Compile Include="JobDefOf.cs" />
     <Compile Include="JobDriverIrradiate.cs" />
@@ -91,8 +92,9 @@
     <Compile Include="MutationGlower.cs" />
     <Compile Include="MutationPsionicShield.cs" />
     <Compile Include="MutationSetSkill.cs" />
-    <Compile Include="MutationsHelper.cs" />
     <Compile Include="MutationVomitItems.cs" />
+    <Compile Include="PatchApparelUtilityHasPartsToWear.cs" />
+    <Compile Include="PatchApparelTrackerTryDrop.cs" />
     <Compile Include="PatchFacilities.cs" />
     <Compile Include="PatchHediffGizmos.cs" />
     <Compile Include="PatchHediffSet.cs" />

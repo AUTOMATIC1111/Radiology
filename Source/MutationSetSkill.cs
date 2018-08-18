@@ -13,7 +13,7 @@ namespace Radiology
         public int setTo;
     }
 
-    public class MutationSetSkillDef : HediffMutationDef
+    public class MutationSetSkillDef : MutationDef
     {
         public MutationSetSkillDef() { hediffClass = typeof(MutationSetSkill); }
 
