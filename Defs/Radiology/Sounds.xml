@@ -85,7 +85,8 @@
     </subSounds>
     
   </SoundDef>
-    <SoundDef ParentName="RadiologySound">
+  
+  <SoundDef ParentName="RadiologySound">
     <defName>RadiologyBlink</defName>  
     <maxSimultaneous>8</maxSimultaneous>  
     <subSounds>
