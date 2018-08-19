@@ -94,6 +94,7 @@
     <Compile Include="MutationGlower.cs" />
     <Compile Include="MutationNightDweller.cs" />
     <Compile Include="MutationPsionicShield.cs" />
+    <Compile Include="MutationRegeneration.cs" />
     <Compile Include="MutationSetSkill.cs" />
     <Compile Include="MutationVomitItems.cs" />
     <Compile Include="PatchApparelUtilityHasPartsToWear.cs" />

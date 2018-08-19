@@ -18,7 +18,7 @@ namespace Radiology
         {
             if (pawn == null) return null;
 
-            return pawn.health.hediffSet.GetNotMissingParts().RandomElementByWeight(x => chamber.def.PartsMap.TryGetValue(x.def, 0f));
+            return pawn.health.hediffSet.GetNotMissingParts().RandomElementByWeight(x => chamber.def.GetPartWeight(pawn, x));
         }
 
         public HediffRadiation GetHediffRadition(BodyPartRecord part, Chamber chamber, Pawn pawn)
@@ -83,9 +83,11 @@ namespace Radiology
             SoundDefOf.RadiologyIrradiateBasic.PlayOneShot(new TargetInfo(parent.Position, parent.Map, false));
             ticksCooldown = ticks;
 
+            if (info.pawn.IsShielded()) return;
+
             info.part = GetBodyPart(info.chamber, info.pawn);
             info.burn = props.burn.perSecond.RandomInRange;
-            info.normal =props.mutate.perSecond.RandomInRange;
+            info.normal = props.mutate.perSecond.RandomInRange;
             info.rare = props.mutateRare.perSecond.RandomInRange;
             if (info.secondHand) info.rare /= 2;
 

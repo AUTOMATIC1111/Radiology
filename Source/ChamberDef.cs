@@ -38,5 +38,13 @@ namespace Radiology
                 return cachedPartsMap;
             }
         }
+
+        public float GetPartWeight(Pawn pawn, BodyPartRecord x)
+        {
+            /// XXX can be optimized
+            if (x.def.IsSolid(x, pawn.health.hediffSet.hediffs)) return 0f;
+
+            return PartsMap.TryGetValue(x.def, 0f);
+        }
     }
 }

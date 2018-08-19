@@ -29,6 +29,8 @@ namespace Verse
 
         public void Spawn(Map map, Vector3 position, float angle)
         {
+            if (map == null) return;
+
             Vector3 origin = position + new Vector3(1f, 0f, 0f).RotatedBy(Rand.Range(0f, 360f)) * offset.RandomInRange;
 
             if (subEffects != null)

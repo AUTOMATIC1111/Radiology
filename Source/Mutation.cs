@@ -11,8 +11,40 @@ namespace Radiology
     {
         public new MutationDef def => base.def as MutationDef;
 
-        void CreateThingComps() => InitializeThingComps(false);
-        void RemoveThingComps() => InitializeThingComps(true);
+        List<ThingComp> thingComps;
+
+        void CreateThingComps()
+        {
+            if (thingComps != null) return;
+
+            ThingComp[] comps = GetComps();
+            if (comps == null) return;
+
+            thingComps = new List<ThingComp>();
+            List<ThingComp> list = pawn.Comps();
+
+            foreach (ThingComp comp in comps)
+            {
+                comp.parent = pawn;
+                thingComps.Add(comp);
+                list.Add(comp);
+
+                if (pawn.Map != null) comp.PostSpawnSetup(false);
+            }
+        }
+        void RemoveThingComps()
+        {
+            if (thingComps == null) return;
+
+            List<ThingComp> list = pawn.Comps();
+
+            foreach (ThingComp comp in thingComps)
+            {
+                list.RemoveAll(x => x == comp);
+            }
+
+            thingComps = null;
+        }
 
         void InitializeThingComps(bool remove)
         {
@@ -115,9 +147,11 @@ namespace Radiology
             return null;
         }
     }
-    
+
     public class Mutation<T> : Mutation where T : MutationDef
     {
         public new T def => base.def as T;
     }
+
+
 }
