@@ -85,9 +85,10 @@ namespace Radiology
 
             info.part = GetBodyPart(info.chamber, info.pawn);
             info.burn = props.burn.perSecond.RandomInRange;
-            info.normal = info.secondHand ? props.mutate.perSecond.RandomInRange/2 : props.mutate.perSecond.RandomInRange;
-            info.rare = info.secondHand ? 0 : props.mutateRare.perSecond.RandomInRange;
- 
+            info.normal =props.mutate.perSecond.RandomInRange;
+            info.rare = props.mutateRare.perSecond.RandomInRange;
+            if (info.secondHand) info.rare /= 2;
+
             motesReflectAt.Clear();
             foreach (ThingComp comp in GetModifiers<ThingComp, IRadiationModifier>(info.chamber))
             {
@@ -95,6 +96,8 @@ namespace Radiology
                 {
                     motesReflectAt.Add((parent.Rotation.IsHorizontal ? comp.parent.Position.x : comp.parent.Position.z) + 0.5f);
                 }
+
+                if (info.secondHand) continue;
 
                 IRadiationModifier modifier = comp as IRadiationModifier;
                 modifier.Modify(ref info);

@@ -17,15 +17,15 @@ namespace Radiology
 
         public override void PostDeSpawn(Map map)
         {
-            parent.Map.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.Things);
-            parent.Map.glowGrid.DeRegisterGlower(this);
+            if(parent!=null) map.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.Things);
+            map.glowGrid.DeRegisterGlower(this);
         }
 
         public override void CompTick()
         {
             base.CompTick();
-
-            parent.Map.glowGrid.MarkGlowGridDirty(parent.Position);
+            
+            if (parent.Map != null) parent.Map.glowGrid.MarkGlowGridDirty(parent.Position);
         }
     }
 

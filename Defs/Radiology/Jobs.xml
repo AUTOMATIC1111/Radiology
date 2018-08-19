@@ -6,4 +6,10 @@
     <reportString>getting irradiated.</reportString>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
+  <JobDef>
+    <defName>RadiologyIrradiatePrisoner</defName>
+    <driverClass>Radiology.JobDriverIrradiatePrisoner</driverClass>
+    <reportString>delivering TargetA to irradiation chamber.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
 </Defs>

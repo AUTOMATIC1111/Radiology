@@ -30,7 +30,7 @@ namespace Radiology
             base.Tick();
 
             if (cooldown > 0) cooldown--;
-
+            if (pawn.Map == null) return;
             if (!MathHelper.CheckMtthDays(def.mtthDays)) return;
 
             BlinkRandomly();

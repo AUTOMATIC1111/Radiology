@@ -9,4 +9,13 @@
     <verb>get irradiated in</verb>
     <gerund>getting irradiated in</gerund>
   </WorkGiverDef>
+  
+  <WorkGiverDef>
+    <defName>WorkGiverRadiologyIrradiatePrisoner</defName>
+    <label>deliver prisoner to irradiation chamber</label>
+    <giverClass>Radiology.WorkGiverIrradiatePrisoner</giverClass>
+    <workType>Warden</workType>
+    <verb>deliver</verb>
+    <gerund>delivering</gerund>
+  </WorkGiverDef>
 </Defs>

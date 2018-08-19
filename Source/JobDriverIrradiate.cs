@@ -8,7 +8,7 @@ using Verse.AI;
 
 namespace Radiology
 {
-    class JobDriverIrradiate :JobDriver
+    class JobDriverIrradiate :JobDriver, IPrisonerAllowedJob
     {
         private Chamber Chamber => job.GetTarget(TargetIndex.A).Thing as Chamber;
 
@@ -23,6 +23,7 @@ namespace Radiology
         {
             this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
             this.FailOn(delegate () { return Chamber.CanIrradiateNow(pawn) != null; });
+ //           AddFinishAction(delegate () { if (pawn.IsPrisoner) pawn.SetForbidden(false); });
 
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell).FailOnDespawnedOrNull(TargetIndex.A);
             Toil work = new Toil();

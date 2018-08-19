@@ -79,7 +79,9 @@
     <Compile Include="HediffDefOf.cs" />
     <Compile Include="HelperCompFacility.cs" />
     <Compile Include="IAdvancedFacilityConnector.cs" />
+    <Compile Include="IPrisonerAllowedJob.cs" />
     <Compile Include="IRadiationModifier.cs" />
+    <Compile Include="JobDriverIrradiatePrisoner.cs" />
     <Compile Include="MathHelper.cs" />
     <Compile Include="MoteRadiation.cs" />
     <Compile Include="Mutation.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="PatchHediffSet.cs" />
     <Compile Include="PatchSkillDiabled.cs" />
     <Compile Include="PatchVomiting.cs" />
+    <Compile Include="PatchWorkGiver_Warden_TakeToBedJobOnThing.cs" />
     <Compile Include="PawnHelper.cs" />
     <Compile Include="PlaceWorkerShowFacilitiesConnections.cs" />
     <Compile Include="RadiationCompProperties.cs" />
@@ -114,6 +117,7 @@
     <Compile Include="ThingDefOf.cs" />
     <Compile Include="ThingHelper.cs" />
     <Compile Include="WorkGiverIrradiate.cs" />
+    <Compile Include="WorkGiverIrradiatePrisoner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

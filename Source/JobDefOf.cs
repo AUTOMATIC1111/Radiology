@@ -16,5 +16,6 @@ namespace Radiology
         }
 
         public static JobDef RadiologyIrradiate;
+        public static JobDef RadiologyIrradiatePrisoner;
     }
 }

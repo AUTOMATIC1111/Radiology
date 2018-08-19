@@ -8,7 +8,7 @@ using Verse;
 
 namespace Radiology
 {
-    public class Chamber : Building, IAssignableBuilding
+    public class Chamber : Building, ISelectMultiple<Pawn>
     {
 
         new public ChamberDef def => base.def as ChamberDef;
@@ -18,11 +18,16 @@ namespace Radiology
         public static string causePawnHurt = "ChamberPawnIsHurt";
         public static string causeNoIrradiator = "ChamberNoIrradiator";
         public static string causePawnNotAssigned = "ChamberPawnNotAssigned";
+        public static string causeCooldown = "ChamberCooldown";
+
 
         public string CanIrradiateNow(Pawn pawn = null)
         {
             if (powerComp == null || !powerComp.PowerOn)
                 return causeNoPower;
+
+            if (pawn != currentUser && ticksCooldown > 0)
+                return causeCooldown;
 
             Room room = Position.GetRoom(Find.CurrentMap, RegionType.Set_All);
             if (room == null || room.PsychologicallyOutdoors)
@@ -71,14 +76,23 @@ namespace Radiology
             yield break;
         }
 
+        public override void Tick()
+        {
+            base.Tick();
+
+            if (ticksCooldown > 0) ticksCooldown--;
+        }
+
+
         public void Irradiate(Pawn pawn, int ticksCooldown)
         {
+            this.ticksCooldown = ticksCooldown;
+            currentUser = pawn;
+
             radiationTracker.Clear();
 
             Room room = Position.GetRoom(Map);
             Pawn actualPawn = Map.mapPawns.AllPawns.Where(x => x.GetRoom() == room).RandomElementWithFallback(pawn);
-
-            Debug.Log(actualPawn);
 
             foreach (CompIrradiator comp in GetIrradiators())
             {
@@ -107,8 +121,9 @@ namespace Radiology
             base.ExposeData();
 
             Scribe_Collections.Look(ref assigned, "assigned", LookMode.Reference);
+            Scribe_Values.Look(ref ticksCooldown, "ticksCooldown");
+            Scribe_References.Look(ref currentUser, "currentUser");
         }
-
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
@@ -116,7 +131,6 @@ namespace Radiology
 
             powerComp = GetComp<CompPowerTrader>();
             facilitiesComp = GetComp<CompAffectedByFacilities>();
-
         }
 
         public override IEnumerable<Gizmo> GetGizmos()
@@ -134,6 +148,7 @@ namespace Radiology
                 defaultLabel = "ChamberTestRunLabel".Translate(),
                 defaultDesc = "ChamberTestRunDesc".Translate(),
                 icon = ContentFinder<Texture2D>.Get("Radiology/Icons/TestRun", true),
+                disabled = ticksCooldown > 0,
                 action = delegate ()
                 {
                     Irradiate(null, 60);
@@ -148,7 +163,11 @@ namespace Radiology
                 icon = ContentFinder<Texture2D>.Get("UI/Commands/AssignOwner", true),
                 action = delegate ()
                 {
-                    Find.WindowStack.Add(new Dialog_AssignBuildingOwner(this));
+                    Find.WindowStack.Add(new DialogSelectMultiple<Pawn>(this)
+                    {
+                        LabelSelected = "ChamberDialogAssigned",
+                        LabelNotSelected = "ChamberDialogNotAssigned",
+                    });
                 },
                 hotKey = KeyBindingDefOf.Misc3
             };
@@ -173,18 +192,12 @@ namespace Radiology
         }
 
         public HashSet<Pawn> assigned = new HashSet<Pawn>();
-
-        public IEnumerable<Pawn> AssigningCandidates => Spawned ? Map.mapPawns.FreeColonists : Enumerable.Empty<Pawn>();
-
-        public IEnumerable<Pawn> AssignedPawns => assigned;
-
-        public int MaxAssignedPawnsCount => 99999;
-
-        public void TryAssignPawn(Pawn pawn) => assigned.Add(pawn);
-
-        public void TryUnassignPawn(Pawn pawn) => assigned.Remove(pawn);
-
-        public bool AssignedAnything(Pawn pawn) => assigned.Contains(pawn);
+        
+        public IEnumerable<Pawn> All() => Spawned ? Map.mapPawns.FreeColonistsAndPrisonersSpawned : Enumerable.Empty<Pawn>();
+        string ISelectMultiple<Pawn>.Label(Pawn obj) => (obj.IsPrisoner ? "Prisoner: " : "Colonist: ") + obj.LabelCap;
+        public bool IsSelected(Pawn obj) => assigned.Contains(obj);
+        public void Select(Pawn obj) => assigned.Add(obj);
+        public void Unselect(Pawn obj) => assigned.Remove(obj);
 
         public class RadiationTracker
         {
@@ -199,6 +212,9 @@ namespace Radiology
                 rare = 0;
             }
         };
+
+        public int ticksCooldown = 0;
+        public Pawn currentUser;
 
         public RadiationTracker radiationTracker = new RadiationTracker();
 

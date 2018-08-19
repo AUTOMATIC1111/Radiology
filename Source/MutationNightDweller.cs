@@ -28,7 +28,7 @@ namespace Radiology
                 if (base.CurStage == null) return null;
                 HediffStage stage = def.stages[0];
 
-                if (Find.TickManager.TicksGame < lastTick + 60) return stage;
+                if (Find.TickManager.TicksGame < lastTick + 60 || pawn.Map == null) return stage;
                 lastTick = Find.TickManager.TicksGame;
 
                 if (modifiers == null)

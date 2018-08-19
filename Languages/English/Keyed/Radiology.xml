@@ -7,13 +7,22 @@
   
   <ChamberUnavailable>Cannot operate: {0}</ChamberUnavailable>
   <ChamberNoPower>chamber not powered</ChamberNoPower>
-  <IrradiatorNoPower>irradiator not powered</IrradiatorNoPower>
   <ChamberNoRoom>must be inside a room</ChamberNoRoom>
   <ChamberNoIrradiator>no irradiator linked</ChamberNoIrradiator>
   <ChamberPawnIsHurt>{0} is too hurt</ChamberPawnIsHurt>
   <ChamberPawnNotAssigned>{0} is not assigned</ChamberPawnNotAssigned>
+  <ChamberCooldown>already irradiating</ChamberCooldown>
+  <ChamberSleeping>{0} is sleeping</ChamberSleeping>
+  <ChamberDowned>{0} is downed</ChamberDowned>
+  <ChamberPrisonerInaccessible>{0} is not available</ChamberPrisonerInaccessible>
   
   
+
+  <ChamberDialogAssigned>Assigned</ChamberDialogAssigned>
+  <ChamberDialogNotAssigned>Not assigned</ChamberDialogNotAssigned>
+
+  <IrradiatorNoPower>irradiator not powered</IrradiatorNoPower>
+
   
   <CommandRadiologyAssignRadiationBlockingLabel>Setup blocking</CommandRadiologyAssignRadiationBlockingLabel>
   <CommandRadiologyAssignRadiationBlockingDesc>Setup blocking</CommandRadiologyAssignRadiationBlockingDesc>
