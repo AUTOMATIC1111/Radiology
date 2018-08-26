@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBloodlustDef">
+    <defName>MutationBloodlust</defName>
+    <label>bloodlust</label>
+    <description>The mutated heart has developed a way to perceive as well as an unusual thirst for the smell of blood outside of the colonist's body. Presence of pools of blood nearby will raise the capacity for blood pumping as well as movement speed.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Heart</li></affectedParts>
+    
+    <aoe>32</aoe>
+    <maximumAmount>100</maximumAmount>
+    
+    <stage>
+      <capMods>
+        <li>
+          <capacity>Moving</capacity>
+          <offset>0.5</offset>
+        </li>
+        <li>
+          <capacity>BloodPumping</capacity>
+          <offset>1.0</offset>
+        </li>
+      </capMods>
+    </stage>
+  </HediffDef>
+
+</Defs>

@@ -78,6 +78,7 @@
     <Compile Include="HealthHelper.cs" />
     <Compile Include="HediffDefOf.cs" />
     <Compile Include="HelperCompFacility.cs" />
+    <Compile Include="HelperPowerNet.cs" />
     <Compile Include="IAdvancedFacilityConnector.cs" />
     <Compile Include="IPrisonerAllowedJob.cs" />
     <Compile Include="IRadiationModifier.cs" />
@@ -85,6 +86,9 @@
     <Compile Include="MathHelper.cs" />
     <Compile Include="MoteRadiation.cs" />
     <Compile Include="Mutation.cs" />
+    <Compile Include="MutationBattery.cs" />
+    <Compile Include="MutationBloodlust.cs" />
+    <Compile Include="MutationCapacityModifier.cs" />
     <Compile Include="MutationDef.cs" />
     <Compile Include="HediffRadiation.cs" />
     <Compile Include="JobDefOf.cs" />

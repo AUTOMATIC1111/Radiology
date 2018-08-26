@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteElectricalSpark</defName>
+    <graphicData>
+      <texPath>Things/Mote/ElectricalSpark</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.04</fadeInTime>
+      <solidTime>0.08</solidTime>
+      <fadeOutTime>0.13</fadeOutTime>
+    </mote>
+  </ThingDef>
+
+  <SoundDef ParentName="RadiologySound">
+    <defName>RadiologyElectricitySpark</defName>  
+    <maxSimultaneous>8</maxSimultaneous>  
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>Radiology/ElectricitySpark</clipFolderPath>
+          </li>
+        </grains>
+        <volumeRange><min>5</min><max>10</max></volumeRange>
+        <sustainLoop>False</sustainLoop>
+        <distRange><min>15</min><max>25</max></distRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+
+  <RadiologyEffectSpawnerDef>
+    <defName>RadiologyEffectElectricityDrain</defName>
+      
+    <subEffects>
+      <li Class="Radiology.AutomaticSubEffectRadial">
+        <mote>RadiologyMoteElectricalSpark</mote>
+        <moteCount>12</moteCount>
+        <radius><min>0</min><max>0.3</max></radius>
+        <scale><min>0.5</min><max>0.6</max></scale>
+        <speed>10</speed>
+        <arc>24</arc>
+      </li>
+      <li Class="Radiology.AutomaticSubEffectRadial">
+        <mote>RadiologyMoteElectricalSpark</mote>
+        <moteCount>6</moteCount>
+        <radius><min>0</min><max>0.8</max></radius>
+        <scale><min>0.2</min><max>0.5</max></scale>
+        <rotationRate><min>-720</min><max>720</max></rotationRate>
+        <speed>2</speed>
+      </li>
+      <li Class="Radiology.AutomaticSubEffectSound">
+        <sound>RadiologyElectricitySpark</sound>
+      </li>
+    </subEffects>
+    <alsoSpawn>
+      <li>RadiologyEffectSmoke</li>
+    </alsoSpawn>
+    <offset><min>0</min><max>0</max></offset>
+  </RadiologyEffectSpawnerDef>
+
+  <RadiologyEffectSpawnerDef>
+    <defName>RadiologyEffectElectricityDraining</defName>
+      
+    <subEffects>
+      <li Class="Radiology.AutomaticSubEffectRadial">
+        <mote>RadiologyMoteElectricalSpark</mote>
+        <moteCount>12</moteCount>
+        <radius><min>1.0</min><max>1.5</max></radius>
+        <scale><min>0.5</min><max>0.6</max></scale>
+        <speed>-10</speed>
+        <arc>24</arc>
+      </li>
+      <li Class="Radiology.AutomaticSubEffectSound">
+        <sound>RadiologyElectricitySpark</sound>
+      </li>
+    </subEffects>
+    <offset><min>0</min><max>0</max></offset>
+  </RadiologyEffectSpawnerDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBatteryDef">
+    <defName>MutationBattery</defName>
+    <label>battery</label>
+    <description>The Mutation.Part has strangely evolved to absorb and release electricity from nearby conducting materials through thin air.</description>
+    
+    <periodTicks>23</periodTicks>
+    <range>6</range>
+    <drain>10</drain>
+    
+    <effectDraining>RadiologyEffectElectricityDraining</effectDraining>
+    <effectDrained>RadiologyEffectElectricityDrain</effectDrained>
+  </HediffDef>
+  
+</Defs>

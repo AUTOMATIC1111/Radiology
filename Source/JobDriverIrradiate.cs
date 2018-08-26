@@ -15,6 +15,7 @@ namespace Radiology
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             if (Chamber == null) return false;
+            if (!pawn.CanReserve(job.targetA, 1, -1)) return false;
 
             return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
         }

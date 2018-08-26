@@ -8,10 +8,6 @@
     <useHitPoints>False</useHitPoints>
     <techLevel>Medieval</techLevel>
     <drawGUIOverlay>true</drawGUIOverlay>
-    <statBases>
-      <MaxHitPoints>100</MaxHitPoints>
-      <DeteriorationRate>0</DeteriorationRate>
-    </statBases>
     <altitudeLayer>Item</altitudeLayer>
     <tickerType>Never</tickerType>
   </ThingDef>

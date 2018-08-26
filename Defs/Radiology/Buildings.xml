@@ -99,6 +99,8 @@
       <li Class="CompProperties_AffectedByFacilities">
         <linkableFacilities>
           <li>RadiologyBlocker</li>
+          <li>RadiologyBlockerIntermediate</li>
+          <li>RadiologyBlockerAdvanced</li>
           <li>RadiologyFilter</li>
         </linkableFacilities>
       </li>
@@ -245,14 +247,8 @@
   </ThingDef>
 
   
-  <ThingDef ParentName="RadiologyBuildingMinifiable">
-    <defName>RadiologyBlocker</defName>
-    <label>radiation blocker</label>
-    <description>Lets you set up a filter that will block a large amount of radiation directed ac certain body parts.</description>
-    <researchPrerequisites><li>RadiologyBlocking</li></researchPrerequisites>
-
+  <ThingDef Abstract="True" Name="RadiologyBlockerBase" ParentName="RadiologyBuildingMinifiable">
     <graphicData>
-      <texPath>Radiology/Buildings/Barrier</texPath>
       <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>(3,3)</drawSize>
       <shadowData>
@@ -269,8 +265,6 @@
         <maxDistance>5</maxDistance>
         <mustBeFaced>true</mustBeFaced>
       </li>
-      <li Class="Radiology.CompPropertiesBlocker">
-      </li>
     </comps>
     
     <placeWorkers>
@@ -282,6 +276,65 @@
       <WorkToBuild>3200</WorkToBuild>
       <Mass>120</Mass>
     </statBases>
+  </ThingDef>
+  
+  <ThingDef ParentName="RadiologyBlockerBase">
+    <defName>RadiologyBlocker</defName>
+    <label>radiation blocker</label>
+    <description>Lets you set up a filter that will block a large amount of radiation directed at certain body parts. This blocker has 40% chance to deflect radiation and lets you select up to two body parts.</description>
+
+    <researchPrerequisites><li>RadiologyBlocking</li></researchPrerequisites>
+
+    <graphicData>
+      <texPath>Radiology/Buildings/Barrier</texPath>
+    </graphicData>
+    
+    <comps>
+      <li Class="Radiology.CompPropertiesBlocker">
+        <blockedBodyPartLimit>2</blockedBodyPartLimit>
+        <blockChance>0.4</blockChance>
+      </li>
+    </comps>
+  </ThingDef>
+    
+  <ThingDef ParentName="RadiologyBlockerBase">
+    <defName>RadiologyBlockerIntermediate</defName>
+    <label>intermediate radiation blocker</label>
+    <description>Lets you set up a filter that will block a large amount of radiation directed at certain body parts. This blocker has 60% chance to deflect radiation and lets you select up to three body parts.</description>
+
+    <researchPrerequisites><li>RadiologyBlockingIntermediate</li></researchPrerequisites>
+
+    <graphicData>
+      <texPath>Radiology/Buildings/Barrier2</texPath>
+      <drawSize>(2,2)</drawSize>
+    </graphicData>
+    
+    <comps>
+      <li Class="Radiology.CompPropertiesBlocker">
+        <blockedBodyPartLimit>3</blockedBodyPartLimit>
+        <blockChance>0.6</blockChance>
+      </li>
+    </comps>
+  </ThingDef>
+      
+  <ThingDef ParentName="RadiologyBlockerBase">
+    <defName>RadiologyBlockerAdvanced</defName>
+    <label>advanced radiation blocker</label>
+    <description>Lets you set up a filter that will block a large amount of radiation directed at certain body parts. This blocker has 80% chance to deflect radiation and lets you select up to four body parts.</description>
+
+    <researchPrerequisites><li>RadiologyBlockingAdvanced</li></researchPrerequisites>
+
+    <graphicData>
+      <texPath>Radiology/Buildings/Barrier3</texPath>
+      <drawSize>(2,2)</drawSize>
+    </graphicData>
+    
+    <comps>
+      <li Class="Radiology.CompPropertiesBlocker">
+        <blockedBodyPartLimit>3</blockedBodyPartLimit>
+        <blockChance>0.6</blockChance>
+      </li>
+    </comps>
   </ThingDef>
   
   <ThingDef ParentName="RadiologyBuildingMinifiable">

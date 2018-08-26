@@ -33,7 +33,7 @@ namespace Radiology
             foreach (Mutation mutation in diffs.OfType<Mutation>())
             {
                 tooltip.AppendLine(mutation.LabelCap);
-                tooltip.AppendLine(mutation.def.description != null ? mutation.def.description : "RadiologyTooltipNoDescription".Translate());
+                tooltip.AppendLine(mutation.MutationDescription);
                 tooltip.AppendLine();
             }
 

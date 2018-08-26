@@ -41,9 +41,6 @@ namespace Radiology
             if (exclusive != null)
                 exclusives.Add(exclusive);
 
-            if (affectedParts == null)
-                affectedParts = relatedParts;
-
             if (stage != null)
             {
                 if (stages == null)

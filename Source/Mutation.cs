@@ -10,9 +10,30 @@ namespace Radiology
     public class Mutation :HediffWithComps
     {
         public new MutationDef def => base.def as MutationDef;
+        
+        string mutationDescription;
+        public string MutationDescription
+        {
+            get
+            {
+                if (mutationDescription != null) return mutationDescription;
+
+                if (def.description != null)
+                {
+                    mutationDescription = def.description;
+                    mutationDescription = mutationDescription.Replace("Mutation.Part", Part.customLabel);
+                }
+                else
+                {
+                    mutationDescription = "RadiologyTooltipNoDescription".Translate();
+                }
+
+                return mutationDescription;
+            }
+        }
+
 
         List<ThingComp> thingComps;
-
         void CreateThingComps()
         {
             if (thingComps != null) return;

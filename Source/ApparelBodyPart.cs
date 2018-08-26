@@ -8,6 +8,9 @@ namespace Radiology
 {
     class ApparelBodyPart :Apparel
     {
-
+        public override float GetSpecialApparelScoreOffset()
+        {
+            return 10000f;
+        }
     }
 }

@@ -7,7 +7,7 @@
 
   <SoundDef ParentName="RadiologySound">
     <defName>RadiologyIrradiateBasic</defName>  
-    <maxSimultaneous>1</maxSimultaneous>  
+    <maxSimultaneous>99</maxSimultaneous>  
     <subSounds>
       <li>
         <grains>

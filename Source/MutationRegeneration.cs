@@ -19,6 +19,8 @@ namespace Radiology
     {
         public MutationRegenerationDef() { hediffClass = typeof(MutationRegeneration); }
 
+        public int periodTicks = 600;
+
         public RadiologyEffectSpawnerDef effectRegeration;
     }
 
@@ -33,7 +35,7 @@ namespace Radiology
         {
             base.Tick();
 
-            if (!pawn.IsHashIntervalTick(600)) return;
+            if (!pawn.IsHashIntervalTick(def.periodTicks)) return;
 
             var injured = pawn.health.hediffSet.GetInjuredParts();
             var missing = pawn.health.hediffSet.GetMissingPartsCommonAncestors();

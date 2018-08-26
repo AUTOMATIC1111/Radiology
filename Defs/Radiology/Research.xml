@@ -7,7 +7,7 @@
   </ResearchTabDef>
 
   <ResearchProjectDef Abstract="true" Name="RadiologyResearchBase">
-    <baseCost>500</baseCost>
+    <baseCost>50</baseCost>
     <techLevel>Industrial</techLevel>
     <tab>Radiology</tab>
   </ResearchProjectDef>
@@ -54,6 +54,30 @@
     <researchViewX>1</researchViewX>
     <researchViewY>4.5</researchViewY>
   </ResearchProjectDef>
+  
+  <!-- blockers -->
+  
+  <ResearchProjectDef ParentName="RadiologyResearchBase">
+    <defName>RadiologyBlockingIntermediate</defName>
+    <label>intermediate blocking</label>
+    <description>Build an intermediate variation of blocker that has a better chance of deflecting radiation and lets you select more body parts to protect.</description>
+
+    <prerequisites><li>RadiologyBlocking</li></prerequisites>
+    <researchViewX>2</researchViewX>
+    <researchViewY>0.75</researchViewY>
+  </ResearchProjectDef>
+  
+  <ResearchProjectDef ParentName="RadiologyResearchBase">
+    <defName>RadiologyBlockingAdvanced</defName>
+    <label>advanced blocking</label>
+    <description>Build an advanced variation of blocker that has a better chance of deflecting radiation and lets you select more body parts to protect.</description>
+
+    <prerequisites><li>RadiologyBlockingIntermediate</li></prerequisites>
+    <researchViewX>3</researchViewX>
+    <researchViewY>0.75</researchViewY>
+  </ResearchProjectDef>
+
+  
 
   <!-- filters -->
 

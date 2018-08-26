@@ -8,6 +8,7 @@ using Verse;
 
 namespace Radiology
 {
+
     /// <summary>
     /// Prevent pawns from equipping something if they have mutated body part apparel
     /// </summary>
@@ -16,6 +17,8 @@ namespace Radiology
     {
         static bool Prefix(Pawn p, ThingDef apparel, ref bool __result)
         {
+            if (apparel.thingClass.IsAssignableFrom(typeof(ApparelBodyPart))) return true;
+
             foreach (ApparelBodyPart apparelMutation in p.apparel.WornApparel.OfType<ApparelBodyPart>())
             {
                 if (apparel.apparel.bodyPartGroups.Intersect(apparelMutation.def.apparel.bodyPartGroups).Any())
