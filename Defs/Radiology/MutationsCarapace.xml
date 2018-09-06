@@ -77,8 +77,12 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationCarapaceDef">
     <defName>MutationCarapace</defName>
     <label>carapace</label>
+    <description>A hard carapace has formed on NAME' back side, causing all incoming damage from behind and side to be halved.</description>
+
     <relatedParts><li>Torso</li></relatedParts>
     <affectedParts><li>Torso</li></affectedParts>
+    
+    <beauty>-4</beauty>
     
     <ratio>0.5</ratio>
     <effectReflect>RadiologyCarapace</effectReflect>

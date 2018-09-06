@@ -3,6 +3,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBlinkDef">
     <defName>MutationBlink</defName>
     <label>blink</label>
+    <description>A deformation of an unknown origin in the PART is causing NAME to periodically shift in and out of existance, reappearing at a different location, uncontrollably.</description>
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Brain</li></affectedParts>
     <exclusive>blink</exclusive>
@@ -17,6 +18,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBlinkDef">
     <defName>MutationBlinkControlled</defName>
     <label>controllable blink</label>
+    <description>A deformation of an unknown origin in the PART is allowing NAME to shift in and out of existance, reappearing at a different location, at will. NAME is not able to control where HE'll reappear.</description>
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Brain</li></affectedParts>
     <exclusive>blink</exclusive>
@@ -31,6 +33,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBlinkDef">
     <defName>MutationBlinkAimed</defName>
     <label>aimed blink</label>
+    <description>A deformation of an unknown origin in the PART is allowing NAME to shift in and out of existance, reappearing at a desired location, at will.</description>
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Brain</li></affectedParts>
     <exclusive>blink</exclusive>

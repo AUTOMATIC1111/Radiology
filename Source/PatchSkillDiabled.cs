@@ -20,7 +20,7 @@ namespace Radiology
         static void Postfix(ref bool __result, SkillRecord __instance)
         {
             Pawn pawn = pawnField.GetValue(__instance) as Pawn;
-            foreach (var v in pawn.health.hediffSet.GetHediffs<MutationSetSkill>())
+            foreach (MutationSetSkill v in pawn.health.hediffSet.GetHediffs<MutationSetSkill>())
             {
                 __result = v.IsSkillDisabled(__instance.def);
                 return;

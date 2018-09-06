@@ -80,7 +80,7 @@ namespace Radiology
         {
             Chamber chamber = parent.Linked<Chamber>();
 
-            SoundDefOf.RadiologyIrradiateBasic.PlayOneShot(new TargetInfo(parent.Position, parent.Map, false));
+            soundSustainer = props.soundIrradiate.TrySpawnSustainer(SoundInfo.InMap(parent, MaintenanceType.PerTick));
             ticksCooldown = ticks;
 
             if (info.pawn.IsShielded()) return;
@@ -251,12 +251,16 @@ namespace Radiology
                 return;
             }
 
+            soundSustainer.Maintain();
+
             powerComp.PowerOutput = -props.powerConsumption;
 
             SpawnRadiationMote();
 
             ticksCooldown--;
         }
+
+        Sustainer soundSustainer;
 
         public float damageThreshold = 0.5f;
         public int ticksCooldown=0;

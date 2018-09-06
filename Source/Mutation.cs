@@ -21,7 +21,11 @@ namespace Radiology
                 if (def.description != null)
                 {
                     mutationDescription = def.description;
-                    mutationDescription = mutationDescription.Replace("Mutation.Part", Part.customLabel);
+                    mutationDescription = mutationDescription.Replace("PART", Part.customLabel == null ? Part.def.label : Part.customLabel);
+                    mutationDescription = mutationDescription.Replace("NAME", pawn.LabelShortCap);
+                    mutationDescription = mutationDescription.Replace("HE", pawn.gender == Gender.Female ? "RadiologyTooltipShe".Translate() : "RadiologyTooltipHe".Translate());
+                    mutationDescription = mutationDescription.Replace("HIS", pawn.gender == Gender.Female ? "RadiologyTooltipHisHer".Translate() : "RadiologyTooltipHis".Translate());
+                    mutationDescription = mutationDescription.Replace("HIM", pawn.gender == Gender.Female ? "RadiologyTooltipHer".Translate() : "RadiologyTooltipHim".Translate());
                 }
                 else
                 {

@@ -3,11 +3,10 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationEnhancedDex</defName>
     <label>Enhanced Dexterity</label>
-    <description>The radiation has strengthened the tendons and muscles in this colonist's hand, making them more dexterous.</description>
+    <description>The radiation has strengthened the tendons and muscles in NAME's hand, making HIM more dexterous.</description>
     <relatedParts><li>Shoulder</li></relatedParts>
     <affectedParts><li>Hand</li></affectedParts>
     <exclusive>speed</exclusive>
-    <affectsAllParts>false</affectsAllParts>
   
     <stage>
       <capMods>
@@ -21,29 +20,12 @@
   </HediffDef>
   
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
-    <defName>MutationTumorousHand</defName>
-    <label>Tumorous Fingers</label>
-    <description>The radiation has caused benign tumours to grow on the colonist's hand, destroying nerves and muscle tissue causing the hang to become crippled.</description>
-    <relatedParts><li>Shoulder</li></relatedParts>
-    <affectedParts><li>Hand</li></affectedParts>
-    <exclusive>speed</exclusive>
-    <affectsAllParts>false</affectsAllParts>
-  
-    <stage>
-      <capMods>
-        <li><capacity>Manipulation</capacity><offset>-0.25</offset></li>
-      </capMods>
-    </stage>
-  </HediffDef>
-
-  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationStrengthenedArm</defName>
     <label>Strengthened Arms</label>
-    <description>The muscle tissue in the arm has mutated and grown unnaturally, causing the colonist to have increased strength and control.</description>
+    <description>The muscle tissue in the arm has mutated and grown unnaturally, causing NAME to have increased strength and control.</description>
     <relatedParts><li>Shoulder</li></relatedParts>
     <affectedParts><li>Arm</li></affectedParts>
     <exclusive>productivity</exclusive>
-    <affectsAllParts>false</affectsAllParts>
   
     <stage>
       <statOffsets>
@@ -53,14 +35,54 @@
     </stage>
   </HediffDef>
   
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationSetSkillDef">
+    <defName>MutationShootingBoost</defName>
+    <label>steady hand</label>
+    <description>A specific mutation to NAME's hand enables a much greater shooting proficiency, at cost of weakening melee attacks.</description>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Hand</li></affectedParts>
+    
+    <skills>
+      <li>
+        <skill>Shooting</skill>
+        <add>8</add>
+      </li>
+      <li>
+        <skill>Melee</skill>
+        <add>-4</add>
+      </li>
+    </skills>
+  </HediffDef>
+  
+
+
+
+
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationTumorousHand</defName>
+    <label>Tumorous Fingers</label>
+    <description>The radiation has caused benign tumours to grow on NAME's hand, destroying nerves and muscle tissue causing the hand to become crippled.</description>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Hand</li></affectedParts>
+    <exclusive>speed</exclusive>
+  
+    <beauty>-3</beauty>
+
+    <stage>
+      <capMods>
+        <li><capacity>Manipulation</capacity><offset>-0.25</offset></li>
+      </capMods>
+    </stage>
+  </HediffDef>
+  
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationWeakenedArm</defName>
     <label>Weakened Arms</label>
-    <description>The radiation has caused the muscle tissue in this colonist's arm to deteriorate, weakening the colonist's strength and control.</description>
+    <description>The radiation has caused the muscle tissue in NAME's arm to deteriorate, weakening HIS strength and control.</description>
     <relatedParts><li>Shoulder</li></relatedParts>
     <affectedParts><li>Arm</li></affectedParts>
     <exclusive>productivity</exclusive>
-    <affectsAllParts>false</affectsAllParts>
   
     <stage>
       <statOffsets>
@@ -68,6 +90,28 @@
       </statOffsets>
     </stage>
   </HediffDef>
-
-
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationSetSkillDef">
+    <defName>MutationShootingBoost</defName>
+    <label>rotten hand</label>
+    <description>NAME's PART is near, but not exactly at a stage where it rots and falls off. Sometimes miniature life forms can be observed traversing the skin. Cooking with this condition is not an option.</description>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Hand</li></affectedParts>
+    
+    <beauty>-10</beauty>
+    
+    <stage>
+      <capMods>
+        <li><capacity>Manipulation</capacity><offset>-0.1</offset></li>
+      </capMods>
+    </stage>
+      
+    <skills>
+      <li>
+        <skill>Cooking</skill>
+        <setTo>-1</setTo>
+      </li>
+    </skills>
+  </HediffDef>
+  
 </Defs>

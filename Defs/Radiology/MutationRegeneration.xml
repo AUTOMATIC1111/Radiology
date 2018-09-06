@@ -54,7 +54,8 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationRegenerationDef">
     <defName>MutationRegeneration</defName>
     <label>regeneration</label>
-    
+    <description>NAME's PART has become a house to a host of symbiotic microorganisms who seem to consider well-being of NAME to be their top priority, providing HIM will inhuman regeneration abilities.</description>
+
     <relatedParts><li>Torso</li></relatedParts>
     <affectedParts>
       <li>Stomach</li>

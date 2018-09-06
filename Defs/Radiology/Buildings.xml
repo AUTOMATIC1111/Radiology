@@ -132,6 +132,8 @@
         <mustBeFacing>true</mustBeFacing>
       </li>
       <li Class="Radiology.CompPropertiesIrradiator">
+        <soundIrradiate>RadiologyIrradiateBasic</soundIrradiate>
+
         <burn>
             <perSecond><min>1</min><max>2</max></perSecond>
             <multiplier>10</multiplier>
@@ -144,7 +146,6 @@
         <mutateRare>
             <perSecond><min>0.1</min><max>0.2</max></perSecond>
         </mutateRare>
-        
         
         <powerConsumption>1000</powerConsumption>
         
@@ -200,6 +201,8 @@
         <mustBeFacing>true</mustBeFacing>
       </li>
       <li Class="Radiology.CompPropertiesIrradiator">
+        <soundIrradiate>RadiologyIrradiateBasic</soundIrradiate>
+
         <burn>
             <perSecond><min>1.5</min><max>3</max></perSecond>
             <multiplier>8</multiplier>

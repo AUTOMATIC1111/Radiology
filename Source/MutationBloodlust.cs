@@ -20,24 +20,6 @@ namespace Radiology
 
     class MutationBloodlust : MutationCapacityModifier<MutationBloodlustDef>
     {
-        MyEnum[] options = { MyEnum.A, MyEnum.B, MyEnum.C };
-        float probability(MyEnum val)
-        {
-            switch (val)
-            {
-                case MyEnum.A: return 95;
-                case MyEnum.B: return 4;
-                case MyEnum.C: return 1;
-            }
-
-            return 0;
-        }
-
-        MyEnum pickRandom()
-        {
-            return options.RandomElementByWeight(probability);
-        }
-
         public override float multiplier()
         {
             IntVec3 position = pawn.Position;
@@ -51,7 +33,5 @@ namespace Radiology
 
             return 1.0f * Mathf.Min(amount, def.maximumAmount) / def.maximumAmount;
         }
-
-        
     }
 }

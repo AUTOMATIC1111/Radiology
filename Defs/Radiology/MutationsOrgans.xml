@@ -3,7 +3,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationEnhancedLungs</defName>
     <label>Enhanced Lungs</label>
-    <description>The radiation has strengthened the tissues and muscle in the colonist's lungs and diaphram, causing their breathing to become unhuman.</description>
+    <description>The radiation has strengthened the tissues and muscle in NAME's lungs and diaphram, causing HIS breathing to become unhuman.</description>
     <relatedParts><li>Torso</li></relatedParts>
     <affectedParts><li>Lung</li></affectedParts>
     <exclusive>breathing</exclusive>
@@ -21,7 +21,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationStrengthenedHeart</defName>
     <label>Strengthened Heart</label>
-    <description>The muscle tissue has woven itself in such a way that the colonist's heart has strengthened and become superior.</description>
+    <description>The muscle tissue has woven itself in such a way that NAME's heart has strengthened and become superior.</description>
     <relatedParts><li>Torso</li></relatedParts>
     <affectedParts><li>Heart</li></affectedParts>
     <exclusive>heart</exclusive>
@@ -39,7 +39,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationSuperVision</defName>
     <label>Super Vision</label>
-    <description>The colonist's eye has mutated, allowing them to see more clearly and sharply, this allows colonists to have better reflexes and to see better.</description>
+    <description>NAME's eye has mutated, allowing HIM to see more clearly and sharply. This allows NAME to have better reflexes and improves perception.</description>
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Eye</li></affectedParts>
     <exclusive>eyes</exclusive>
@@ -60,7 +60,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationEnhancedHearing</defName>
     <label>Enhanced Hearing</label>
-    <description>The colonist's ears have mutated, allowing them to hear more clearly and sharply, this allows colonists to have better reflexes.</description>
+    <description>NAME's ears have mutated, allowing HIM to hear more clearly and sharply. This allows NAME to have better reflexes.</description>
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Ear</li></affectedParts>
     <exclusive>Ears</exclusive>
@@ -76,7 +76,7 @@
    <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationBrain</defName>
     <label>Brain Mutation</label>
-    <description>The colonist's brain has mutated, causing the synapses to fire quicker and more efficiently, making the colonist better overall.</description>
+    <description>NAME's brain has mutated, causing the synapses to fire quicker and more efficiently, making HIM perform better overall.</description>
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Brain</li></affectedParts>
     <exclusive>Brain</exclusive>
@@ -99,7 +99,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationDamagedLung</defName>
     <label>Damaged Lungs</label>
-    <description>The radiation has destroyed much of this colonist's lung tissue making it difficult for them to breath.</description>
+    <description>The radiation has destroyed much of NAME's lung tissue making it difficult for HIM to breath.</description>
     <relatedParts><li>Torso</li></relatedParts>
     <affectedParts><li>Lung</li></affectedParts>
     <exclusive>breathing</exclusive>
@@ -117,7 +117,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationWeakenedHeart</defName>
     <label>Weakened Heart</label>
-    <description>The muscle tissue has been weakened and damaged by the radiation, making this colonist's heart less efficient and damaged.</description>
+    <description>The muscle tissue has been weakened and damaged by the radiation, making NAME's PART less efficient and damaged.</description>
     <relatedParts><li>Torso</li></relatedParts>
     <affectedParts><li>Heart</li></affectedParts>
     <exclusive>heart</exclusive>
@@ -147,11 +147,10 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationDamagedVision</defName>
     <label>Damaged Vision</label>
-    <description>The colonist's eye tissue has been damaged, leaving the colonist's eye useless. If both eyes are damaged, the colonist will be blind.</description>
+    <description>NAME's eye tissue has been damaged, leaving the HIS eye useless. If both eyes are damaged, NAME will go blind.</description>
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Eye</li></affectedParts>
     <exclusive>eyes</exclusive>
-    <affectsAllParts>false</affectsAllParts>
 
     <stage>
       <capMods>
@@ -167,7 +166,7 @@
    <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationDamagedHearing</defName>
     <label>Damaged Hearing</label>
-    <description>The colonist's ears have been damaged leaving the colonist with poor hearing.</description>
+    <description>NAME's ears have been damaged leaving HIM with poor hearing.</description>
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Ear</li></affectedParts>
     <exclusive>Ears</exclusive>
@@ -183,7 +182,7 @@
    <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationBrainDamage</defName>
     <label>Brain Damage</label>
-    <description>The colonist's brain tissue has deteriorated, causing the synapses to fire slower and less efficiently, causing the colonist to become deaf and mute.</description>
+    <description>NAME's brain tissue has deteriorated, causing the synapses to fire slower and less efficiently, causing HIM to become deaf and mute.</description>
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Brain</li></affectedParts>
     <exclusive>Brain</exclusive>

@@ -55,4 +55,13 @@
   <RadiologyMutationBlinkTargetedDesc>Immediately teleport to a selected location.</RadiologyMutationBlinkTargetedDesc>
   
   <RadiologyTooltipNoDescription>No description provided for this mutation.</RadiologyTooltipNoDescription>
+  <RadiologyTooltipHe>he</RadiologyTooltipHe>
+  <RadiologyTooltipShe>she</RadiologyTooltipShe>
+  <RadiologyTooltipHim>him</RadiologyTooltipHim>
+  <RadiologyTooltipHer>her</RadiologyTooltipHer> <!-- reverse of him -->
+  
+  <RadiologyTooltipHisHer>her</RadiologyTooltipHisHer> <!-- reverse of his -->
+  <RadiologyTooltipHis>his</RadiologyTooltipHis>
+  
+  
 </LanguageData>

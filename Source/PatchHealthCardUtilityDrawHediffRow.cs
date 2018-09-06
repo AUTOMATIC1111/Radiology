@@ -19,7 +19,7 @@ namespace Radiology
 
         static void Prefix(Rect rect, Pawn pawn, IEnumerable<Hediff> diffs, ref float curY)
         {
-            if(diffs.OfType<Mutation>().FirstOrDefault()==null) return;
+            if(diffs.OfType<Mutation>().Where(x => x.def.description != null).FirstOrDefault()==null) return;
 
             float firstRowWidth = rect.width * 0.375f;
             Rect rectIcon = new Rect(firstRowWidth - icon.width - 4, curY + 1, icon.width, icon.height);

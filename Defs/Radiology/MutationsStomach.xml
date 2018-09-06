@@ -29,7 +29,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationVomitItemsDef">
     <defName>MutationVomitMarbleBricks</defName>
     <label>marble factory</label>
-    <description>The colonist's stomach has mutated to produce marble bricks. Some of the product is ejected during vomiting. Marble is a soft, beautiful stone, known for being easy to sculpt.</description>
+    <description>NAME's stomach has mutated to produce marble bricks. Some of the product is ejected during vomiting. Marble is a soft, beautiful stone, known for being easy to sculpt.</description>
     <relatedParts><li>Torso</li></relatedParts>
     <affectedParts><li>Stomach</li></affectedParts>
     

@@ -19,9 +19,10 @@ namespace Radiology
 
         public List<BodyPartDef> relatedParts;
         public List<BodyPartDef> affectedParts;
-        public bool affectsAllParts = true;
+        public bool affectsAllParts = false;
 
         public float likelihood = 1.0f;
+        public int beauty = 0;
 
         public RadiologyEffectSpawnerDef spawnEffect;
         public RadiologyEffectSpawnerDef spawnEffectFemale;

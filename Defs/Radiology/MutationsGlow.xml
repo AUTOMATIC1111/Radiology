@@ -3,6 +3,8 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationGlowerDef">
     <defName>MutationGlowRed</defName>
     <label>glow red</label>
+    <description>NAME's PART is glowing with red color.</description>
+    
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Head</li></affectedParts>
     <exclusive>glow</exclusive>
@@ -16,6 +18,8 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationGlowerDef">
     <defName>MutationGlowGreen</defName>
     <label>glow green</label>
+    <description>NAME's PART is glowing with green color.</description>
+    
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Head</li></affectedParts>
     <exclusive>glow</exclusive>
@@ -29,6 +33,8 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationGlowerDef">
     <defName>MutationGlowBlue</defName>
     <label>glow blue</label>
+    <description>NAME's PART is glowing with blue color.</description>
+    
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Head</li></affectedParts>
     <exclusive>glow</exclusive>
@@ -42,6 +48,8 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationGlowerDef">
     <defName>MutationGlow</defName>
     <label>glow</label>
+    <description>NAME's PART is glowing.</description>
+    
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Head</li></affectedParts>
     <exclusive>glow</exclusive>

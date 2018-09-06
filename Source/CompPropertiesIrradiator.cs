@@ -39,6 +39,8 @@ namespace Radiology
         public RadiationInflurence mutateRare;
         public float powerConsumption;
 
+        public SoundDef soundIrradiate;
+
         public override void ResolveReferences(ThingDef parentDef)
         {
             base.ResolveReferences(parentDef);

@@ -10,7 +10,8 @@ namespace Radiology
     public class MutationSetSkillRecord
     {
         public SkillDef skill;
-        public int setTo;
+        public int setTo = -1;
+        public int add = 0;
     }
 
     public class MutationSetSkillDef : MutationDef
@@ -22,7 +23,6 @@ namespace Radiology
 
     public class MutationSetSkill : Mutation<MutationSetSkillDef>
     {
-
         public override void PostAdd(DamageInfo? dinfo)
         {
             base.PostAdd(dinfo);
@@ -32,9 +32,37 @@ namespace Radiology
                 SkillRecord rec = pawn.skills.GetSkill(v.skill);
                 if (rec == null) return;
 
-                if (v.setTo != -1)
+                if (v.add != 0)
+                {
+                    rec.Level += v.add;
+                }
+                else if (v.setTo != -1)
                 {
                     rec.Level = v.setTo;
+                }
+                else
+                {
+                    rec.Notify_SkillDisablesChanged();
+                }
+            }
+        }
+
+        public override void PostRemoved()
+        {
+            base.PostRemoved();
+
+            foreach (var v in def.skills)
+            {
+                SkillRecord rec = pawn.skills.GetSkill(v.skill);
+                if (rec == null) return;
+
+                if (v.add != 0)
+                {
+                    rec.Level -= v.add;
+                }
+                else if (v.setTo != -1)
+                {
+                    rec.Level = 0;
                 }
                 else
                 {
@@ -51,5 +79,4 @@ namespace Radiology
             return rec.setTo == -1;
         }
     }
-
 }

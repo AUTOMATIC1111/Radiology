@@ -84,7 +84,9 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBatteryDef">
     <defName>MutationBattery</defName>
     <label>battery</label>
-    <description>The Mutation.Part has strangely evolved to absorb and release electricity from nearby conducting materials through thin air.</description>
+    <description>The PART has strangely evolved to absorb and release electricity from nearby exposed conductors through thin air.</description>
+    
+    <likelihood>0.05</likelihood>
     
     <periodTicks>23</periodTicks>
     <range>6</range>

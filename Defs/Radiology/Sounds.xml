@@ -7,16 +7,20 @@
 
   <SoundDef ParentName="RadiologySound">
     <defName>RadiologyIrradiateBasic</defName>  
-    <maxSimultaneous>99</maxSimultaneous>  
+    <sustain>true</sustain>
+    <maxSimultaneous>2</maxSimultaneous>  
+    <priorityMode>PrioritizeNearest</priorityMode>
     <subSounds>
       <li>
+        <tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
         <grains>
-          <li Class="AudioGrain_Folder">
-            <clipFolderPath>Radiology/IrradiateBasic</clipFolderPath>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Radiology/IrradiateBasic</clipPath>
           </li>
         </grains>
-        <volumeRange><min>15</min><max>25</max></volumeRange>
-        <sustainLoop>False</sustainLoop>
+        <volumeRange><min>8</min><max>8</max></volumeRange>
+        <sustainAttack>0.25</sustainAttack>
+        <sustainRelease>0.25</sustainRelease>
       </li>
     </subSounds>
   </SoundDef>

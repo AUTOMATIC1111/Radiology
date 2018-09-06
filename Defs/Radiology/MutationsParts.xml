@@ -35,8 +35,13 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationHorns</defName>
     <label>horns</label>
+    <description>Horns have popped out of NAME's PART, making it impossible for HIM to wear and headgear. At least they can be used as a melee weapon.</description>
+
     <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Head</li></affectedParts>
     <exclusive>apparel</exclusive>
+    
+    <beauty>-1</beauty>
     
     <apparel>
       <li>RadiologyHorns</li>
