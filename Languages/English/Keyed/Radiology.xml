@@ -63,5 +63,6 @@
   <RadiologyTooltipHisHer>her</RadiologyTooltipHisHer> <!-- reverse of his -->
   <RadiologyTooltipHis>his</RadiologyTooltipHis>
   
+  <RadiologyTooltipSkillDisabled>disabled</RadiologyTooltipSkillDisabled>
   
 </LanguageData>

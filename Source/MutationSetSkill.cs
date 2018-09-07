@@ -23,6 +23,33 @@ namespace Radiology
 
     public class MutationSetSkill : Mutation<MutationSetSkillDef>
     {
+        public override string TipStringExtra
+        {
+            get
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.Append(base.TipStringExtra);
+
+                foreach (var v in def.skills)
+                {
+                    if (v.add != 0)
+                    {
+                        builder.AppendLine(string.Format("{0}: {1}", v.skill.LabelCap, v.add));
+                    }
+                    else if (v.setTo != -1)
+                    {
+                        builder.AppendLine(string.Format("{0}: {1}", v.skill.LabelCap, v.setTo));
+                    }
+                    else
+                    {
+                        builder.AppendLine(string.Format("{0}: {1}", v.skill.LabelCap, "RadiologyTooltipSkillDisabled".Translate()));
+                    }
+                }
+
+                return builder.ToString();
+            }
+        }
+
         public override void PostAdd(DamageInfo? dinfo)
         {
             base.PostAdd(dinfo);

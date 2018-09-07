@@ -16,24 +16,32 @@ namespace Radiology
         {
             get
             {
-                if (mutationDescription != null) return mutationDescription;
-
-                if (def.description != null)
+                if (mutationDescription == null)
                 {
-                    mutationDescription = def.description;
-                    mutationDescription = mutationDescription.Replace("PART", Part.customLabel == null ? Part.def.label : Part.customLabel);
-                    mutationDescription = mutationDescription.Replace("NAME", pawn.LabelShortCap);
-                    mutationDescription = mutationDescription.Replace("HE", pawn.gender == Gender.Female ? "RadiologyTooltipShe".Translate() : "RadiologyTooltipHe".Translate());
-                    mutationDescription = mutationDescription.Replace("HIS", pawn.gender == Gender.Female ? "RadiologyTooltipHisHer".Translate() : "RadiologyTooltipHis".Translate());
-                    mutationDescription = mutationDescription.Replace("HIM", pawn.gender == Gender.Female ? "RadiologyTooltipHer".Translate() : "RadiologyTooltipHim".Translate());
-                }
-                else
-                {
-                    mutationDescription = "RadiologyTooltipNoDescription".Translate();
+                    StringBuilder builder = new StringBuilder();
+                    CreateDescription(builder);
+                    mutationDescription = builder.ToString();
                 }
 
                 return mutationDescription;
             }
+        }
+
+        public virtual void CreateDescription(StringBuilder builder)
+        {
+            if (def.description == null)
+            {
+                builder.AppendLine("RadiologyTooltipNoDescription".Translate());
+                return;
+            }
+
+            string res = def.description;
+            res = res.Replace("PART", Part.customLabel == null ? Part.def.label : Part.customLabel);
+            res = res.Replace("NAME", pawn.LabelShortCap);
+            res = res.Replace("HE", pawn.gender == Gender.Female ? "RadiologyTooltipShe".Translate() : "RadiologyTooltipHe".Translate());
+            res = res.Replace("HIS", pawn.gender == Gender.Female ? "RadiologyTooltipHisHer".Translate() : "RadiologyTooltipHis".Translate());
+            res = res.Replace("HIM", pawn.gender == Gender.Female ? "RadiologyTooltipHer".Translate() : "RadiologyTooltipHim".Translate());
+            builder.AppendLine(res);
         }
 
 
