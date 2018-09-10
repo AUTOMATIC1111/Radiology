@@ -16,11 +16,9 @@ namespace Radiology
         public int maximumAmount = 1;
     }
 
-    enum MyEnum { X, A, B, C };
-
     class MutationBloodlust : MutationCapacityModifier<MutationBloodlustDef>
     {
-        public override float multiplier()
+        public override float Multiplier()
         {
             IntVec3 position = pawn.Position;
 

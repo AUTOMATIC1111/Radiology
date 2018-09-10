@@ -18,7 +18,7 @@ namespace Radiology
 
     public class MutationNightDweller : MutationCapacityModifier<MutationNightDwellerDef>
     {
-        public override float multiplier()
+        public override float Multiplier()
         {
             float distanceFromMidday = Mathf.Abs(0.45f - GenLocalDate.DayPercent(pawn.Map));
             if (distanceFromMidday > 0.5f) distanceFromMidday = 1.0f - distanceFromMidday;

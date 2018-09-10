@@ -61,6 +61,8 @@ namespace Radiology
                 allParts = pawn.health.hediffSet.GetNotMissingParts().Where(x => def.affectedParts.Contains(x.def));
             }
 
+            allParts = allParts.Where( x => ! x.def.IsSolid(x, pawn.health.hediffSet.hediffs));
+
             foreach (string tag in def.exclusives)
             {
                 if (def.affectsAllParts)
@@ -94,6 +96,8 @@ namespace Radiology
 
             Dictionary<string, HashSet<BodyPartDef>> excludedPartDefsForTag = new Dictionary<string, HashSet<BodyPartDef>>();
             Dictionary<string, HashSet<BodyPartRecord>> excludedPartsForTag = new Dictionary<string, HashSet<BodyPartRecord>>();
+            HashSet<string> excludedGlobalTags = new HashSet<string>();
+
             foreach (Mutation existingMutation in pawn.health.hediffSet.GetHediffs<Mutation>())
             {
                 foreach (string tag in existingMutation.def.exclusives)
@@ -112,6 +116,8 @@ namespace Radiology
                     }
                     set.Add(existingMutation.Part);
                 }
+
+                excludedGlobalTags.AddRange(existingMutation.def.exclusivesGlobal);
             }
 
             Debug.Log("Excluded parts for tags: " + Debug.AsText(excludedPartsForTag));
@@ -124,6 +130,8 @@ namespace Radiology
             Dictionary<MutationDef, IEnumerable<BodyPartRecord>> allowedMutations = new Dictionary<MutationDef, IEnumerable<BodyPartRecord>>();
             foreach (var mutation in mutations)
             {
+                if (mutation.exclusivesGlobal.Intersect(excludedGlobalTags).Any()) continue;
+
                 var parts = WhichPartsMutationIsAllowedOn(pawn, mutation, part, excludedPartDefsForTag, excludedPartsForTag);
                 Debug.Log("  " + mutation + ": to " + Debug.AsText(parts));
 

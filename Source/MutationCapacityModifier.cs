@@ -12,8 +12,7 @@ namespace Radiology
         List<PawnCapacityModifier> modifiers;
         int lastTick = 0;
 
-        public abstract float multiplier();
-
+        public abstract float Multiplier();
 
         public override HediffStage CurStage
         {
@@ -34,7 +33,7 @@ namespace Radiology
                     }
                 }
 
-                float m = multiplier();
+                float m = Multiplier();
 
                 for (int i = 0; i < modifiers.Count; i++)
                 {

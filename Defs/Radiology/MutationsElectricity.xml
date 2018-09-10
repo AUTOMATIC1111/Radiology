@@ -80,20 +80,93 @@
     </subEffects>
     <offset><min>0</min><max>0</max></offset>
   </RadiologyEffectSpawnerDef>
+  
+  <HediffDef Abstract="true" Name="RadiologyMutationBattery" ParentName="RadiologyMutation" Class="Radiology.MutationBatteryDef">
+    <exclusiveGlobal>battery</exclusiveGlobal>
+    
+    <range>6</range>
+    <drain>40</drain>
+    <capacity>100</capacity>
+    <discargePerSecond>0.5</discargePerSecond>
 
-  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBatteryDef">
+    <effectDraining>RadiologyEffectElectricityDraining</effectDraining>
+    <effectDrained>RadiologyEffectElectricityDrain</effectDrained>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutationBattery" Class="Radiology.MutationBatteryDef">
     <defName>MutationBattery</defName>
     <label>battery</label>
     <description>The PART has strangely evolved to absorb and release electricity from nearby exposed conductors through thin air.</description>
     
     <likelihood>0.05</likelihood>
     
-    <periodTicks>23</periodTicks>
-    <range>6</range>
-    <drain>10</drain>
-    
-    <effectDraining>RadiologyEffectElectricityDraining</effectDraining>
-    <effectDrained>RadiologyEffectElectricityDrain</effectDrained>
+    <efficiency>0</efficiency>
   </HediffDef>
   
+  <HediffDef ParentName="RadiologyMutationBattery" Class="Radiology.MutationBatteryDef">
+    <defName>MutationBatteryLeg</defName>
+    <label>battery</label>
+    <description>The PART has mutated to absorb electricity from nearby exposed conductors through thin air and use it to improve its general performance, allowing NAME to move faster. However, without electricity, the perfomance is worse than baseline.</description>
+
+    <relatedParts><li>Leg</li></relatedParts>
+    <affectedParts><li>Leg</li></affectedParts>
+    <affectsAllParts>true</affectsAllParts>
+    
+    <likelihood>0.25</likelihood>
+    
+    <range>6</range>
+    <drain>20</drain>
+    <capacity>100</capacity>
+    <discargePerSecond>0.25</discargePerSecond>
+    
+    <stage>
+      <capMods>
+        <li>
+          <capacity>Moving</capacity>
+          <offset>0.25</offset>
+        </li>
+      </capMods>
+    </stage>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyMutationBattery" Class="Radiology.MutationBatteryDef">
+    <defName>MutationBatteryHeart</defName>
+    <label>battery</label>
+    <description>The PART has mutated to absorb electricity from nearby exposed conductors through thin air and use it to improve blood pumping. However, without electricity, the perfomance is worse than baseline.</description>
+
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Heart</li></affectedParts>
+    
+    <likelihood>0.5</likelihood>
+    
+    <stage>
+      <capMods>
+        <li>
+          <capacity>BloodPumping</capacity>
+          <offset>0.5</offset>
+        </li>
+      </capMods>
+    </stage>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyMutationBattery" Class="Radiology.MutationBatteryDef">
+    <defName>MutationBatteryBrain</defName>
+    <label>battery</label>
+    <description>The PART has mutated to absorb electricity from nearby exposed conductors through thin air and use it to improve its general performance. However, without electricity, the perfomance is worse than baseline.</description>
+
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Brain</li></affectedParts>
+    
+    <likelihood>0.5</likelihood>
+    
+    <stage>
+      <capMods>
+        <li><capacity>Consciousness</capacity><offset>0.25</offset></li>
+        <li><capacity>Sight</capacity><offset>0.25</offset></li>
+        <li><capacity>Talking</capacity><offset>0.25</offset></li>
+        <li><capacity>Hearing</capacity><offset>0.25</offset></li>
+      </capMods>
+    </stage>
+  </HediffDef>
+
 </Defs>

@@ -15,7 +15,9 @@ namespace Radiology
         }
 
         public string exclusive;
+        public string exclusiveGlobal;
         public List<string> exclusives;
+        public List<string> exclusivesGlobal;
 
         public List<BodyPartDef> relatedParts;
         public List<BodyPartDef> affectedParts;
@@ -41,6 +43,12 @@ namespace Radiology
 
             if (exclusive != null)
                 exclusives.Add(exclusive);
+
+            if (exclusivesGlobal == null)
+                exclusivesGlobal = new List<string>();
+
+            if (exclusiveGlobal != null)
+                exclusivesGlobal.Add(exclusiveGlobal);
 
             if (stage != null)
             {

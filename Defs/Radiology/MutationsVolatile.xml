@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationVolatileDef">
+    <defName>MutationVolatileArms</defName>
+    <label>volatile</label>
+    <description>A critical mass of highly explosive material has formed in NAME's PART. Direct damage to it might cause an explosion.</description>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Shoulder</li><li>Arm</li><li>Hand</li></affectedParts>
+    
+    <likelihood>2</likelihood>
+  </HediffDef>
+
+</Defs>

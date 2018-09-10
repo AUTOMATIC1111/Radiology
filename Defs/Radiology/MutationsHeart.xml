@@ -13,14 +13,23 @@
     
     <stage>
       <capMods>
-        <li>
-          <capacity>Moving</capacity>
-          <offset>0.5</offset>
-        </li>
-        <li>
-          <capacity>BloodPumping</capacity>
-          <offset>1.0</offset>
-        </li>
+        <li><capacity>Moving</capacity><offset>0.5</offset></li>
+        <li><capacity>BloodPumping</capacity><offset>1.0</offset></li>
+      </capMods>
+    </stage>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBloodlustDef">
+    <defName>MutationBerserkerMinor</defName>
+    <label>adrenal gland</label>
+    <description>And extra adrenal gland has been formed partly inside NAME's PART, providing a huge boost to its capacity when the organism is injured.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Heart</li></affectedParts>
+    
+    <stage>
+      <capMods>
+        <li><capacity>BloodPumping</capacity><offset>4.0</offset></li>
+        <li><capacity>Consciousness</capacity><offset>0.75</offset></li>
       </capMods>
     </stage>
   </HediffDef>

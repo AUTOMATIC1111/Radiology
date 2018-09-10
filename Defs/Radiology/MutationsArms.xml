@@ -54,7 +54,6 @@
         <add>10</add>
       </li>
     </skills>
-
   </HediffDef>
   
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationSetSkillDef">
@@ -82,6 +81,7 @@
     <description>Green growth on the surface of NAME's PART seems to invigorate any plants HE puts into ground.</description>
     <relatedParts><li>Shoulder</li></relatedParts>
     <affectedParts><li>Hand</li></affectedParts>
+    <exclusive>plants</exclusive>
     
     <skills>
       <li>
@@ -129,7 +129,8 @@
     <description>NAME's PART is near, but not exactly at a stage where it rots and falls off. Sometimes miniature life forms can be observed traversing the skin.</description>
     <relatedParts><li>Shoulder</li></relatedParts>
     <affectedParts><li>Hand</li></affectedParts>
-    
+    <exclusive>plants</exclusive>
+
     <beauty>-10</beauty>
     
     <stage>

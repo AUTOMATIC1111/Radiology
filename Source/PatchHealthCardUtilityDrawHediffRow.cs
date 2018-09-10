@@ -32,9 +32,10 @@ namespace Radiology
             StringBuilder tooltip = new StringBuilder();
             foreach (Mutation mutation in diffs.OfType<Mutation>())
             {
-                tooltip.AppendLine(mutation.LabelCap);
+                if (mutation.def.description == null) continue;
+                
+                tooltip.AppendLine(mutation.def.defaultLabelColor.Text(mutation.LabelCap));
                 tooltip.AppendLine(mutation.MutationDescription);
-                tooltip.AppendLine();
             }
 
             return tooltip.ToString();
