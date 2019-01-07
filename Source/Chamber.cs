@@ -19,7 +19,7 @@ namespace Radiology
         public static string causeNoIrradiator = "ChamberNoIrradiator";
         public static string causePawnNotAssigned = "ChamberPawnNotAssigned";
         public static string causeCooldown = "ChamberCooldown";
-
+        public static string causePawnShieldbelt = "ChamberShieldbelt";
 
         public string CanIrradiateNow(Pawn pawn = null)
         {
@@ -55,6 +55,11 @@ namespace Radiology
             if (pawn != null && !assigned.Contains(pawn))
             {
                 return causePawnNotAssigned;
+            }
+
+            if (pawn != null && pawn.apparel.WornApparel.OfType<ShieldBelt>().Count() > 0)
+            {
+                return causePawnShieldbelt;
             }
 
             return null;

@@ -7,14 +7,26 @@
   </ResearchTabDef>
 
   <ResearchProjectDef Abstract="true" Name="RadiologyResearchBase">
-    <baseCost>50</baseCost>
     <techLevel>Industrial</techLevel>
     <tab>Radiology</tab>
   </ResearchProjectDef>
 
+  <ResearchProjectDef Abstract="true" Name="RadiologyResearchBase0" ParentName="RadiologyResearchBase">
+    <baseCost>500</baseCost>
+  </ResearchProjectDef>
+  <ResearchProjectDef Abstract="true" Name="RadiologyResearchBase1" ParentName="RadiologyResearchBase">
+    <baseCost>1000</baseCost>
+  </ResearchProjectDef>
+  <ResearchProjectDef Abstract="true" Name="RadiologyResearchBase2" ParentName="RadiologyResearchBase">
+    <baseCost>1500</baseCost>
+  </ResearchProjectDef>
+  <ResearchProjectDef Abstract="true" Name="RadiologyResearchBase3" ParentName="RadiologyResearchBase">
+    <baseCost>2000</baseCost>
+  </ResearchProjectDef>
+
   <!-- 1 -->
   
-  <ResearchProjectDef ParentName="RadiologyResearchBase">
+  <ResearchProjectDef ParentName="RadiologyResearchBase0">
     <defName>RadiologyBasic</defName>
     <label>radiology</label>
     <description>Build radiology chamber and use irradiators to bombard your colonists with harmful radiation.</description>
@@ -25,7 +37,7 @@
 
   <!-- 2 -->
   
-  <ResearchProjectDef ParentName="RadiologyResearchBase">
+  <ResearchProjectDef ParentName="RadiologyResearchBase1">
     <defName>RadiologyBlocking</defName>
     <label>radiation blocking</label>
     <description>Build a blocker that makes it possible to stop radiation passing through it from reaching certain body parts.</description>
@@ -35,7 +47,7 @@
     <researchViewY>0.75</researchViewY>
   </ResearchProjectDef>
 
-  <ResearchProjectDef ParentName="RadiologyResearchBase">
+  <ResearchProjectDef ParentName="RadiologyResearchBase1">
     <defName>RadiologyMonitoring</defName>
     <label>radiation monitor</label>
     <description>Build a monitor that allows to see detailed information about what kind of radiation is being applied at a chamber.</description>
@@ -45,7 +57,7 @@
     <researchViewY>1.75</researchViewY>
   </ResearchProjectDef>
   
-  <ResearchProjectDef ParentName="RadiologyResearchBase">
+  <ResearchProjectDef ParentName="RadiologyResearchBase1">
     <defName>RadiologyFiltering</defName>
     <label>radiation filtering</label>
     <description>Build a filter that makes it possible to alter radiation passing through it.</description>
@@ -57,7 +69,7 @@
   
   <!-- blockers -->
   
-  <ResearchProjectDef ParentName="RadiologyResearchBase">
+  <ResearchProjectDef ParentName="RadiologyResearchBase2">
     <defName>RadiologyBlockingIntermediate</defName>
     <label>intermediate blocking</label>
     <description>Build an intermediate variation of blocker that has a better chance of deflecting radiation and lets you select more body parts to protect.</description>
@@ -67,7 +79,7 @@
     <researchViewY>0.75</researchViewY>
   </ResearchProjectDef>
   
-  <ResearchProjectDef ParentName="RadiologyResearchBase">
+  <ResearchProjectDef ParentName="RadiologyResearchBase3">
     <defName>RadiologyBlockingAdvanced</defName>
     <label>advanced blocking</label>
     <description>Build an advanced variation of blocker that has a better chance of deflecting radiation and lets you select more body parts to protect.</description>
@@ -81,7 +93,7 @@
 
   <!-- filters -->
 
-  <ResearchProjectDef ParentName="RadiologyResearchBase">
+  <ResearchProjectDef ParentName="RadiologyResearchBase2">
     <defName>RadiologyFilteringIntermediate</defName>
     <label>intermediate filtering</label>
     <description>Unlocks additional operation modes for a filter.</description>
@@ -91,7 +103,7 @@
     <researchViewY>5</researchViewY>
   </ResearchProjectDef>
 
-  <ResearchProjectDef ParentName="RadiologyResearchBase">
+  <ResearchProjectDef ParentName="RadiologyResearchBase2">
     <defName>RadiologyFilteringTradeoff</defName>
     <label>tradeoff filtering</label>
     <description>Unlocks additional operation modes for a filter.</description>
@@ -101,7 +113,7 @@
     <researchViewY>4</researchViewY>
   </ResearchProjectDef>
 
-  <ResearchProjectDef ParentName="RadiologyResearchBase">
+  <ResearchProjectDef ParentName="RadiologyResearchBase3">
     <defName>RadiologyFilteringAdvanced</defName>
     <label>advanced filtering</label>
     <description>Unlocks additional operation modes for a filter.</description>
@@ -112,7 +124,7 @@
   </ResearchProjectDef>
 
   <!-- 3 -->
-  <ResearchProjectDef ParentName="RadiologyResearchBase">
+  <ResearchProjectDef ParentName="RadiologyResearchBase3">
     <defName>RadiologyIntermediate</defName>
     <label>intermediate radiology</label>
     <description>Build an improved version of irradiator.</description>

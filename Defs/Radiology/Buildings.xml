@@ -46,7 +46,7 @@
     
     <rotatable>false</rotatable>
     <costList>
-      <Steel>10</Steel>
+      <Steel>50</Steel>
     </costList>
     
     <comps>
@@ -73,8 +73,8 @@
       <li><part>Leg</part></li>
     </bodyParts>
     
-    <burnThreshold><min>5</min><max>10</max></burnThreshold>
-    <mutateThreshold><min>5</min><max>10</max></mutateThreshold>
+    <burnThreshold><min>10</min><max>20</max></burnThreshold>
+    <mutateThreshold><min>150</min><max>300</max></mutateThreshold>
     
     <burnEffect>RadiologyEffectBurn</burnEffect>
 
@@ -125,6 +125,12 @@
         <volume>(3.1, 1.0, 3.3)</volume>
       </shadowData>
     </graphicData>
+    
+    <costList>
+      <Steel>100</Steel>
+      <Uranium>10</Uranium>
+      <ComponentIndustrial>4</ComponentIndustrial>
+    </costList>
 
     <comps>
       <li Class="Radiology.CompPropertiesAdvancedFacility">
@@ -194,6 +200,14 @@
         <volume>(3.1, 1.0, 3.3)</volume>
       </shadowData>
     </graphicData>
+    
+    <costList>
+      <Steel>50</Steel>
+      <Plasteel>50</Plasteel>
+      <Uranium>20</Uranium>
+      <ComponentIndustrial>4</ComponentIndustrial>
+      <ComponentSpacer>2</ComponentSpacer>
+    </costList>
 
     <comps>
       <li Class="Radiology.CompPropertiesAdvancedFacility">
@@ -292,6 +306,11 @@
       <texPath>Radiology/Buildings/Barrier</texPath>
     </graphicData>
     
+    <costList>
+      <Steel>50</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+    
     <comps>
       <li Class="Radiology.CompPropertiesBlocker">
         <blockedBodyPartLimit>2</blockedBodyPartLimit>
@@ -311,6 +330,12 @@
       <texPath>Radiology/Buildings/Barrier2</texPath>
       <drawSize>(2,2)</drawSize>
     </graphicData>
+    
+    <costList>
+      <Steel>25</Steel>
+      <Silver>200</Silver>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
     
     <comps>
       <li Class="Radiology.CompPropertiesBlocker">
@@ -332,6 +357,13 @@
       <drawSize>(2,2)</drawSize>
     </graphicData>
     
+    <costList>
+      <Steel>25</Steel>
+      <Silver>100</Silver>
+      <Gold>25</Gold>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+
     <comps>
       <li Class="Radiology.CompPropertiesBlocker">
         <blockedBodyPartLimit>3</blockedBodyPartLimit>
@@ -355,6 +387,11 @@
       </shadowData>
     </graphicData>
     <size>(2,1)</size>
+
+    <costList>
+      <Steel>50</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
 
     <defaultPlacingRot>South</defaultPlacingRot>
     
@@ -391,6 +428,11 @@
     </graphicData>
     <size>(1,1)</size>
     <rotatable>false</rotatable>
+    
+    <costList>
+      <Steel>25</Steel>
+      <ComponentIndustrial>1</ComponentIndustrial>
+    </costList>
 
     <comps>
       <li Class="Radiology.CompPropertiesAdvancedFacility">

@@ -86,13 +86,17 @@ namespace Radiology
             return allParts;
         }
 
+        static void info(String text) {
+
+        }
+
         public static IEnumerable<BodyPartRecord> MutatePawn(Pawn pawn, HediffRadiation radiation, float mutateAmount, float rareRatio, out Mutation mutationResult)
         {
             mutationResult = null;
 
             BodyPartRecord part = radiation.Part;
-            Debug.Log("Finding mutation for part: " + part);
-            Debug.Log("Rare ratio: " + rareRatio);
+            info("Finding mutation for part: " + part);
+            info("Rare ratio: " + rareRatio);
 
             Dictionary<string, HashSet<BodyPartDef>> excludedPartDefsForTag = new Dictionary<string, HashSet<BodyPartDef>>();
             Dictionary<string, HashSet<BodyPartRecord>> excludedPartsForTag = new Dictionary<string, HashSet<BodyPartRecord>>();
@@ -120,12 +124,12 @@ namespace Radiology
                 excludedGlobalTags.AddRange(existingMutation.def.exclusivesGlobal);
             }
 
-            Debug.Log("Excluded parts for tags: " + Debug.AsText(excludedPartsForTag));
-            Debug.Log("Excluded defs for tags: " + Debug.AsText(excludedPartDefsForTag));
+            info("Excluded parts for tags: " + Debug.AsText(excludedPartsForTag));
+            info("Excluded defs for tags: " + Debug.AsText(excludedPartDefsForTag));
 
             var mutations = Mutations.Where(x => x.relatedParts==null || x.relatedParts.Contains(part.def));
 
-            Debug.Log("All applicable mutations: " + Debug.AsText(mutations));
+            info("All applicable mutations: " + Debug.AsText(mutations));
 
             Dictionary<MutationDef, IEnumerable<BodyPartRecord>> allowedMutations = new Dictionary<MutationDef, IEnumerable<BodyPartRecord>>();
             foreach (var mutation in mutations)
@@ -133,44 +137,44 @@ namespace Radiology
                 if (mutation.exclusivesGlobal.Intersect(excludedGlobalTags).Any()) continue;
 
                 var parts = WhichPartsMutationIsAllowedOn(pawn, mutation, part, excludedPartDefsForTag, excludedPartsForTag);
-                Debug.Log("  " + mutation + ": to " + Debug.AsText(parts));
+                info("  " + mutation + ": to " + Debug.AsText(parts));
 
                 if (parts.Count() == 0) continue;
                 allowedMutations[mutation] = parts;
             }
 
-            Debug.Log("All allowed mutations: " + Debug.AsText(allowedMutations));
+            info("All allowed mutations: " + Debug.AsText(allowedMutations));
             if (allowedMutations.Count() == 0)
             {
-                Debug.Log("No mutation possible!");
+                info("No mutation possible!");
                 return null;
             }
 
             MutationDef mutationDef = allowedMutations.Keys.RandomElementByWeight(x => (float)Math.Pow(x.likelihood, 1f - rareRatio));
-            Debug.Log("Chose mutation: " + mutationDef);
+            info("Chose mutation: " + mutationDef);
 
             var applicableParts = allowedMutations[mutationDef];
-            Debug.Log("Can be applied to body parts: " + Debug.AsText(applicableParts));
+            info("Can be applied to body parts: " + Debug.AsText(applicableParts));
 
             if (allowedMutations.Count() == 0)
             {
-                Debug.Log("No matching body parts!");
+                info("No matching body parts!");
                 return null;
             }
 
             var chosenPart = applicableParts.RandomElement();
-            Debug.Log("Chose part: " + chosenPart);
+            info("Chose part: " + chosenPart);
 
             var chosenParts = pawn.health.hediffSet.GetNotMissingParts()
                 .Where(x => mutationDef.affectsAllParts ? x.def == chosenPart.def : x == chosenPart);
 
             foreach (var partToMutate in chosenParts)
             {
-                Debug.Log("Adding to part: " + partToMutate);
+                info("Adding to part: " + partToMutate);
 
                 if(pawn.health.hediffSet.GetHediffs<Mutation>().Where(x => x.def == mutationDef && x.Part == partToMutate).Any())
                 {
-                    Debug.Log("  But it already has this mutation!");
+                    info("  But it already has this mutation!");
                     continue;
                 }
 

@@ -14,6 +14,7 @@
   <ChamberCooldown>already irradiating</ChamberCooldown>
   <ChamberSleeping>{0} is sleeping</ChamberSleeping>
   <ChamberDowned>{0} is downed</ChamberDowned>
+  <ChamberShieldbelt>{0} is wearing shield belt</ChamberShieldbelt>
   <ChamberPrisonerInaccessible>{0} is not available</ChamberPrisonerInaccessible>
   
   
