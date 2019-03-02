@@ -3,6 +3,7 @@
   <ThingDef Name="RadiologyMutationApparelBase" Abstract="True">
     <thingClass>Radiology.ApparelBodyPart</thingClass>
     <category>Item</category>
+    <tradeability>None</tradeability>
     <selectable>True</selectable>
     <pathCost>10</pathCost>
     <useHitPoints>False</useHitPoints>
