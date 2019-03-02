@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <MutationVomitMarbleBricks.label>大理石工厂</MutationVomitMarbleBricks.label>
+  <MutationVomitMarbleBricks.description>NAME的PART突变成了大理石砖。HIS呕吐会产生大理石。大理石是一种柔软、漂亮的石头，以容易塑造著称。</MutationVomitMarbleBricks.description>
+
+  <MutationVomitSilver.label>银厂</MutationVomitSilver.label>
+  <MutationVomitSilver.description>NAME的PART突变成了银块。HIS呕吐会产生银块。银主要作为一种商品货币。</MutationVomitSilver.description>
+
+  <!--[Duplicated] <MutationVomitSteel.label>钢铁工厂</MutationVomitSteel.label>-->
+  <!--[Duplicated] <MutationVomitSteel.description>NAME的PART突变成了的钢块。HIS呕吐会产生钢块。钢是铁碳合金。</MutationVomitSteel.description>-->
+
+  <MutationVomitSteel.label>组件工厂</MutationVomitSteel.label>
+  <MutationVomitSteel.description>NAME的PART突变成了杂齿轮、电容器、电路板、管、车轮、传感器、导线、芯片、处理器和其他电子与工业部件。HIS呕吐会产生零件，让HE很方便就能组装复杂的机器或电子产品。</MutationVomitSteel.description>
+
+
+</LanguageData>

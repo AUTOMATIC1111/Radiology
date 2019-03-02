@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <MutationPsionicShield.label>灵能护盾</MutationPsionicShield.label>
+  <MutationPsionicShield.description>NAME的周围形成了灵能护盾，能够保护HE免收远程和近战伤害。</MutationPsionicShield.description>
+
+  <!--[Duplicated] <MutationPsionicShieldSmall.label>小灵能护盾</MutationPsionicShieldSmall.label>-->
+  <!--[Duplicated] <MutationPsionicShieldSmall.description>小人已形成自我周围灵能护盾,允许保护远程和近战伤害。</MutationPsionicShieldSmall.description>-->
+
+  <!--[Duplicated] <MutationPsionicShieldSmall.label>大灵能护盾</MutationPsionicShieldSmall.label>-->
+  <!--[Duplicated] <MutationPsionicShieldSmall.description>小人已形成自我周围灵能护盾,允许保护远程和近战伤害。</MutationPsionicShieldSmall.description>-->
+
+  <MutationPsionicShieldSmall.label>巨型灵能护盾</MutationPsionicShieldSmall.label>
+  <MutationPsionicShieldSmall.description>NAME的周围形成了灵能护盾，能够保护HE免收远程和近战伤害。</MutationPsionicShieldSmall.description>
+
+  <MutationFireShield.label>火焰护盾</MutationFireShield.label>
+  <MutationFireShield.description>NAME的周围形成了火焰护盾，能够保护HE免收远程和近战伤害。</MutationFireShield.description>
+
+
+</LanguageData>

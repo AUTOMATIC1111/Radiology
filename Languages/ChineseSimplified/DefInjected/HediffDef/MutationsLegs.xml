@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <MutationSuperSpeed.label>超高速</MutationSuperSpeed.label>
+  <MutationSuperSpeed.description>NAME腿部的肌肉和肌腱得到生长和强化，给予HE疯狂的速度和敏捷性。</MutationSuperSpeed.description>
+
+  <MutationCrippledLeg.label>跛脚</MutationCrippledLeg.label>
+  <MutationCrippledLeg.description>NAME的腿变异得十分畸形而弯曲无力，导致HE难以移动。</MutationCrippledLeg.description>
+
+
+</LanguageData>

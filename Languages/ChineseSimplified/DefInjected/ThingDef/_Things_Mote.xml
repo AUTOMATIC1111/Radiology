@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- These are Mote ThingDefs. Remain the same, DO NOT translate them. -->
+
+  <RadiologyMoteRadiation.label>微粒</RadiologyMoteRadiation.label>
+  <RadiologyMoteRadiationDirected.label>微粒</RadiologyMoteRadiationDirected.label>
+  <RadiologyMoteBurn.label>微粒</RadiologyMoteBurn.label>
+  <RadiologyMoteMutate.label>微粒</RadiologyMoteMutate.label>
+  <RadiologyMoteCancer.label>微粒</RadiologyMoteCancer.label>
+  <RadiologyMoteAirPuff.label>微粒</RadiologyMoteAirPuff.label>
+  <RadiologyMoteMutationCloud.label>微粒</RadiologyMoteMutationCloud.label>
+  <RadiologyMoteBlink.label>微粒</RadiologyMoteBlink.label>
+  <RadiologyMoteBlinkLong.label>微粒</RadiologyMoteBlinkLong.label>
+  <RadiologyMoteBlinkIn.label>微粒</RadiologyMoteBlinkIn.label>
+  <RadiologyMoteImpact.label>微粒</RadiologyMoteImpact.label>
+  <RadiologyMoteDebris.label>微粒</RadiologyMoteDebris.label>
+  <RadiologyMoteElectricalSpark.label>微粒</RadiologyMoteElectricalSpark.label>
+  <RadiologyMoteShield.label>微粒</RadiologyMoteShield.label>
+  <RadiologyMoteShieldPiece.label>微粒</RadiologyMoteShieldPiece.label>
+  <RadiologyMoteShieldRestored.label>微粒</RadiologyMoteShieldRestored.label>
+  <RadiologyMoteFireShield.label>微粒</RadiologyMoteFireShield.label>
+  <RadiologyMoteRegeneration.label>微粒</RadiologyMoteRegeneration.label>
+
+
+</LanguageData>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <MutationBattery.label>电池</MutationBattery.label>
+  <MutationBattery.description>PART奇怪地进化出了通过稀薄的空气吸收附近暴露的导体中的电力并释放的能力。</MutationBattery.description>
+
+  <MutationBatteryLeg.label>电池</MutationBatteryLeg.label>
+  <MutationBatteryLeg.description>PART进化出了通过稀薄的空气吸收附近暴露的导体中的电力并释放的能力，并以此增强身体素质，让NAME跑得更快。然而，如果没有电能储备的话，反而比正常人水平更差。</MutationBatteryLeg.description>
+
+  <MutationBatteryHeart.label>电池</MutationBatteryHeart.label>
+  <MutationBatteryHeart.description>PART进化出了通过稀薄的空气吸收附近暴露的导体中的电力并释放的能力，并以此增强身体素质，增强NAME的血液循环。然而，如果没有电能储备的话，反而比正常人水平更差。</MutationBatteryHeart.description>
+
+  <MutationBatteryBrain.label>电池</MutationBatteryBrain.label>
+  <MutationBatteryBrain.description>PART进化出了通过稀薄的空气吸收附近暴露的导体中的电力并释放的能力，并以此增强身体素质。然而，如果没有电能储备的话，反而比正常人水平更差。</MutationBatteryBrain.description>
+
+
+</LanguageData>

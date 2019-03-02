@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <MutationBlink.label>闪烁</MutationBlink.label>
+  <MutationBlink.description>位于PART里的未知来源的异变导致NAME周期性地进出实在空间，不可控制地重新出现在不同的位置。</MutationBlink.description>
+
+  <MutationBlinkControlled.label>可控闪烁</MutationBlinkControlled.label>
+  <MutationBlinkControlled.description>
+  位于PART里的未知来源的异变让NAME能够遵循HIS意愿进出实在空间，出现在其他地方。但NAME无法控制HE将会出现的地点。</MutationBlinkControlled.description>
+
+  <MutationBlinkAimed.label>定位闪烁</MutationBlinkAimed.label>
+  <MutationBlinkAimed.description>位于PART里的未知来源的异变让NAME能够遵循HIS意愿进出实在空间，出现在HE想要出现的地方。</MutationBlinkAimed.description>
+
+
+</LanguageData>

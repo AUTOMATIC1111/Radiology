@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <MutationGlowRed.label>发红光</MutationGlowRed.label>
+  <MutationGlowRed.description>NAME的PART散发着红色的光。</MutationGlowRed.description>
+
+  <MutationGlowGreen.label>发绿光</MutationGlowGreen.label>
+  <MutationGlowGreen.description>NAME的PART散发着绿色的光。</MutationGlowGreen.description>
+
+  <MutationGlowBlue.label>发蓝光</MutationGlowBlue.label>
+  <MutationGlowBlue.description>NAME的PART散发着蓝色的光。</MutationGlowBlue.description>
+
+  <MutationGlow.label>发光</MutationGlow.label>
+  <MutationGlow.description>NAME的PART发着光。</MutationGlow.description>
+
+
+</LanguageData>

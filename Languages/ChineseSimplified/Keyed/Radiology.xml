@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <CommandRadiologyAssignChamberLabel>分配</CommandRadiologyAssignChamberLabel>
+  <CommandRadiologyAssignChamberDesc>分配该辐照室给特定的使用者。</CommandRadiologyAssignChamberDesc>
+  <ChamberTestRunLabel>测试运行</ChamberTestRunLabel>
+  <ChamberTestRunDesc>启动辐射过程，在没有殖民者的情况下工作一小段时间。</ChamberTestRunDesc>
+
+  <ChamberUnavailable>无法操作:{0}</ChamberUnavailable>
+  <ChamberNoPower>辐照室未供电</ChamberNoPower>
+  <ChamberNoRoom>必须放在室内</ChamberNoRoom>
+  <ChamberNoIrradiator>没有连接上辐照器</ChamberNoIrradiator>
+  <ChamberPawnIsHurt>{0}受伤太过严重</ChamberPawnIsHurt>
+  <ChamberPawnNotAssigned>{0}未被分配辐照</ChamberPawnNotAssigned>
+  <ChamberCooldown>已在接受辐射</ChamberCooldown>
+  <ChamberSleeping>{0}处于睡眠状态</ChamberSleeping>
+  <ChamberDowned>{0}处于昏迷状态</ChamberDowned>
+  <ChamberShieldbelt>{0}穿着护盾腰带</ChamberShieldbelt>
+  <ChamberPrisonerInaccessible>{0}不可用</ChamberPrisonerInaccessible>
+
+
+
+  <ChamberDialogAssigned>已分配</ChamberDialogAssigned>
+  <ChamberDialogNotAssigned>未分配</ChamberDialogNotAssigned>
+
+  <IrradiatorNoPower>辐照器未通电</IrradiatorNoPower>
+
+
+  <CommandRadiologyAssignRadiationBlockingLabel>阻挡区域设置</CommandRadiologyAssignRadiationBlockingLabel>
+  <CommandRadiologyAssignRadiationBlockingDesc>阻挡区域设置</CommandRadiologyAssignRadiationBlockingDesc>
+  <RadiologyFilterEnabled>已阻挡</RadiologyFilterEnabled>
+  <RadiologyFilterDisabled>未阻挡</RadiologyFilterDisabled>
+
+  <RadiologyFilterBlocking>阻挡: {0}</RadiologyFilterBlocking>
+  <RadiologyFilterNone>无</RadiologyFilterNone>
+
+  <RadiologyRadiationBurn>有害辐射: {0}%</RadiologyRadiationBurn>
+  <RadiologyRadiationNormal>普通辐射: {0}%</RadiologyRadiationNormal>
+  <RadiologyRadiationRare>罕见辐射: {0}%</RadiologyRadiationRare>
+
+  <RadiologyFilterOperationModeLabel>设置</RadiologyFilterOperationModeLabel>
+  <RadiologyFilterOperationModeDesc>改变过滤模式.</RadiologyFilterOperationModeDesc>
+  <RadiologyFilterOperationMode>操作模式: {0}</RadiologyFilterOperationMode>
+  <RadiologyFilterOperationModeNone>无</RadiologyFilterOperationModeNone>
+  <RadiologyFilterOperationModeSelected>已启用</RadiologyFilterOperationModeSelected>
+  <RadiologyFilterOperationModeNotSelected>未启用</RadiologyFilterOperationModeNotSelected>
+
+  <RadiologyCancerNotGrowing>不生长</RadiologyCancerNotGrowing>
+  <RadiologyCancerNotDiagnosed>未诊断</RadiologyCancerNotDiagnosed>
+  <RadiologyCancerDoctorUnsure> (不确定)</RadiologyCancerDoctorUnsure>
+  <RadiologyCancerMisdiagnosed> (误诊)</RadiologyCancerMisdiagnosed>
+  <RadiologyCancerMissed> (遗漏)</RadiologyCancerMissed>
+
+
+  <RadiologyMutationBlinkCommand>闪烁!</RadiologyMutationBlinkCommand>
+  <RadiologyMutationBlinkDesc>立刻传送到随机位置.</RadiologyMutationBlinkDesc>
+  <RadiologyMutationBlinkTargetedDesc>立刻传送到所选位置.</RadiologyMutationBlinkTargetedDesc>
+
+  <RadiologyTooltipNoDescription>这种变异没有描述.</RadiologyTooltipNoDescription>
+  <RadiologyTooltipHe>他</RadiologyTooltipHe>
+  <RadiologyTooltipShe>她</RadiologyTooltipShe>
+  <RadiologyTooltipHim>他的</RadiologyTooltipHim>
+  <RadiologyTooltipHer>她的</RadiologyTooltipHer>  <!-- reverse of him -->
+
+  <RadiologyTooltipHisHer>她的</RadiologyTooltipHisHer>  <!-- reverse of his -->
+  <RadiologyTooltipHis>他的</RadiologyTooltipHis>
+
+  <RadiologyTooltipSkillDisabled>禁用</RadiologyTooltipSkillDisabled>
+
+</LanguageData>

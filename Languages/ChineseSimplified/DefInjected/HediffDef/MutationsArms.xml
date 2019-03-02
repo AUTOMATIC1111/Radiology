@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <MutationEnhancedDex.label>提高灵活性</MutationEnhancedDex.label>
+  <MutationEnhancedDex.description>辐射加强了NAME的肌腱和肌肉，使HE更加灵巧。</MutationEnhancedDex.description>
+
+  <MutationStrengthenedArm.label>麒麟臂</MutationStrengthenedArm.label>
+  <MutationStrengthenedArm.description>NAME的手臂肌肉组织发生了不自然的变异和生长，使HE拥有了更强的力量和控制力。</MutationStrengthenedArm.description>
+
+  <MutationRippedShoulders.label>撕裂者肩膀</MutationRippedShoulders.label>
+  <MutationRippedShoulders.description>NAME的肩膀增生了大量的额外肌肉，使HE在近战中更有威力，同时也提升了HIS外形吸引力。</MutationRippedShoulders.description>
+
+  <!--[Duplicated] <MutationShootingBoost.label>steady hand</MutationShootingBoost.label>-->
+  <!--[Duplicated] <MutationShootingBoost.description>A specific mutation to NAME's hand enables a much greater shooting proficiency, at cost of weakening melee attacks.</MutationShootingBoost.description>-->
+
+  <MutationGreenThumb.label>绿拇指</MutationGreenThumb.label>
+  <MutationGreenThumb.description>NAME手指上的绿色生长物似乎能激励被HE种在地上的任何植物。</MutationGreenThumb.description>
+
+  <MutationTumorousHand.label>肿胀手指</MutationTumorousHand.label>
+  <MutationTumorousHand.description>辐射导致良性肿瘤在NAME的手上生长，破坏了HIS神经和肌肉组织，导致手瘫痪。</MutationTumorousHand.description>
+
+  <MutationWeakenedArm.label>弱化肌肉</MutationWeakenedArm.label>
+  <MutationWeakenedArm.description>辐射导致NAME的手臂肌肉组织恶化，削弱了HIS力量和控制力。</MutationWeakenedArm.description>
+
+  <MutationShootingBoost.label>腐烂的手</MutationShootingBoost.label>
+  <MutationShootingBoost.description>NAME的PART接近但还未完全转化为腐烂脱落的状态. 有时可以透过皮肤观察到的微生命形式.</MutationShootingBoost.description>
+
+
+</LanguageData>

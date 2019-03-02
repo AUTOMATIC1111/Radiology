@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <MutationEnhancedLungs.label>增强肺</MutationEnhancedLungs.label>
+  <MutationEnhancedLungs.description>辐射加强了NAME的肺部和隔膜的组织和肌肉，让HIS呼吸达到了超人水平。</MutationEnhancedLungs.description>
+
+  <MutationStrengthenedHeart.label>强化的心脏</MutationStrengthenedHeart.label>
+  <MutationStrengthenedHeart.description>肌肉组织的新编织方式让NAME的心脏得到了加强，性能更加优越。</MutationStrengthenedHeart.description>
+
+  <MutationSuperVision.label>超视觉</MutationSuperVision.label>
+  <MutationSuperVision.description>NAME的眼睛发生了变异，让HE能看得更清楚、更锐利。这使得NAME拥有了更高的反应速度和感知能力。</MutationSuperVision.description>
+
+  <MutationEnhancedHearing.label>强化听力</MutationEnhancedHearing.label>
+  <MutationEnhancedHearing.description>NAME的耳朵发生了变异，让HE听到的声音更加清楚而尖锐。这使得NAME具有了更高的反应速度。</MutationEnhancedHearing.description>
+
+  <MutationBrain.label>脑突变</MutationBrain.label>
+  <MutationBrain.description>NAME的大脑发生了变异，导致突触能更快更有效地启动，使HIS整体身体素质得到增强。</MutationBrain.description>
+
+
+  <!-- ++++++++++++++++++++++++++++ -->
+
+  <MutationDamagedLung.label>损坏的肺</MutationDamagedLung.label>
+  <MutationDamagedLung.description>辐射已经破坏了NAME的大部分肺组织，使得HE难以呼吸。</MutationDamagedLung.description>
+
+  <MutationWeakenedHeart.label>虚弱的心脏</MutationWeakenedHeart.label>
+  <MutationWeakenedHeart.description>肌肉组织被辐射削弱和损坏，使NAME的PART效率降低，受损。</MutationWeakenedHeart.description>
+
+  <MutationDamagedVision.label>视力受损</MutationDamagedVision.label>
+  <MutationDamagedVision.description>NAME的眼部组织已经损坏，使得HIS眼睛无法在使用。</MutationDamagedVision.description>
+
+  <MutationDamagedHearing.label>听力损伤</MutationDamagedHearing.label>
+  <MutationDamagedHearing.description>NAME的耳朵已经损坏，让HIS听力下降。</MutationDamagedHearing.description>
+
+  <MutationBrainDamage.label>脑损伤</MutationBrainDamage.label>
+  <MutationBrainDamage.description>NAME的脑组织已经恶化，导致突触发射得更慢而效率更低，引发了HIS失聪和静音。</MutationBrainDamage.description>
+
+
+</LanguageData>

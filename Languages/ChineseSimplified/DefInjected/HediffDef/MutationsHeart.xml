@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <MutationBloodlust.label>嗜血</MutationBloodlust.label>
+  <MutationBloodlust.description>NAME的PART进化出一种感知HE体外血液气味的能力，以及对血液非同寻常的渴望。靠近血池将提高血液泵送能力和运动速度。</MutationBloodlust.description>
+
+  <MutationBerserkerMinor.label>肾上腺</MutationBerserkerMinor.label>
+  <MutationBerserkerMinor.description>NAME的PART中部分形成了另一个肾上腺，在器官受到伤害时会大大增强其能力。</MutationBerserkerMinor.description>
+
+
+</LanguageData>
