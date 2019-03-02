@@ -110,6 +110,7 @@
     <Compile Include="PatchHealthCardUtilityDrawHediffRow.cs" />
     <Compile Include="PatchHediffGizmos.cs" />
     <Compile Include="PatchHediffSet.cs" />
+    <Compile Include="PatchPawnApparelGenerator.cs" />
     <Compile Include="PatchSkillDiabled.cs" />
     <Compile Include="PatchVomiting.cs" />
     <Compile Include="PatchWorkGiver_Warden_TakeToBedJobOnThing.cs" />
@@ -143,7 +144,7 @@
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2000/1/1" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
