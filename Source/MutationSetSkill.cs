@@ -103,7 +103,7 @@ namespace Radiology
             MutationSetSkillRecord rec = def.skills.FirstOrDefault(x => x.skill == skill);
             if (rec == null) return false;
 
-            return rec.setTo == -1;
+            return rec.setTo == -1 && rec.add == 0;
         }
     }
 }

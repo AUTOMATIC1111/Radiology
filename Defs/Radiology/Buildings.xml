@@ -73,8 +73,8 @@
       <li><part>Leg</part></li>
     </bodyParts>
     
-    <burnThreshold><min>10</min><max>20</max></burnThreshold>
-    <mutateThreshold><min>150</min><max>300</max></mutateThreshold>
+    <burnThreshold><min>5</min><max>10</max></burnThreshold>
+    <mutateThreshold><min>5</min><max>10</max></mutateThreshold>
     
     <burnEffect>RadiologyEffectBurn</burnEffect>
 
@@ -141,16 +141,16 @@
         <soundIrradiate>RadiologyIrradiateBasic</soundIrradiate>
 
         <burn>
-            <perSecond><min>1</min><max>2</max></perSecond>
+            <perSecond><min>0.5</min><max>1</max></perSecond>
             <multiplier>10</multiplier>
         </burn>
         
         <mutate>
-            <perSecond><min>1</min><max>2</max></perSecond>
+            <perSecond><min>0.1</min><max>0.2</max></perSecond>
         </mutate>
         
         <mutateRare>
-            <perSecond><min>0.1</min><max>0.2</max></perSecond>
+            <perSecond><min>0.01</min><max>0.02</max></perSecond>
         </mutateRare>
         
         <powerConsumption>1000</powerConsumption>
@@ -218,16 +218,16 @@
         <soundIrradiate>RadiologyIrradiateBasic</soundIrradiate>
 
         <burn>
-            <perSecond><min>1.5</min><max>3</max></perSecond>
+            <perSecond><min>0.75</min><max>1.5</max></perSecond>
             <multiplier>8</multiplier>
         </burn>
         
         <mutate>
-            <perSecond><min>1.6</min><max>3.2</max></perSecond>
+            <perSecond><min>0.16</min><max>0.32</max></perSecond>
         </mutate>
         
         <mutateRare>
-            <perSecond><min>0.2</min><max>0.4</max></perSecond>
+            <perSecond><min>0.02</min><max>0.04</max></perSecond>
         </mutateRare>
         
         <powerConsumption>1500</powerConsumption>
