@@ -29,7 +29,7 @@
   <ResearchProjectDef ParentName="RadiologyResearchBase0">
     <defName>RadiologyBasic</defName>
     <label>radiology</label>
-    <description>Build radiology chamber and use irradiators to bombard your colonists with harmful radiation.</description>
+    <description>Build a radiology chamber and use irradiators to bombard your colonists with harmful radiation.</description>
 
     <researchViewX>0</researchViewX>
     <researchViewY>3</researchViewY>
@@ -72,7 +72,7 @@
   <ResearchProjectDef ParentName="RadiologyResearchBase2">
     <defName>RadiologyBlockingIntermediate</defName>
     <label>intermediate blocking</label>
-    <description>Build an intermediate variation of blocker that has a better chance of deflecting radiation and lets you select more body parts to protect.</description>
+    <description>Build an intermediate variation of the blocker that has a better chance of deflecting radiation and lets you select more body parts to protect.</description>
 
     <prerequisites><li>RadiologyBlocking</li></prerequisites>
     <researchViewX>2</researchViewX>
@@ -82,7 +82,7 @@
   <ResearchProjectDef ParentName="RadiologyResearchBase3">
     <defName>RadiologyBlockingAdvanced</defName>
     <label>advanced blocking</label>
-    <description>Build an advanced variation of blocker that has a better chance of deflecting radiation and lets you select more body parts to protect.</description>
+    <description>Build an advanced variation of the blocker that has a better chance of deflecting radiation and lets you select more body parts to protect.</description>
 
     <prerequisites><li>RadiologyBlockingIntermediate</li></prerequisites>
     <researchViewX>3</researchViewX>
@@ -96,7 +96,7 @@
   <ResearchProjectDef ParentName="RadiologyResearchBase2">
     <defName>RadiologyFilteringIntermediate</defName>
     <label>intermediate filtering</label>
-    <description>Unlocks additional operation modes for a filter.</description>
+    <description>Unlocks additional operation modes for the filter.</description>
 
     <prerequisites><li>RadiologyFiltering</li></prerequisites>
     <researchViewX>2</researchViewX>
@@ -106,7 +106,7 @@
   <ResearchProjectDef ParentName="RadiologyResearchBase2">
     <defName>RadiologyFilteringTradeoff</defName>
     <label>tradeoff filtering</label>
-    <description>Unlocks additional operation modes for a filter.</description>
+    <description>Unlocks additional operation modes for the filter.</description>
 
     <prerequisites><li>RadiologyFiltering</li></prerequisites>
     <researchViewX>2</researchViewX>
@@ -116,7 +116,7 @@
   <ResearchProjectDef ParentName="RadiologyResearchBase3">
     <defName>RadiologyFilteringAdvanced</defName>
     <label>advanced filtering</label>
-    <description>Unlocks additional operation modes for a filter.</description>
+    <description>Unlocks additional operation modes for the filter.</description>
 
     <prerequisites><li>RadiologyFilteringIntermediate</li></prerequisites>
     <researchViewX>3</researchViewX>
@@ -127,7 +127,7 @@
   <ResearchProjectDef ParentName="RadiologyResearchBase3">
     <defName>RadiologyIntermediate</defName>
     <label>intermediate radiology</label>
-    <description>Build an improved version of irradiator.</description>
+    <description>Build an improved version of the irradiator.</description>
 
     <prerequisites><li>RadiologyBasic</li></prerequisites>
     <researchViewX>3</researchViewX>
