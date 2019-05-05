@@ -105,7 +105,7 @@
   </RadiologyEffectSpawnerDef>
 
   <HediffDef Abstract="True" Name="RadiologyPsionicShieldBase" ParentName="RadiologyMutation">
-    <description>NAME has formed a psionic shield around self, allowing for protection from both ranged and melee damage.</description>
+    <description>NAME has formed a psionic shield around HIMself, allowing for protection from both ranged and melee damage.</description>
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Brain</li></affectedParts>
     <exclusive>psionicShield</exclusive>
