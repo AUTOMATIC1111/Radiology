@@ -24,7 +24,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationStrengthenedArm</defName>
     <label>strengthened arm</label>
-    <description>The muscle tissue in the arm has mutated and grown unnaturally, causing NAME to have increased strength and control.</description>
+    <description>The muscle tissue in HIS arm has mutated and grown unnaturally, causing NAME to have increased strength and control.</description>
     <relatedParts><li>Shoulder</li></relatedParts>
     <affectedParts><li>Arm</li></affectedParts>
     <exclusive>productivity</exclusive>
@@ -94,7 +94,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationTumorousHand</defName>
     <label>Tumorous Fingers</label>
-    <description>The radiation has caused benign tumours to grow on NAME's hand, destroying nerves and muscle tissue causing the hand to become crippled.</description>
+    <description>The radiation has caused benign tumours to grow on NAME's hand, destroying nerves and muscle tissue causing HIS hand to become crippled.</description>
     <relatedParts><li>Shoulder</li></relatedParts>
     <affectedParts><li>Hand</li></affectedParts>
     <exclusive>speed</exclusive>
@@ -126,7 +126,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationSetSkillDef">
     <defName>MutationShootingBoost</defName>
     <label>rotten hand</label>
-    <description>NAME's PART is near, but not exactly at a stage where it rots and falls off. Sometimes miniature life forms can be observed traversing the skin.</description>
+    <description>NAME's PART is near, but not exactly at, a stage where it rots and falls off. Sometimes miniature life forms can be observed traversing the skin.</description>
     <relatedParts><li>Shoulder</li></relatedParts>
     <affectedParts><li>Hand</li></affectedParts>
     <exclusive>plants</exclusive>
