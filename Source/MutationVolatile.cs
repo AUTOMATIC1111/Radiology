@@ -30,7 +30,8 @@ namespace Radiology
 
             if (health < healthy)
             {
-                GenExplosion.DoExplosion(pawn.Position, pawn.Map, 12, DamageDefOf.Bomb, pawn);
+                GenExplosion.DoExplosion(pawn.Position, pawn.Map, 6, DamageDefOf.Bomb, pawn);
+                healthy = health;
             }
         }
     }

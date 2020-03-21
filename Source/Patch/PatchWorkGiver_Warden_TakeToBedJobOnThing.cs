@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -7,12 +7,12 @@ using System.Text;
 using Verse;
 using Verse.AI;
 
-namespace Radiology
+namespace Radiology.Patch
 {
     /// <summary>
     /// Prevent pawns from equipping something if they have mutated body part apparel
     /// </summary>
-    [HarmonyPatch(typeof(WorkGiver_Warden_TakeToBed), "JobOnThing", new Type[] { typeof(Pawn), typeof(Thing), typeof(bool) }), StaticConstructorOnStartup]
+    [HarmonyPatch(typeof(WorkGiver_Warden_TakeToBed), "JobOnThing", new Type[] { typeof(Pawn), typeof(Thing), typeof(bool) })]
     public static class PatchWorkGiver_Warden_TakeToBedJobOnThing
     {
         static bool Prefix(Pawn pawn, Thing t, bool forced, ref Job __result)

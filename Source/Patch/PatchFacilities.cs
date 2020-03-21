@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -6,15 +6,14 @@ using System.Linq;
 using System.Text;
 using Verse;
 
-namespace Radiology
+namespace Radiology.Patch
 {
     /// <summary>
     /// Let a nuilding be both facility and affected by facilities when placing it.
     /// </summary>
-    [HarmonyPatch(typeof(CompAffectedByFacilities), "CanPotentiallyLinkTo_Static", new Type[] { typeof(ThingDef), typeof(IntVec3), typeof(Rot4), typeof(ThingDef), typeof(IntVec3), typeof(Rot4) }), StaticConstructorOnStartup]
+    [HarmonyPatch(typeof(CompAffectedByFacilities), "CanPotentiallyLinkTo_Static", new Type[] { typeof(ThingDef), typeof(IntVec3), typeof(Rot4), typeof(ThingDef), typeof(IntVec3), typeof(Rot4) })]
     public static class PatchFacilities
     {
-
         static public IAdvancedFacilityConnector GetCompProperties(ThingDef def)
         {
             for (int i = 0; i < def.comps.Count; i++)

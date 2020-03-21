@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -7,9 +7,9 @@ using System.Reflection;
 using System.Text;
 using Verse;
 
-namespace Radiology
+namespace Radiology.Patch
 {
-    [HarmonyPatch(typeof(PawnApparelGenerator), "Reset", new Type[] { }), StaticConstructorOnStartup]
+    [HarmonyPatch(typeof(PawnApparelGenerator), "Reset", new Type[] { })]
     class PatchPawnApparelGenerator
     {
         static private FieldInfo allApparelPairsField = typeof(PawnApparelGenerator).GetField("allApparelPairs", BindingFlags.NonPublic | BindingFlags.Static);
@@ -20,7 +20,7 @@ namespace Radiology
         }
     }
 
-    [HarmonyPatch(typeof(PawnApparelGenerator), "GenerateStartingApparelFor", new Type[] { typeof(Pawn), typeof(PawnGenerationRequest) }), StaticConstructorOnStartup]
+    [HarmonyPatch(typeof(PawnApparelGenerator), "GenerateStartingApparelFor", new Type[] { typeof(Pawn), typeof(PawnGenerationRequest) })]
     class PatchPawnApparelGeneratorGenerateStartingApparelFor
     {
         static bool reset = false;

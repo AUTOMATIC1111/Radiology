@@ -175,7 +175,7 @@ namespace Radiology
         }
 
         public override string LabelInBrackets => (!diagnosed && !pawn.Dead) ?
-            "RadiologyCancerNotDiagnosed".Translate() :
+            "RadiologyCancerNotDiagnosed".Translate().RawText :
             (apparentGrowth || pawn.Dead)? string.Format("{0}%", (int) (Severity * 100)) : null;
 
         public override string TipStringExtra

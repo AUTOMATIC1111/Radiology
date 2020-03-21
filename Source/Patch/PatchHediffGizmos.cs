@@ -1,16 +1,16 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Verse;
 
-namespace Radiology
+namespace Radiology.Patch
 {
     /// <summary>
     /// Allows hediffs to add gizmos (should really be removed and re-implemented using existing comps mechanism)
     /// </summary>
-    [HarmonyPatch(typeof(Pawn), "GetGizmos", new Type[] { }), StaticConstructorOnStartup]
+    [HarmonyPatch(typeof(Pawn), "GetGizmos", new Type[] { })]
     public static class PatchHediffGizmos
     {
 

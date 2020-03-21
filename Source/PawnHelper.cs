@@ -8,7 +8,6 @@ using Verse;
 
 namespace Radiology
 {
-    [StaticConstructorOnStartup]
     public static class PawnHelper
     {
         static private FieldInfo compsField = typeof(ThingWithComps).GetField("comps", BindingFlags.NonPublic | BindingFlags.Instance);

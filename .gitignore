@@ -2,4 +2,6 @@
 .vs
 Source/obj
 *.csproj.user
+0Harmony.xml
+/packages
 *.suo

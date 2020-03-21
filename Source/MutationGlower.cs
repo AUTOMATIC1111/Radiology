@@ -10,14 +10,24 @@ namespace Radiology
     public class CompOrganicGlower : CompGlower
     {
         IntVec3 previousPosition;
-
+        Map previousMap = null;
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
-            parent.Map.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.Things);
-            parent.Map.glowGrid.RegisterGlower(this);
+
         }
 
         public override void PostDeSpawn(Map map)
+        {
+
+        }
+
+        public void Register(Map map)
+        {
+            map.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.Things);
+            map.glowGrid.RegisterGlower(this);
+        }
+
+        public void Unregister(Map map)
         {
             map.glowGrid.DeRegisterGlower(this);
             if (parent != null) map.mapDrawer.MapMeshDirty(parent.Position, MapMeshFlag.Things);
@@ -27,11 +37,24 @@ namespace Radiology
         public override void CompTick()
         {
             base.CompTick();
-            
-            if (previousPosition == parent.Position) return;
 
-            previousPosition = parent.Position;
-            if (parent.Map != null)  parent.Map.glowGrid.MarkGlowGridDirty(parent.Position);
+            if (parent == null) return;
+            Map map = parent.Map;
+
+            if (previousMap != map)
+            {
+                if (previousMap != null) Unregister(previousMap);
+                if (map != null) Register(map);
+
+                previousMap = map;
+            }
+
+            if (map != null && previousPosition != parent.Position)
+            {
+                map.glowGrid.MarkGlowGridDirty(parent.Position);
+
+                previousPosition = parent.Position;
+            }
         }
     }
 

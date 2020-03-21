@@ -31,12 +31,25 @@ namespace Radiology
             return new ThingComp[] { new CompRegeneration() { mutation = this } };
         }
 
-        public void RegenerateTick()
+        public bool RegenerateInjury()
         {
-            base.Tick();
+            var permanentInjuries = pawn.health.hediffSet.hediffs.OfType<Hediff_Injury>().Where(x => x.IsPermanent() && x.Part != null);
+            Hediff_Injury injury = permanentInjuries.RandomElementWithFallback();
+            if (injury == null) return false;
 
-            if (!pawn.IsHashIntervalTick(def.periodTicks)) return;
+            HediffComp_GetsPermanent hediffComp_GetsPermanent = injury.TryGetComp<HediffComp_GetsPermanent>();
+            if (hediffComp_GetsPermanent == null) return false;
 
+            hediffComp_GetsPermanent.IsPermanent = false;
+            injury.Severity = injury.Part.def.hitPoints - 1;
+            pawn.health.hediffSet.DirtyCache();
+
+            RadiologyEffectSpawnerDef.Spawn(def.effectRegeration, pawn);
+            return true;
+        }
+
+        public bool RegenerateBodyPart()
+        {
             var injured = pawn.health.hediffSet.GetInjuredParts();
             var missing = pawn.health.hediffSet.GetMissingPartsCommonAncestors();
             var potential = missing.Where(x =>
@@ -49,7 +62,7 @@ namespace Radiology
             );
 
             Hediff_MissingPart hediff = potential.RandomElementWithFallback();
-            if (hediff == null) return;
+            if (hediff == null) return false;
 
             BodyPartRecord part = hediff.Part;
             pawn.health.hediffSet.hediffs.Remove(hediff);
@@ -59,7 +72,7 @@ namespace Radiology
                 Hediff_MissingPart missingPart = HediffMaker.MakeHediff(RimWorld.HediffDefOf.MissingBodyPart, pawn, subpart) as Hediff_MissingPart;
                 pawn.health.hediffSet.hediffs.Add(missingPart);
             }
-            
+
             Hediff_Injury injury = HediffMaker.MakeHediff(RimWorld.HediffDefOf.Shredded, pawn, part) as Hediff_Injury;
             injury.Severity = part.def.hitPoints - 1;
             pawn.health.hediffSet.hediffs.Add(injury);
@@ -67,6 +80,19 @@ namespace Radiology
             pawn.health.hediffSet.DirtyCache();
 
             RadiologyEffectSpawnerDef.Spawn(def.effectRegeration, pawn);
+            return true;
+        }
+
+        public void RegenerateTick()
+        {
+            base.Tick();
+
+            if (!pawn.IsHashIntervalTick(def.periodTicks)) return;
+
+            if (RegenerateInjury()) return;
+
+            RegenerateBodyPart();
+
         }
     }
 }

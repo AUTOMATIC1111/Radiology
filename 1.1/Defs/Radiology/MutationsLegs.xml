@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationSuperSpeed</defName>
+    <label>Super Speed</label>
+    <description>The muscles and tendons in the colonist's legs have grown and strengthened giving this colonist insane speed and agility.</description>
+    <relatedParts><li>Leg</li></relatedParts>
+    <affectedParts><li>Leg</li></affectedParts>
+    <affectsAllParts>true</affectsAllParts>
+    <exclusive>speed</exclusive>
+  
+    <stage>
+      <capMods>
+        <li><capacity>Moving</capacity><offset>0.50</offset></li>
+      </capMods>
+      
+      <statOffsets>
+        <MeleeDodgeChance>8</MeleeDodgeChance>
+      </statOffsets>
+    </stage>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationCrippledLeg</defName>
+    <label>Crippled Leg</label>
+    <description>This colonists leg has grown but in a deformed way, crooked and weak, this colonist has difficulty moving.</description>
+    <relatedParts><li>Leg</li></relatedParts>
+    <affectedParts><li>Leg</li></affectedParts>
+    <affectsAllParts>false</affectsAllParts>
+    <exclusive>speed</exclusive>
+  
+    <stage>
+      <capMods>
+        <li><capacity>Moving</capacity><offset>-0.25</offset></li>
+      </capMods>
+      
+      <statOffsets>
+        <MeleeDodgeChance>-4</MeleeDodgeChance>
+      </statOffsets>
+    </stage>
+  </HediffDef>
+
+</Defs>

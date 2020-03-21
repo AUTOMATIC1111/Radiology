@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -7,12 +7,12 @@ using System.Reflection;
 using System.Text;
 using Verse;
 
-namespace Radiology
+namespace Radiology.Patch
 {
     /// <summary>
     /// hook to check if a mutation disables a skill
     /// </summary>
-    [HarmonyPatch(typeof(SkillRecord), "CalculateTotallyDisabled", new Type[] { }), StaticConstructorOnStartup]
+    [HarmonyPatch(typeof(SkillRecord), "CalculateTotallyDisabled", new Type[] { })]
     public static class PatchSkillDiabled
     {
         static private FieldInfo pawnField = typeof(SkillRecord).GetField("pawn", BindingFlags.NonPublic | BindingFlags.Instance);

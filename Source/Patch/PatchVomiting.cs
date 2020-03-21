@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -8,12 +8,12 @@ using System.Text;
 using Verse;
 using Verse.AI;
 
-namespace Radiology
+namespace Radiology.Patch
 {
     /// <summary>
     /// Hook to call vomiting mutation when the pawn is vomiting
     /// </summary>
-    [HarmonyPatch(typeof(JobDriver_Vomit), "MakeNewToils", new Type[] { }), StaticConstructorOnStartup]
+    [HarmonyPatch(typeof(JobDriver_Vomit), "MakeNewToils", new Type[] { })]
     public static class PatchVomiting
     {
         static private FieldInfo ticksLeft = typeof(JobDriver_Vomit).GetField("ticksLeft", BindingFlags.NonPublic | BindingFlags.Instance);

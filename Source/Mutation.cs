@@ -7,43 +7,9 @@ using Verse;
 
 namespace Radiology
 {
-    public class Mutation :HediffWithComps
+    public class Mutation : HediffWithComps
     {
         public new MutationDef def => base.def as MutationDef;
-        
-        string mutationDescription;
-        public string MutationDescription
-        {
-            get
-            {
-                if (mutationDescription == null)
-                {
-                    StringBuilder builder = new StringBuilder();
-                    CreateDescription(builder);
-                    mutationDescription = builder.ToString();
-                }
-
-                return mutationDescription;
-            }
-        }
-
-        public virtual void CreateDescription(StringBuilder builder)
-        {
-            if (def.description == null)
-            {
-                builder.AppendLine("RadiologyTooltipNoDescription".Translate());
-                return;
-            }
-
-            string res = def.description;
-            res = res.Replace("PART", Part.customLabel == null ? Part.def.label : Part.customLabel);
-            res = res.Replace("NAME", pawn.LabelShortCap);
-            res = res.Replace("HE", pawn.gender == Gender.Female ? "RadiologyTooltipShe".Translate() : "RadiologyTooltipHe".Translate());
-            res = res.Replace("HIS", pawn.gender == Gender.Female ? "RadiologyTooltipHisHer".Translate() : "RadiologyTooltipHis".Translate());
-            res = res.Replace("HIM", pawn.gender == Gender.Female ? "RadiologyTooltipHer".Translate() : "RadiologyTooltipHim".Translate());
-            builder.AppendLine(res);
-        }
-
 
         List<ThingComp> thingComps;
         void CreateThingComps()
@@ -99,7 +65,7 @@ namespace Radiology
                 comp.parent = pawn;
                 list.Add(comp);
 
-                if(pawn.Map != null) comp.PostSpawnSetup(false);
+                if (pawn.Map != null) comp.PostSpawnSetup(false);
             }
         }
 
@@ -126,20 +92,17 @@ namespace Radiology
                 }
 
                 Apparel existing = list.FirstOrDefault(x => x.def == apparelDef);
-                
-                if (remove)
+
+                if (existing != null && remove)
                 {
                     if (existing != null) pawn.apparel.Remove(existing);
                     existing.Destroy();
-                    continue;
                 }
-
-                if (existing != null) continue;
-
-                Apparel apparel = ThingMaker.MakeThing(apparelDef) as Apparel;
-                if (apparel == null) continue;
-
-                pawn.apparel.Wear(apparel);
+                else if (existing == null && !remove)
+                {
+                    Apparel apparel = ThingMaker.MakeThing(apparelDef) as Apparel;
+                    if (apparel != null) pawn.apparel.Wear(apparel, true, true);
+                }
             }
         }
 

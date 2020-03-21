@@ -1,16 +1,16 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Verse;
 
-namespace Radiology
+namespace Radiology.Patch
 {
     /// <summary>
     /// Call PostLoad for mutations that need it.
     /// </summary>
-    [HarmonyPatch(typeof(HediffSet), "ExposeData", new Type[] { }), StaticConstructorOnStartup]
+    [HarmonyPatch(typeof(HediffSet), "ExposeData", new Type[] { })]
     public static class PatchHediffSet
     {
         static void Postfix(HediffSet __instance)
