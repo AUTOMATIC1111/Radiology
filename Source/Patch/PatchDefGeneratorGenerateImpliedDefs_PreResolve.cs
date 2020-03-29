@@ -12,6 +12,7 @@ namespace Radiology.Patch
 {
     public static class PatchDefGeneratorGenerateImpliedDefs_PreResolve
     {
+        static HashSet<String> ignoreParts = new HashSet<String>() { "Brain", "Head" };
 
         static void Postfix()
         {
@@ -84,10 +85,10 @@ namespace Radiology.Patch
                 recipe.appliedOnFixedBodyParts = new List<BodyPartDef>() { part };
                 recipe.skillRequirements = new List<SkillRequirement>() { new SkillRequirement() { minLevel = 8, skill = SkillDefOf.Medicine } };
 
-
                 def.descriptionHyperlinks = new List<DefHyperlink>() { recipe };
 
-                Radiology.bodyPartItems[part] = def;
+                if (! ignoreParts.Contains(part.defName)) Radiology.bodyPartItems[part] = def;
+                Radiology.itemBodyParts[def] = part;
 
                 DefGenerator.AddImpliedDef(def);
                 DefGenerator.AddImpliedDef(recipe);

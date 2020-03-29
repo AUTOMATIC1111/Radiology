@@ -21,6 +21,8 @@ namespace Radiology
 
         public List<BodyPartDef> relatedParts;
         public List<BodyPartDef> affectedParts;
+
+        /// this decides whether all body part records with specified def are affected by mutation, or just one (ie two lungs vs one lung)
         public bool affectsAllParts = false;
 
         public float likelihood = 1.0f;

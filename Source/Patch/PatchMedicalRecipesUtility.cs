@@ -14,7 +14,7 @@ namespace Radiology.Patch
     {
         static bool Prefix(ref bool __result, Pawn pawn, BodyPartRecord part)
         {
-            if (!pawn.Dead && !pawn.RaceProps.Animal && HasAnyMutations(pawn, part))
+            if (!pawn.Dead && !pawn.RaceProps.Animal && HasAnyMutations(pawn, part) && Radiology.bodyPartItems.ContainsKey(part.def))
             {
                 __result = true;
                 return false;
@@ -43,6 +43,9 @@ namespace Radiology.Patch
             Thing thing = GenSpawn.Spawn(thingDef, pos, map, WipeMode.Vanish);
             CompHediffStorage comp = thing.TryGetComp<CompHediffStorage>();
             if (comp != null) {
+                comp.parts.Clear();
+                comp.hediffs.Clear();
+
                 foreach (Hediff hediff in pawn.health.hediffSet.hediffs.Where(x => HealthHelper.IsParent(part, x.Part)))
                 {
                     Log.Message(hediff.Part.def.label+": " + hediff.def.label);

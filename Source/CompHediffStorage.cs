@@ -9,6 +9,7 @@ namespace Radiology
 {
     public class CompHediffStorage : ThingComp, IDefHyperlinkLister
     {
+        BodyPartDef part;
         public List<Hediff> hediffs = new List<Hediff>();
         public List<BodyPartDef> parts = new List<BodyPartDef>();
 
@@ -21,16 +22,31 @@ namespace Radiology
         public override string CompInspectStringExtra()
         {
             StringBuilder builder = new StringBuilder();
-            bool multipleParts = parts.Distinct().Count() > 1;
 
             for (int i = 0; i < hediffs.Count; i++)
             {
                 if (i != 0) builder.Append("\n");
-                if (multipleParts) builder.Append(parts[i].LabelCap + ": " + hediffs[i].def.label);
-                else builder.Append(hediffs[i].def.label);
+                if (part != parts[i]) builder.Append(parts[i].LabelCap + ": ");
+                builder.Append(hediffs[i].def.LabelCap);
             }
 
             return builder.ToString();
+        }
+
+        public override void PostPostMake()
+        {
+            if (!Radiology.itemBodyParts.TryGetValue(parent.def, out part)) return;
+
+            // add a random mutation; if this item is spawned via operation, the mutation will be removed anyway
+            MutationDef mutationDef = DefDatabase<MutationDef>.AllDefs.Where(x => x.affectedParts != null && x.affectedParts.Contains(part)).RandomElementWithFallback();
+
+            Hediff hediff = (Hediff)Activator.CreateInstance(mutationDef.hediffClass);
+            hediff.def = mutationDef;
+            hediff.loadID = Find.UniqueIDsManager.GetNextHediffID();
+            hediff.PostMake();
+
+            hediffs.Add(hediff);
+            parts.Add(part);
         }
 
         public IEnumerable<DefHyperlink> hyperlinks()

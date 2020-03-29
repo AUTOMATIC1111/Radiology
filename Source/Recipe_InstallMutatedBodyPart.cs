@@ -12,7 +12,6 @@ namespace Radiology
     {
         public override void ApplyOnPawn(Pawn pawn, BodyPartRecord part, Pawn billDoer, List<Thing> ingredients, Bill bill)
         {
-
             CompHediffStorage comp = ingredients.Select(x => x.TryGetComp<CompHediffStorage>()).Where(x => x != null).RandomElementWithFallback();
             
             if (comp == null) return;
@@ -43,7 +42,6 @@ namespace Radiology
 
                 hediff.pawn = pawn;
                 pawn.health.AddHediff(hediff, target, null, null);
-
             }
         }
     }

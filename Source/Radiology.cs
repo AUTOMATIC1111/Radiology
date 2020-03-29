@@ -14,6 +14,7 @@ namespace Radiology
         public static Harmony harmony = new Harmony("com.github.automatic1111.radiology");
         public static ModContentPack modContentPack;
         public static Dictionary<BodyPartDef, ThingDef> bodyPartItems = new Dictionary<BodyPartDef, ThingDef>();
+        public static Dictionary<ThingDef, BodyPartDef> itemBodyParts = new Dictionary<ThingDef, BodyPartDef>();
 
         public Radiology(ModContentPack pack) : base(pack)
         {
