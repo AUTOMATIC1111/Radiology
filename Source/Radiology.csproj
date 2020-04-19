@@ -326,13 +326,17 @@
     <Compile Include="CompFilterOperationModes.cs" />
     <Compile Include="CompHediffStorage.cs" />
     <Compile Include="CompIrradiator.cs" />
+    <Compile Include="CompMutationMonitor.cs" />
     <Compile Include="CompPropertiesAdvancedFacility.cs" />
     <Compile Include="CompPropertiesBlocker.cs" />
     <Compile Include="CompPropertiesFilter.cs" />
     <Compile Include="CompPropertiesIrradiator.cs" />
+    <Compile Include="CompRadiationExtender.cs" />
     <Compile Include="CompRadiationMonitor.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="DialogSelectMultiple.cs" />
+    <Compile Include="DrawHelper.cs" />
+    <Compile Include="Globals.cs" />
     <Compile Include="Graphic_Mote_Random.cs" />
     <Compile Include="HealthHelper.cs" />
     <Compile Include="HediffDefOf.cs" />
@@ -348,7 +352,9 @@
     <Compile Include="Mutation.cs" />
     <Compile Include="MutationBattery.cs" />
     <Compile Include="MutationBerserker.cs" />
+    <Compile Include="MutationBloodHealer.cs" />
     <Compile Include="MutationBloodlust.cs" />
+    <Compile Include="MutationSimulateIngestion.cs" />
     <Compile Include="MutationCapacityModifier.cs" />
     <Compile Include="MutationDef.cs" />
     <Compile Include="HediffRadiation.cs" />
@@ -363,6 +369,8 @@
     <Compile Include="MutationSetSkill.cs" />
     <Compile Include="MutationVolatile.cs" />
     <Compile Include="MutationVomitItems.cs" />
+    <Compile Include="Mutcomp.cs" />
+    <Compile Include="MutcompSpawnFilthOnHit.cs" />
     <Compile Include="Patch\PatchApparelUtilityHasPartsToWear.cs" />
     <Compile Include="Patch\PatchApparelTrackerTryDrop.cs" />
     <Compile Include="Patch\PatchDefGeneratorGenerateImpliedDefs_PreResolve.cs" />
@@ -371,6 +379,7 @@
     <Compile Include="Patch\PatchHediffSet.cs" />
     <Compile Include="Patch\PatchMedicalRecipesUtility.cs" />
     <Compile Include="Patch\PatchPawnApparelGenerator.cs" />
+    <Compile Include="Patch\PatchPawn_HealthTracker.cs" />
     <Compile Include="Patch\PatchSkillDiabled.cs" />
     <Compile Include="Patch\PatchStatsReportUtility.cs" />
     <Compile Include="Patch\PatchVomiting.cs" />
@@ -380,6 +389,7 @@
     <Compile Include="RadiationCompProperties.cs" />
     <Compile Include="RadiationHelper.cs" />
     <Compile Include="RadiationInfo.cs" />
+    <Compile Include="IRadiationReciever.cs" />
     <Compile Include="Radiology.cs" />
     <Compile Include="RecipeRedoDiagnosis.cs" />
     <Compile Include="Recipe_InstallMutatedBodyPart.cs" />

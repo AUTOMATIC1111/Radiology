@@ -36,7 +36,7 @@
     <mote>
       <fadeInTime>0.05</fadeInTime>
       <solidTime>10</solidTime>
-      <fadeOutTime>0.25</fadeOutTime>
+      <fadeOutTime>0.05</fadeOutTime>
     </mote>
     <graphicData>
       <texPath>Radiology/Effects/MoteRadiationDirected</texPath>

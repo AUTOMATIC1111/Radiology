@@ -21,6 +21,29 @@ namespace Radiology
             return linkedBuildingsField.GetValue(facility) as List<Thing>;
         }
 
+        public static IRadiationReciever LinkedRadiationReciever(this ThingWithComps thing)
+        {
+            CompFacility facility = thing.GetComp<CompFacility>();
+            if (facility == null) return null;
+
+            foreach (Thing linkedThing in facility.LinkedBuildings())
+            {
+                IRadiationReciever res = linkedThing as IRadiationReciever;
+                if (res != null) return res;
+
+                Building linkedBuilding = linkedThing as Building;
+                if (linkedBuilding == null) continue;
+
+                foreach (ThingComp comp in linkedBuilding.AllComps)
+                {
+                    res = comp as IRadiationReciever;
+                    if (res != null) return res;
+                }
+            }
+
+            return null;
+        }
+
         public static T Linked<T>(this CompFacility facility) where T : Thing
         {
             foreach (var thing in facility.LinkedBuildings())

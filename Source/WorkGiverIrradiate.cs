@@ -30,7 +30,7 @@ namespace Radiology
 
             foreach (Chamber chamber in pawn.Map.listerBuildings.AllBuildingsColonistOfClass<Chamber>())
             {
-                if (chamber.CanIrradiateNow() == null)
+                if (chamber.CanIrradiateNow(pawn) == null)
                 {
                     return false;
                 }

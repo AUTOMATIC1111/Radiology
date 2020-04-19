@@ -24,7 +24,7 @@ namespace Verse
 
         public static void Spawn(RadiologyEffectSpawnerDef effect, Pawn pawn, float angle = 0f)
         {
-            Spawn(effect, pawn.Map, pawn.TrueCenter(), angle);
+            Spawn(effect, pawn.Map, pawn.ExactPosition(), angle);
         }
 
         public void Spawn(Map map, Vector3 position, float angle)

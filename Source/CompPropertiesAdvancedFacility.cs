@@ -18,7 +18,6 @@ namespace Radiology
             maxSimultaneous = 999;
         }
 
-
         static IntVec2 RotatedSize(ThingDef def, Rot4 rot)
         {
             if (!rot.IsHorizontal)
@@ -89,27 +88,37 @@ namespace Radiology
 
             int fx1, fz1, fx2, fz2;
             GetCoordinates(facilityDef, facilityPos, facilityRot, out fx1, out fz1, out fx2, out fz2);
-            
-            IntVec2 mySize = RotatedSize(myDef, myRot);
-            IntVec2 facilitySize = RotatedSize(facilityDef, facilityRot);
+
+            if (!myDef.rotatable && facilityDef.rotatable)
+            {
+                if (facilityRot.IsHorizontal) myRot = fx1 > mx1 ? Rot4.East : Rot4.West;
+                else myRot = fz1 > mz1 ? Rot4.North : Rot4.South;
+            }
 
             if (mustBeFacing)
             {
-                Vector2 vec = facilityRot.AsVector2;
-                int dx = (int)vec.x;
-                int dy = (int)vec.y;
-
-                if (dx != 0)
+                if (facilityDef.rotatable)
                 {
-                    if (!MathHelper.IsSameSign(dx, mx1 - fx1)) return false;
-                    if (!MathHelper.IsBetween(fz1, mz1, mz2) && !MathHelper.IsBetween(fz2, mz1, mz2)) return false;
 
+                    Vector2 vec = facilityRot.AsVector2;
+                    int dx = (int)vec.x;
+                    int dy = (int)vec.y;
+
+                    if (dx != 0)
+                    {
+                        if (!MathHelper.IsSameSign(dx, mx1 - fx1)) return false;
+                        if (!MathHelper.IsBetween(fz1, mz1, mz2) && !MathHelper.IsBetween(fz2, mz1, mz2)) return false;
+                    }
+
+                    if (dy != 0)
+                    {
+                        if (!MathHelper.IsSameSign(dy, mz1 - fz1)) return false;
+                        if (!MathHelper.IsBetween(fx1, mx1, mx2) && !MathHelper.IsBetween(fx2, mx1, mx2)) return false;
+                    }
                 }
-
-                if (dy != 0)
+                else
                 {
-                    if (!MathHelper.IsSameSign(dy, mz1 - fz1)) return false;
-                    if (!MathHelper.IsBetween(fx1, mx1, mx2) && !MathHelper.IsBetween(fx2, mx1, mx2)) return false;
+                    return MathHelper.IsBetween(fz1, mz1, mz2) || MathHelper.IsBetween(fz2, mz1, mz2) || MathHelper.IsBetween(fx1, mx1, mx2) || MathHelper.IsBetween(fx2, mx1, mx2);
                 }
             }
 
@@ -123,7 +132,6 @@ namespace Radiology
                 {
                     if (!MathHelper.IsSameSign(dx, fx1-mx1)) return false;
                     if (!MathHelper.IsBetween(fz1, mz1, mz2) && !MathHelper.IsBetween(fz2, mz1, mz2)) return false;
-
                 }
 
                 if (dy != 0)

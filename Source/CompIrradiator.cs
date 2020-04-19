@@ -13,32 +13,11 @@ namespace Radiology
     public class CompIrradiator : ThingComp
     {
         public new CompPropertiesIrradiator props => base.props as CompPropertiesIrradiator;
+        Building linked;
 
-        public BodyPartRecord GetBodyPart(Chamber chamber, Pawn pawn)
+        IEnumerable<ThingWithComps> GetFacilitiesBetweenThisAndTarget(Building target)
         {
-            if (pawn == null) return null;
-
-            return pawn.health.hediffSet.GetNotMissingParts().RandomElementByWeight(x => chamber.def.GetPartWeight(pawn, x));
-        }
-
-        public HediffRadiation GetHediffRadition(BodyPartRecord part, Chamber chamber, Pawn pawn)
-        {
-            if (part == null) return null;
-
-            foreach (var v in pawn.health.hediffSet.GetHediffs<HediffRadiation>())
-            {
-                if (v.Part == part) return v;
-            }
-            HediffRadiation hediff = HediffMaker.MakeHediff(HediffDefOf.RadiologyRadiation, pawn, part) as HediffRadiation;
-            if (hediff == null) return hediff;
-
-            pawn.health.AddHediff(hediff, null, null, null);
-            return hediff;
-        }
-
-        IEnumerable<ThingWithComps> GetFacilitiesBetweenThisAndChamber(Chamber chamber)
-        {
-            Rot4 rot = parent.Rotation;
+            Rot4 rot = Rotation();
 
             IEnumerable<Thing> list =
                 parent.GetComp<CompAffectedByFacilities>().LinkedFacilitiesListForReading
@@ -54,17 +33,17 @@ namespace Radiology
                 ThingWithComps thing = v as ThingWithComps;
                 if (thing == null) continue;
 
-                if (parent.Rotation.IsHorizontal && !MathHelper.IsBetween(thing.Position.x, parent.Position.x, chamber.Position.x)) continue;
-                if (!parent.Rotation.IsHorizontal && !MathHelper.IsBetween(thing.Position.z, parent.Position.z, chamber.Position.z)) continue;
+                if (rot.IsHorizontal && !MathHelper.IsBetween(thing.Position.x, parent.Position.x, target.Position.x)) continue;
+                if (!rot.IsHorizontal && !MathHelper.IsBetween(thing.Position.z, parent.Position.z, target.Position.z)) continue;
                 yield return thing;
             }
 
             yield break;
         }
 
-        IEnumerable<T> GetModifiers<T, X>(Chamber chamber) where X: class where T : ThingComp
+        IEnumerable<T> GetModifiers<T, X>(Building target) where X : class where T : ThingComp
         {
-            foreach (ThingWithComps thing in GetFacilitiesBetweenThisAndChamber(chamber))
+            foreach (ThingWithComps thing in GetFacilitiesBetweenThisAndTarget(target))
             {
                 foreach (T comp in thing.GetComps<T>())
                 {
@@ -76,27 +55,48 @@ namespace Radiology
             yield break;
         }
 
-        public void Irradiate(RadiationInfo info, int ticks)
+        Rot4 Rotation()
         {
-            Chamber chamber = parent.Linked<Chamber>();
+            if (linked == null) return Rot4.Invalid;
 
-            soundSustainer = props.soundIrradiate.TrySpawnSustainer(SoundInfo.InMap(parent, MaintenanceType.PerTick));
-            ticksCooldown = ticks;
+            IntVec3 a = parent.Position;
+            IntVec3 b = linked.Position;
 
-            if (info.pawn.IsShielded()) return;
+            int dx = b.x - a.x;
+            int dz = b.z - a.z;
 
-            info.part = GetBodyPart(info.chamber, info.pawn);
+            if (Math.Abs(dx) >= Math.Abs(dz)) return dx > 0 ? Rot4.West : Rot4.East;
+            else return dz > 0 ? Rot4.North : Rot4.South;
+        }
+
+        public virtual void CreateRadiation(RadiationInfo info, int ticks)
+        {
             info.burn = props.burn.perSecond.RandomInRange;
             info.normal = props.mutate.perSecond.RandomInRange;
             info.rare = props.mutateRare.perSecond.RandomInRange;
-            if (info.secondHand) info.rare /= 2;
+        }
+
+        public void Irradiate(Building target, RadiationInfo info, int ticks)
+        {
+            if (info.visited.Contains(this)) return;
+            info.visited.Add(this);
+
+            linked = target;
+            if (linked == null) return;
+
+            CreateRadiation(info, ticks);
+            if (info.Empty()) return;
+
+            ticksCooldown = ticks;
+            bool playSound = props.soundIrradiate != null && info.visited.Count(x => x.props.soundIrradiate != null) < 2;
+            soundSustainer = playSound ? props.soundIrradiate.TrySpawnSustainer(SoundInfo.InMap(parent, MaintenanceType.PerTick)) : null;
 
             motesReflectAt.Clear();
-            foreach (ThingComp comp in GetModifiers<ThingComp, IRadiationModifier>(info.chamber))
+            foreach (ThingComp comp in GetModifiers<ThingComp, IRadiationModifier>(linked))
             {
                 if (comp is CompBlocker)
                 {
-                    motesReflectAt.Add((parent.Rotation.IsHorizontal ? comp.parent.Position.x : comp.parent.Position.z) + 0.5f);
+                    motesReflectAt.Add((Rotation().IsHorizontal ? comp.parent.Position.x : comp.parent.Position.z) + 0.5f);
                 }
 
                 if (info.secondHand) continue;
@@ -104,81 +104,14 @@ namespace Radiology
                 IRadiationModifier modifier = comp as IRadiationModifier;
                 modifier.Modify(ref info);
             }
-            
-            if (info.burn <= 0 && info.normal <= 0 && info.rare <= 0)
-                return;
-
-            HediffRadiation radiation = GetHediffRadition(info.part, info.chamber, info.pawn);
-            if (radiation == null) return;
-
-            radiation.burn += info.burn;
-            radiation.normal += info.normal;
-            radiation.rare += info.rare;
-
-            float burnThreshold = info.chamber.def.burnThreshold.RandomInRange;
-            float burnAmount = radiation.burn - burnThreshold;
-            if (burnAmount > 0)
-            {
-                radiation.burn -= info.chamber.def.burnThreshold.min;
-
-                DamageInfo dinfo = new DamageInfo(DamageDefOf.Burn, burnAmount * props.burn.multiplier, 999999f, -1f, info.chamber, radiation.Part, null, DamageInfo.SourceCategory.ThingOrUnknown, null);
-                info.pawn.TakeDamage(dinfo);
-
-                if (chamber != null)
-                    RadiologyEffectSpawnerDef.Spawn(chamber.def.burnEffect, info.pawn);
-            }
-
-            float mutateThreshold = info.chamber.def.mutateThreshold.RandomInRange;
-            float mutateAmount = radiation.normal + radiation.rare - mutateThreshold;
-            if (mutateAmount > 0)
-            {
-                float ratio = radiation.rare / (radiation.normal + radiation.rare);
-                radiation.rare -= info.chamber.def.mutateThreshold.min * ratio;
-                radiation.normal -= info.chamber.def.mutateThreshold.min * (1f - ratio);
-
-                Mutation mutation;
-                var mutatedParts = RadiationHelper.MutatePawn(info.pawn, radiation, mutateAmount * props.mutate.multiplier, ratio, out mutation);
-                if (mutatedParts != null)
-                {
-                    foreach (var anotherRadiation in info.pawn.health.hediffSet.GetHediffs<HediffRadiation>())
-                    {
-                        if (mutatedParts.Contains(anotherRadiation.Part) && radiation != anotherRadiation)
-                        {
-                            anotherRadiation.normal -= info.chamber.def.mutateThreshold.min * (1f - ratio);
-                            anotherRadiation.rare -= info.chamber.def.mutateThreshold.min * ratio;
-                        }
-                    }
-                }
-            }
         }
 
-        public static string causeNoPower = "IrradiatorNoPower";
-
-        public string CanIrradiateNow(Pawn pawn)
+        public virtual string CanIrradiateNow(Pawn pawn)
         {
             if (powerComp == null || !powerComp.PowerOn)
-                return causeNoPower;
+                return "IrradiatorNoPower";
 
             return null;
-        }
-
-        public bool IsHealthyEnoughForIrradiation(Chamber chamber, Pawn pawn)
-        {
-            var pawnParts = pawn.health.hediffSet.GetNotMissingParts();
-            var parts = chamber.def.bodyParts.Join(pawnParts, left => left.part, right => right.def, (left, right) => right);
-
-            foreach (var part in parts)
-            {
-                float health = PawnCapacityUtility.CalculatePartEfficiency(pawn.health.hediffSet, part, false, null);
-                if (health < damageThreshold) return false;
-            }
-
-            return true;
-        }
-
-        public override void PostExposeData()
-        {
-            Scribe_Values.Look(ref damageThreshold, "damageThreshold");
         }
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
@@ -186,33 +119,41 @@ namespace Radiology
             powerComp = parent.TryGetComp<CompPowerTrader>();
         }
 
-        List<Thing> Chambers => parent.GetComp<CompFacility>().LinkedBuildings();
+        public virtual CompPropertiesIrradiator MoteProps => props;
 
         public void SpawnRadiationMote()
         {
-            if (props.motes == null || !props.motes.Any()) return;
-            var def = props.motes.RandomElement();
+            if (linked == null) return;
+
+
+            CompPropertiesIrradiator moteProps = MoteProps;
+            if (moteProps?.motes == null || !moteProps.motes.Any()) return;
+
+            var def = moteProps.motes.RandomElement();
             if (def.skip) return;
+
+            if (def.speed.max < 0.5f)
+            {
+                if (Rand.RangeInclusive(0, 5) > linked.Position.DistanceTo(parent.Position)) return;
+            }
 
             MoteRadiation moteThrown = ThingMaker.MakeThing(def.mote, null) as MoteRadiation;
             if (moteThrown == null) return;
 
-            List<Thing> chambers = Chambers;
-            if (!chambers.Any()) return;
-            Thing chamber = chambers.RandomElement();
+            Vector3 origin = parent.ExactPosition();
+            Vector3 destination = linked.ExactPosition();
+            origin.y = destination.y;
+            Vector3 sideways = (destination - origin).normalized.RotatedBy(90);
 
-            Vector2 rotationVector2 = parent.Rotation.AsVector2.RotatedBy(90);
-            Vector3 rotationVector = new Vector3(rotationVector2.x, 0, rotationVector2.y);
-            Vector3 origin = parent.ExactPosition() + Rand.Range(-def.initialSpread, def.initialSpread) * rotationVector;
-            Vector3 destination = chamber.ExactPosition() + Rand.Range(-def.spread, def.spread) * rotationVector;
-            Vector3 offset = destination - origin;
-            Vector3 dir = offset.normalized;
+            origin += sideways * Rand.Range(-def.initialSpread, def.initialSpread);
+            destination += sideways * Rand.Range(-def.spread, def.spread);
 
-            float positionPercent = Mathf.Sqrt(Rand.Range(0f,1f));
+            float positionPercent = Mathf.Sqrt(Rand.Range(0f, 1f));
             float position = def.offset.LerpThroughRange(positionPercent);
             float scale = def.scaleRange.RandomInRange;
 
-            Vector3 startOffset = offset * position;
+            Vector3 dir = destination - origin;
+            Vector3 startOffset = dir * position;
             float angle = startOffset.AngleFlat();
 
             moteThrown.exactPosition = origin + startOffset;
@@ -220,22 +161,23 @@ namespace Radiology
             moteThrown.reflectAt = motesReflectAt;
             moteThrown.reflectChance = def.reflectChance;
 
-            if (parent.Rotation.IsHorizontal)
+            Rot4 rot = Rotation();
+            if (rot.IsHorizontal)
             {
-                moteThrown.deathLocation = chamber.Position.x + 0.5f;
+                moteThrown.deathLocation = linked.ExactPosition().x;
                 moteThrown.isHorizontal = true;
-                moteThrown.reflectIndex = parent.Rotation == Rot4.West ? 0 : motesReflectAt.Count() - 1;
-                moteThrown.reflectIndexChange = parent.Rotation == Rot4.West ? 1 : -1;
+                moteThrown.reflectIndex = rot == Rot4.West ? 0 : motesReflectAt.Count() - 1;
+                moteThrown.reflectIndexChange = rot == Rot4.West ? 1 : -1;
             }
             else
             {
-                moteThrown.deathLocation = chamber.Position.z + 0.5f;
+                moteThrown.deathLocation = linked.ExactPosition().z;
                 moteThrown.isHorizontal = false;
-                moteThrown.reflectIndex = parent.Rotation == Rot4.North ? 0 : motesReflectAt.Count() - 1;
-                moteThrown.reflectIndexChange = parent.Rotation == Rot4.North ? 1 : -1;
+                moteThrown.reflectIndex = rot == Rot4.North ? 0 : motesReflectAt.Count() - 1;
+                moteThrown.reflectIndexChange = rot == Rot4.North ? 1 : -1;
             }
 
- 
+
             moteThrown.exactScale = new Vector3(scale, scale, scale);
             moteThrown.SetVelocity(angle, def.speed.RandomInRange);
             GenSpawn.Spawn(moteThrown, parent.Position, parent.Map, WipeMode.Vanish);
@@ -243,27 +185,35 @@ namespace Radiology
 
         public override void CompTick()
         {
-            if (powerComp == null) return;
+            ConsumePower();
 
-            if (ticksCooldown <= 0)
-            {
-                powerComp.PowerOutput = -powerComp.Props.basePowerConsumption;
-                return;
-            }
+            if (ticksCooldown <= 0) return;
 
-            soundSustainer.Maintain();
-
-            powerComp.PowerOutput = -props.powerConsumption;
+            if (soundSustainer != null) soundSustainer.Maintain();
 
             SpawnRadiationMote();
 
             ticksCooldown--;
         }
 
+        public void ConsumePower()
+        {
+            if (powerComp == null) return;
+
+            if (ticksCooldown <= 0)
+            {
+                powerComp.PowerOutput = -powerComp.Props.basePowerConsumption;
+            }
+            else
+            {
+                powerComp.PowerOutput = -props.powerConsumption;
+            }
+
+        }
+
         Sustainer soundSustainer;
 
-        public float damageThreshold = 0.5f;
-        public int ticksCooldown=0;
+        public int ticksCooldown = 0;
         public List<float> motesReflectAt = new List<float>();
 
         private CompPowerTrader powerComp;

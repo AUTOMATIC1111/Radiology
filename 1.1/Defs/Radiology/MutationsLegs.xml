@@ -24,6 +24,7 @@
     <defName>MutationCrippledLeg</defName>
     <label>Crippled Leg</label>
     <description>This colonists leg has grown but in a deformed way, crooked and weak, this colonist has difficulty moving.</description>
+    <isBad>true</isBad>
     <relatedParts><li>Leg</li></relatedParts>
     <affectedParts><li>Leg</li></affectedParts>
     <affectsAllParts>false</affectsAllParts>

@@ -22,7 +22,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBloodlustDef">
     <defName>MutationBerserkerMinor</defName>
     <label>adrenal gland</label>
-    <description>And extra adrenal gland has been formed partly inside colonist's body part, providing a huge boost to its capacity when the organism is injured.</description>
+    <description>An extra adrenal gland has been formed partly inside colonist's body part, providing a huge boost to its capacity when the organism is injured.</description>
     <relatedParts><li>Torso</li></relatedParts>
     <affectedParts><li>Heart</li></affectedParts>
     

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 using Verse;
 
 namespace Radiology
@@ -36,6 +37,8 @@ namespace Radiology
 
         public List<ThingDef> apparel;
 
+        public GraphicData icon = new GraphicData();
+
         public override void PostLoad()
         {
             base.PostLoad();
@@ -59,6 +62,10 @@ namespace Radiology
 
                 stages.Add(stage);
             }
+
+            icon.graphicClass = typeof(Graphic_Single);
+            icon.shaderType = ShaderTypeDefOf.Cutout;
+            icon.texPath = "Radiology/Mutations/" + defName;
         }
     }
 }

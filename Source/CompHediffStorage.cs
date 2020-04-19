@@ -25,7 +25,10 @@ namespace Radiology
 
             for (int i = 0; i < hediffs.Count; i++)
             {
-                if (i != 0) builder.Append("\n");
+                Hediff hediff = hediffs[i];
+                if (!hediff.Visible) continue;
+
+                if (builder.Length != 0) builder.Append("\n");
                 if (part != parts[i]) builder.Append(parts[i].LabelCap + ": ");
                 builder.Append(hediffs[i].def.LabelCap);
             }
@@ -51,7 +54,10 @@ namespace Radiology
 
         public IEnumerable<DefHyperlink> hyperlinks()
         {
-            foreach (Hediff hediff in hediffs) {
+            foreach (Hediff hediff in hediffs)
+            {
+                if (!hediff.Visible) continue;
+
                 yield return hediff.def;
             }
 

@@ -47,6 +47,8 @@ namespace Radiology
         {
             if (!def.controlled) yield break;
 
+            bool enabled = cooldown <= 0 && pawn.Faction == Faction.OfPlayer;
+
             if (def.aimed)
             {
                 yield return new Command_Target_Location
@@ -62,7 +64,7 @@ namespace Radiology
                     {
                         canTargetLocations = true,
                     },
-                    disabled = cooldown > 0,
+                    disabled = !enabled,
                 };
             }
             else
@@ -76,7 +78,7 @@ namespace Radiology
                     {
                         BlinkRandomly();
                     },
-                    disabled = cooldown > 0,
+                    disabled = !enabled,
                 };
             }
 

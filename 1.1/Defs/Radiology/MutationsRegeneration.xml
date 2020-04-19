@@ -54,7 +54,8 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationRegenerationDef">
     <defName>MutationRegeneration</defName>
     <label>regeneration</label>
-    <description>Colonist's body part has become a house to a host of symbiotic microorganisms who seem to consider well-being of colonist to be their top priority, providing him with inhuman regenerative abilities.</description>
+    <description>The body part has become a house to a host of symbiotic microorganisms who seem to consider well-being of the colonist to be their top priority, providing him with inhuman regenerative abilities, able to heal any permanent injuries in an otherewise healthy body part, and even to restore missing body parts.</description>
+    <likelihood>0.25</likelihood>
 
     <relatedParts><li>Torso</li></relatedParts>
     <affectedParts>
@@ -66,8 +67,28 @@
       <li>Neck</li>
     </affectedParts>
 
-    <effectRegeration>RadiologyEffectRegeneration</effectRegeration>
+    <healMissingParts>true</healMissingParts>
 
+    <effectRegeneration>RadiologyEffectRegeneration</effectRegeneration>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationRegenerationDef">
+    <defName>MutationRegenerationLesser</defName>
+    <label>lesser regeneration</label>
+    <description>The body part has become a house to a host of symbiotic microorganisms who seem to consider well-being of the colonist to be their top priority, providing him with strong regenerative abilities, able to heal any permanent injuries in an otherewise healthy body part.</description>
+    <likelihood>0.5</likelihood>
+
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts>
+      <li>Stomach</li>
+      <li>Heart</li>
+      <li>Lung</li>
+      <li>Kidney</li>
+      <li>Liver</li>
+      <li>Neck</li>
+    </affectedParts>
+
+    <effectRegeneration>RadiologyEffectRegeneration</effectRegeneration>
   </HediffDef>
 
 </Defs>

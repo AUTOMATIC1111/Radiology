@@ -10,8 +10,6 @@ namespace Radiology
     {
         public static bool IsParent(BodyPartRecord potentialParent, BodyPartRecord potentialChild)
         {
-            Log.Message("=================");
-            Log.Message("Find if "+ potentialChild + " is a child of "+ potentialParent);
             while (true)
             {
                 Log.Message(potentialChild + " <-> " + potentialParent);

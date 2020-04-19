@@ -10,7 +10,7 @@
     
     <radius>40</radius>
     <mtthDays>1</mtthDays>
-    <controlled>true</controlled>
+    <controlled>false</controlled>
     <effectOut>RadiologyEffectBlinkOut</effectOut>
     <effectIn>RadiologyEffectBlinkIn</effectIn>
   </HediffDef>
@@ -18,7 +18,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBlinkDef">
     <defName>MutationBlinkControlled</defName>
     <label>controllable blink</label>
-    <description>A deformation of an unknown origin in the body part is allowing colonist to shift in and out of existance, reappearing at a different location, at will. Colonist is not able to control where HE'll reappear.</description>
+    <description>A deformation of an unknown origin in the body part is allowing colonist to shift in and out of existance, reappearing at a different location, at will. Colonist is not able to control where he'll reappear.</description>
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Brain</li></affectedParts>
     <exclusive>blink</exclusive>

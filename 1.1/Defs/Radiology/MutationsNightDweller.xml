@@ -4,7 +4,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationNightDwellerDef">
     <defName>MutationNightDweller</defName>
     <label>night dweller</label>
-    <description>An irreversible change in colonist's body part is causing his body to function better at night and worse at day.</description>
+    <description>An irreversible change in colonist's brain is causing his body to function better at night and worse at day.</description>
     
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Brain</li></affectedParts>

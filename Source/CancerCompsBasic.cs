@@ -79,7 +79,7 @@ namespace Radiology
     {
         public override object[] DescriptionArgs => new object[] { cancer.Part.Label, (int)(def.destroyAtSeverity * 100) };
 
-        public override void Update(int passed) => cancer.stage.destroyPart = cancer.Severity > def.destroyAtSeverity;
+        public override void Update(int passed) => cancer.stage.destroyPart = cancer.Severity >= def.destroyAtSeverity;
     }
 
 

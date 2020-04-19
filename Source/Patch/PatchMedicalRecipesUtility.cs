@@ -25,7 +25,7 @@ namespace Radiology.Patch
 
         public static bool HasAnyMutations(Pawn pawn, BodyPartRecord part)
         {
-            return (from x in pawn.health.hediffSet.hediffs.OfType<Mutation>() where x.Part == part select x).Any();
+            return (from x in pawn.health.hediffSet.hediffs.OfType<Mutation>() where x.Part == part && !x.def.isBad select x).Any();
         }
     }
 
@@ -48,7 +48,6 @@ namespace Radiology.Patch
 
                 foreach (Hediff hediff in pawn.health.hediffSet.hediffs.Where(x => HealthHelper.IsParent(part, x.Part)))
                 {
-                    Log.Message(hediff.Part.def.label+": " + hediff.def.label);
                     comp.parts.Add(hediff.Part.def);
                     comp.hediffs.Add(hediff);
                 }

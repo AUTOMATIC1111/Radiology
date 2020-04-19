@@ -100,4 +100,29 @@
     <effect>RadiologyEffectVomitBricks</effect>
   </HediffDef>
 
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationSimulateIngestionDef">
+    <defName>MutationBrewery</defName>
+    <label>brewery</label>
+    <description>A brewery has formed in the stomach of the colonist, effectively rendering him drunk at all times.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Stomach</li></affectedParts>
+      
+    <periodTicks>120</periodTicks>
+    <chance>0.1</chance>
+    <stoppedByHediff>AlcoholHigh</stoppedByHediff>
+    
+    <outcomeDoers>
+      <li Class="IngestionOutcomeDoer_GiveHediff">
+        <hediffDef>AlcoholHigh</hediffDef>
+        <severity>0.03</severity>
+        <toleranceChemical>Alcohol</toleranceChemical>
+      </li>
+      <li Class="IngestionOutcomeDoer_GiveHediff">
+        <hediffDef>AlcoholTolerance</hediffDef>
+        <severity>0.00025</severity>
+        <divideByBodySize>true</divideByBodySize>
+      </li>
+    </outcomeDoers>
+  </HediffDef>
+  
 </Defs>

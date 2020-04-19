@@ -66,4 +66,6 @@
   
   <RadiologyTooltipSkillDisabled>disabled</RadiologyTooltipSkillDisabled>
   
+  <RadiologyLastMutation>Last mutation: {0}, {1} ago</RadiologyLastMutation>
+  
 </LanguageData>

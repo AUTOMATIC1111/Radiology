@@ -106,7 +106,7 @@
   <HediffDef ParentName="RadiologyMutationBattery" Class="Radiology.MutationBatteryDef">
     <defName>MutationBatteryLeg</defName>
     <label>battery</label>
-    <description>The body part has mutated to absorb electricity from nearby exposed conductors through thin air and use it to improve its general performance, allowing colonist to move faster. However, without electricity, the perfomance is worse than baseline.</description>
+    <description>The leg has mutated to absorb electricity from nearby exposed conductors through thin air and use it to improve its general performance, allowing colonist to move faster. However, without electricity, the perfomance is worse than baseline.</description>
 
     <relatedParts><li>Leg</li></relatedParts>
     <affectedParts><li>Leg</li></affectedParts>
@@ -132,7 +132,7 @@
   <HediffDef ParentName="RadiologyMutationBattery" Class="Radiology.MutationBatteryDef">
     <defName>MutationBatteryHeart</defName>
     <label>battery</label>
-    <description>The body part has mutated to absorb electricity from nearby exposed conductors through thin air and use it to improve blood pumping. However, without electricity, the perfomance is worse than baseline.</description>
+    <description>The heart has mutated to absorb electricity from nearby exposed conductors through thin air and use it to improve blood pumping. However, without electricity, the perfomance is worse than baseline.</description>
 
     <relatedParts><li>Torso</li></relatedParts>
     <affectedParts><li>Heart</li></affectedParts>
@@ -152,7 +152,7 @@
   <HediffDef ParentName="RadiologyMutationBattery" Class="Radiology.MutationBatteryDef">
     <defName>MutationBatteryBrain</defName>
     <label>battery</label>
-    <description>The body part has mutated to absorb electricity from nearby exposed conductors through thin air and use it to improve its general performance. However, without electricity, the perfomance is worse than baseline.</description>
+    <description>The brain has mutated to absorb electricity from nearby exposed conductors through thin air and use it to improve its general performance. However, without electricity, the perfomance is worse than baseline.</description>
 
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Brain</li></affectedParts>

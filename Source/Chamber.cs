@@ -8,30 +8,23 @@ using Verse;
 
 namespace Radiology
 {
-    public class Chamber : Building, ISelectMultiple<Pawn>
+    public class Chamber : Building, ISelectMultiple<Pawn>, IRadiationReciever
     {
-
         new public ChamberDef def => base.def as ChamberDef;
 
-        public static string causeNoPower = "ChamberNoPower";
-        public static string causeNoRoom = "ChamberNoRoom";
-        public static string causePawnHurt = "ChamberPawnIsHurt";
-        public static string causeNoIrradiator = "ChamberNoIrradiator";
-        public static string causePawnNotAssigned = "ChamberPawnNotAssigned";
-        public static string causeCooldown = "ChamberCooldown";
-        public static string causePawnShieldbelt = "ChamberShieldbelt";
+        public Building Building => this;
 
         public string CanIrradiateNow(Pawn pawn = null)
         {
             if (powerComp == null || !powerComp.PowerOn)
-                return causeNoPower;
+                return "ChamberNoPower";
 
             if (pawn != currentUser && ticksCooldown > 0)
-                return causeCooldown;
+                return "ChamberCooldown";
 
             Room room = Position.GetRoom(Find.CurrentMap, RegionType.Set_All);
             if (room == null || room.PsychologicallyOutdoors)
-                return causeNoRoom;
+                return "ChamberNoRoom";
 
             int count = 0;
             string intermediateProblem = null;
@@ -45,21 +38,21 @@ namespace Radiology
             }
 
             if(count==0)
-                return intermediateProblem ?? causeNoIrradiator;
+                return intermediateProblem ?? "ChamberNoIrradiator";
 
             if (pawn != null && !IsHealthyEnoughForIrradiation(pawn))
             {
-                return causePawnHurt;
+                return "ChamberPawnIsHurt";
             }
 
             if (pawn != null && !assigned.Contains(pawn))
             {
-                return causePawnNotAssigned;
+                return "ChamberPawnNotAssigned";
             }
 
             if (pawn != null && pawn.apparel.WornApparel.OfType<ShieldBelt>().Count() > 0)
             {
-                return causePawnShieldbelt;
+                return "ChamberShieldbelt";
             }
 
             return null;
@@ -88,6 +81,14 @@ namespace Radiology
             if (ticksCooldown > 0) ticksCooldown--;
         }
 
+        public BodyPartRecord GetBodyPart(Pawn pawn)
+        {
+            if (pawn == null) return null;
+
+            BodyPartRecord res = null;
+            pawn.health.hediffSet.GetNotMissingParts().TryRandomElementByWeight(x => def.GetPartWeight(pawn, x), out res);
+            return res;
+        }
 
         public void Irradiate(Pawn pawn, int ticksCooldown)
         {
@@ -101,25 +102,83 @@ namespace Radiology
 
             foreach (CompIrradiator comp in GetIrradiators())
             {
-                RadiationInfo info = new RadiationInfo { chamber = this, pawn = actualPawn, part = null, secondHand = actualPawn!=pawn };
-                comp.Irradiate(info, ticksCooldown);
-
+                RadiationInfo info = new RadiationInfo { chamberDef = def, pawn = actualPawn, part = GetBodyPart(actualPawn), secondHand = actualPawn!=pawn, visited = new HashSet<CompIrradiator>() };
+                comp.Irradiate(this, info, ticksCooldown);
                 radiationTracker.burn += info.burn;
                 radiationTracker.normal += info.normal;
                 radiationTracker.rare += info.rare;
+
+                if (actualPawn.IsShielded()) continue;
+
+                HediffRadiation radiation = RadiationHelper.GetHediffRadition(info.part, info.pawn);
+                if (radiation == null) continue;
+
+                radiation.burn += info.burn;
+                radiation.normal += info.normal;
+                radiation.rare += info.rare;
+
+                ApplyBurn(actualPawn, radiation);
+                ApplyMutation(actualPawn, radiation);
             }
         }
 
+
+        public void ApplyBurn(Pawn pawn, HediffRadiation radiation)
+        {
+            float burnAmount = def.burnThreshold.RandomInRange;
+            if (radiation.burn < burnAmount) return;
+
+            radiation.burn -= burnAmount;
+
+            DamageInfo dinfo = new DamageInfo(DamageDefOf.Burn, burnAmount, 999999f, -1f, this, radiation.Part, null, DamageInfo.SourceCategory.ThingOrUnknown, null);
+            pawn.TakeDamage(dinfo);
+
+            RadiologyEffectSpawnerDef.Spawn(def.burnEffect, pawn);
+        }
+
+        public void ApplyMutation(Pawn pawn, HediffRadiation radiation)
+        {
+            if (radiation.normal + radiation.rare <= def.mutateThreshold.RandomInRange) return;
+
+            float ratio = radiation.rare / (radiation.normal + radiation.rare);
+            radiation.rare = 0;
+            radiation.normal = 0;
+            
+            SpawnMutation(pawn, radiation.Part, ratio, radiation);
+        }
+
+        public void SpawnMutation(Pawn pawn, BodyPartRecord part, float ratio, HediffRadiation radiation = null)
+        {
+            Mutation mutation;
+            var mutatedParts = RadiationHelper.MutatePawn(pawn, part, ratio, out mutation);
+            lastMutation = mutation.def;
+            lastMutationTick = Find.TickManager.TicksGame;
+            if (mutatedParts == null) return;
+
+            foreach (var anotherRadiation in pawn.health.hediffSet.GetHediffs<HediffRadiation>())
+            {
+                if (mutatedParts.Contains(anotherRadiation.Part) && radiation != anotherRadiation)
+                {
+                    anotherRadiation.normal -= def.mutateThreshold.min * (1f - ratio);
+                    anotherRadiation.rare -= def.mutateThreshold.min * ratio;
+                }
+            }
+        }
+
+
         public bool IsHealthyEnoughForIrradiation(Pawn pawn)
         {
-            foreach (CompIrradiator comp in GetIrradiators())
+            var pawnParts = pawn.health.hediffSet.GetNotMissingParts();
+            var parts = def.bodyParts.Join(pawnParts, left => left.part, right => right.def, (left, right) => right);
+
+            foreach (var part in parts)
             {
-                if (!comp.IsHealthyEnoughForIrradiation(this, pawn)) return false;
+                float health = PawnCapacityUtility.CalculatePartEfficiency(pawn.health.hediffSet, part, false, null);
+                if (health < damageThreshold) return false;
             }
 
             return true;
         }
-
 
         public override void ExposeData()
         {
@@ -127,7 +186,10 @@ namespace Radiology
 
             Scribe_Collections.Look(ref assigned, "assigned", LookMode.Reference);
             Scribe_Values.Look(ref ticksCooldown, "ticksCooldown");
+            Scribe_Values.Look(ref damageThreshold, "damageThreshold");
             Scribe_References.Look(ref currentUser, "currentUser");
+            Scribe_Defs.Look(ref lastMutation, "lastMutation");
+            Scribe_Values.Look(ref lastMutationTick, "lastMutationTick");
         }
 
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
@@ -177,6 +239,20 @@ namespace Radiology
                 hotKey = KeyBindingDefOf.Misc3
             };
 
+            
+            if (Prefs.DevMode && currentUser != null && currentUser.Spawned)
+            {
+                yield return new Command_Action
+                {
+                    defaultLabel = "Dev: mutate "+ currentUser.Name,
+                    action = delegate ()
+                    {
+                        SpawnMutation(currentUser, GetBodyPart(currentUser), 0.5f);
+                    },
+                };
+            }
+
+
             yield break;
         }
 
@@ -219,9 +295,13 @@ namespace Radiology
         };
 
         public int ticksCooldown = 0;
+        public float damageThreshold = 0.5f;
         public Pawn currentUser;
 
+
         public RadiationTracker radiationTracker = new RadiationTracker();
+        public MutationDef lastMutation;
+        public int lastMutationTick;
 
         private CompAffectedByFacilities facilitiesComp;
         private CompPowerTrader powerComp;

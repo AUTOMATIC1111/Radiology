@@ -24,7 +24,6 @@ namespace Radiology
         public float reflectChance = 0f;
     }
 
-
     public class CompPropertiesIrradiator :CompProperties
     {
         public CompPropertiesIrradiator()

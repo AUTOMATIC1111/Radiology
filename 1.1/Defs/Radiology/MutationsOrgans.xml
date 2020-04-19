@@ -25,7 +25,6 @@
     <relatedParts><li>Torso</li></relatedParts>
     <affectedParts><li>Heart</li></affectedParts>
     <exclusive>heart</exclusive>
-    <affectsAllParts>false</affectsAllParts>
 
     <stage>
       <capMods>
@@ -43,7 +42,6 @@
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Eye</li></affectedParts>
     <exclusive>eyes</exclusive>
-    <affectsAllParts>false</affectsAllParts>
 
     <stage>
       <capMods>
@@ -80,7 +78,6 @@
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Brain</li></affectedParts>
     <exclusive>Brain</exclusive>
-    <affectsAllParts>false</affectsAllParts>
 
     <stage>
       <capMods>
@@ -100,10 +97,10 @@
     <defName>MutationDamagedLung</defName>
     <label>Damaged Lungs</label>
     <description>The radiation has destroyed much of colonist's lung tissue making it difficult for him to breathe.</description>
+    <isBad>true</isBad>
     <relatedParts><li>Torso</li></relatedParts>
     <affectedParts><li>Lung</li></affectedParts>
     <exclusive>breathing</exclusive>
-    <affectsAllParts>false</affectsAllParts>
   
     <stage>
       <capMods>
@@ -118,10 +115,10 @@
     <defName>MutationWeakenedHeart</defName>
     <label>Weakened Heart</label>
     <description>The muscle tissue has been weakened and damaged by the radiation, making colonist's body part less efficient and damaged.</description>
+    <isBad>true</isBad>
     <relatedParts><li>Torso</li></relatedParts>
     <affectedParts><li>Heart</li></affectedParts>
     <exclusive>heart</exclusive>
-    <affectsAllParts>false</affectsAllParts>
     
     <likelihood>0.7</likelihood>
 
@@ -148,6 +145,7 @@
     <defName>MutationDamagedVision</defName>
     <label>Damaged Vision</label>
     <description>Colonist's eye tissue has been damaged, leaving his eye useless. If both eyes are damaged, colonist will go blind.</description>
+    <isBad>true</isBad>
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Eye</li></affectedParts>
     <exclusive>eyes</exclusive>
@@ -167,6 +165,7 @@
     <defName>MutationDamagedHearing</defName>
     <label>Damaged Hearing</label>
     <description>Colonist's ears have been damaged leaving him with poor hearing.</description>
+    <isBad>true</isBad>
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Ear</li></affectedParts>
     <exclusive>Ears</exclusive>
@@ -183,10 +182,10 @@
     <defName>MutationBrainDamage</defName>
     <label>Brain Damage</label>
     <description>Colonist's brain tissue has deteriorated, causing the synapses to fire slower and less efficiently, causing him to become deaf and mute.</description>
+    <isBad>true</isBad>
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Brain</li></affectedParts>
     <exclusive>Brain</exclusive>
-    <affectsAllParts>false</affectsAllParts>
     
     <likelihood>0.5</likelihood>
 
@@ -200,4 +199,29 @@
       </capMods>
     </stage>
    </HediffDef>
+   
+   
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationBloatedHeart</defName>
+    <label>Bloated Heart</label>
+    <description>The heart of the colonist has transformed into a bloated fortress of blood. Colonist enjoys an immense increase in blood pumping capacity, but damage to the body produces immense amounts of blood.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Heart</li></affectedParts>
+    <exclusive>heart</exclusive>
+    
+    <likelihood>0.25</likelihood>
+
+    <stage>
+      <capMods>
+        <li><capacity>BloodPumping</capacity><offset>1.5</offset></li>
+      </capMods>
+    </stage>
+    
+    <comps>
+      <li Class="Radiology.MutcompSpawnFilthOnHitProps">
+        <filth>Filth_Blood</filth>
+        <countPerDamage>4</countPerDamage>
+      </li>
+    </comps>
+  </HediffDef>
  </Defs>

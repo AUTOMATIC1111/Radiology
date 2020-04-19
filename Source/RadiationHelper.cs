@@ -90,11 +90,10 @@ namespace Radiology
 
         }
 
-        public static IEnumerable<BodyPartRecord> MutatePawn(Pawn pawn, HediffRadiation radiation, float mutateAmount, float rareRatio, out Mutation mutationResult)
+        public static IEnumerable<BodyPartRecord> MutatePawn(Pawn pawn, BodyPartRecord part, float rareRatio, out Mutation mutationResult)
         {
             mutationResult = null;
 
-            BodyPartRecord part = radiation.Part;
             info("Finding mutation for part: " + part);
             info("Rare ratio: " + rareRatio);
 
@@ -187,6 +186,22 @@ namespace Radiology
 
             
             return chosenParts;
+        }
+
+
+        static public HediffRadiation GetHediffRadition(BodyPartRecord part, Pawn pawn)
+        {
+            if (part == null) return null;
+
+            foreach (var v in pawn.health.hediffSet.GetHediffs<HediffRadiation>())
+            {
+                if (v.Part == part) return v;
+            }
+            HediffRadiation hediff = HediffMaker.MakeHediff(HediffDefOf.RadiologyRadiation, pawn, part) as HediffRadiation;
+            if (hediff == null) return hediff;
+
+            pawn.health.AddHediff(hediff, null, null, null);
+            return hediff;
         }
 
     }

@@ -12,7 +12,7 @@
     <priorityMode>PrioritizeNearest</priorityMode>
     <subSounds>
       <li>
-        <tempoAffectedByGameSpeed>true</tempoAffectedByGameSpeed>
+        <tempoAffectedByGameSpeed>false</tempoAffectedByGameSpeed>
         <grains>
           <li Class="AudioGrain_Clip">
             <clipPath>Radiology/IrradiateBasic</clipPath>

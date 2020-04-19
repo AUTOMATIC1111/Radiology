@@ -20,7 +20,7 @@ namespace Radiology
 
         public static bool IsBetween(int c, int a, int b)
         {
-            return a <= c && c <= b;
+            return (a <= c && c <= b) || (b <= c && c <= a);
         }
 
         public static bool CheckMtthDays(float mtthDays, int ticksPassed = 1)

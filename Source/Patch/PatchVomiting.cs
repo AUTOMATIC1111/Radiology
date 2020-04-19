@@ -21,31 +21,20 @@ namespace Radiology.Patch
         static IEnumerable<Toil> Postfix(IEnumerable<Toil> list, JobDriver_Vomit __instance)
         {
             IEnumerable<MutationVomitItems> mutations = __instance.pawn.health.hediffSet.GetHediffs<MutationVomitItems>();
+            if (!mutations.Any()) return list;
 
             foreach (Toil toil in list)
             {
-                if(mutations.Any())
+                toil.AddFinishAction(delegate ()
                 {
-                    Action act = toil.tickAction;
-                    toil.tickAction = delegate ()
+                    foreach (MutationVomitItems mutation in mutations)
                     {
-                        if (((int)ticksLeft.GetValue(__instance)) % 150 == 149)
-                        {
-                            foreach (MutationVomitItems mutation in mutations)
-                            {
-                                mutation.Vomiting(__instance.job.targetA.Cell);
-                            }
-                        }
-
-                        act();
-                    };
-                }
-
-
-                yield return toil;
+                        mutation.Vomiting(__instance.job.targetA.Cell);
+                    }
+                });
             }
 
-            yield break;
+            return list;
         }
 
     }

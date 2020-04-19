@@ -3,7 +3,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationGlowerDef">
     <defName>MutationGlowRed</defName>
     <label>glow red</label>
-    <description>Colonist's body part is glowing with red color.</description>
+    <description>Colonist's head is glowing with red color.</description>
     
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Head</li></affectedParts>
@@ -18,7 +18,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationGlowerDef">
     <defName>MutationGlowGreen</defName>
     <label>glow green</label>
-    <description>Colonist's body part is glowing with green color.</description>
+    <description>Colonist's head is glowing with green color.</description>
     
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Head</li></affectedParts>
@@ -33,7 +33,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationGlowerDef">
     <defName>MutationGlowBlue</defName>
     <label>glow blue</label>
-    <description>Colonist's body part is glowing with blue color.</description>
+    <description>Colonist's head is glowing with blue color.</description>
     
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Head</li></affectedParts>
@@ -48,7 +48,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationGlowerDef">
     <defName>MutationGlow</defName>
     <label>glow</label>
-    <description>Colonist's body part is glowing.</description>
+    <description>Colonist's head is glowing.</description>
     
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Head</li></affectedParts>

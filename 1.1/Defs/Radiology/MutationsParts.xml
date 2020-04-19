@@ -36,7 +36,7 @@
   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
     <defName>MutationHorns</defName>
     <label>horns</label>
-    <description>Horns have popped out of colonist's head, making it impossible for him to wear and headgear. At least they can be used as a melee weapon.</description>
+    <description>Horns have popped out of colonist's head, making it impossible for him to wear and headgear. At least horns can be used as a melee weapon.</description>
 
     <relatedParts><li>Head</li></relatedParts>
     <affectedParts><li>Head</li></affectedParts>

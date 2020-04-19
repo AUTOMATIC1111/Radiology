@@ -6,30 +6,18 @@ using Verse;
 
 namespace Radiology
 {
-    public class CompRegeneration : ThingComp
-    {
-        public MutationRegeneration mutation;
-
-        public override void CompTick()
-        {
-            mutation.RegenerateTick();
-        }
-    }
     public class MutationRegenerationDef : MutationDef
     {
         public MutationRegenerationDef() { hediffClass = typeof(MutationRegeneration); }
 
         public int periodTicks = 600;
+        public bool healMissingParts = false;
 
-        public RadiologyEffectSpawnerDef effectRegeration;
+        public RadiologyEffectSpawnerDef effectRegeneration;
     }
 
     public class MutationRegeneration : Mutation<MutationRegenerationDef>
     {
-        public override ThingComp[] GetComps()
-        {
-            return new ThingComp[] { new CompRegeneration() { mutation = this } };
-        }
 
         public bool RegenerateInjury()
         {
@@ -44,7 +32,7 @@ namespace Radiology
             injury.Severity = injury.Part.def.hitPoints - 1;
             pawn.health.hediffSet.DirtyCache();
 
-            RadiologyEffectSpawnerDef.Spawn(def.effectRegeration, pawn);
+            RadiologyEffectSpawnerDef.Spawn(def.effectRegeneration, pawn);
             return true;
         }
 
@@ -79,20 +67,17 @@ namespace Radiology
 
             pawn.health.hediffSet.DirtyCache();
 
-            RadiologyEffectSpawnerDef.Spawn(def.effectRegeration, pawn);
+            RadiologyEffectSpawnerDef.Spawn(def.effectRegeneration, pawn);
             return true;
         }
 
-        public void RegenerateTick()
+        public override void Tick()
         {
-            base.Tick();
-
             if (!pawn.IsHashIntervalTick(def.periodTicks)) return;
 
             if (RegenerateInjury()) return;
 
-            RegenerateBodyPart();
-
+            if(def.healMissingParts) RegenerateBodyPart();
         }
     }
 }
