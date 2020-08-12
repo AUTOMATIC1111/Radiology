@@ -8,6 +8,7 @@ using Verse;
 
 namespace Radiology
 {
+    [StaticConstructorOnStartup]
     static class DrawHelper
     {
         static MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();

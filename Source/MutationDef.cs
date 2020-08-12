@@ -64,7 +64,6 @@ namespace Radiology
             }
 
             icon.graphicClass = typeof(Graphic_Single);
-            icon.shaderType = ShaderTypeDefOf.Cutout;
             icon.texPath = "Radiology/Mutations/" + defName;
         }
     }

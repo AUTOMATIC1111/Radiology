@@ -135,6 +135,8 @@ namespace Radiology
 
         public override void Tended(float quality, int batchPosition)
         {
+            // XXX Obsolete?
+
             diagnosed = true;
 
             HashSet<string> apparentTags = new HashSet<string>();

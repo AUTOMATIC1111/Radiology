@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteRegeneration</defName>
+    <graphicData>
+      <texPath>Radiology/Effects/Regeneration</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.3</fadeInTime>
+      <solidTime>0.6</solidTime>
+      <fadeOutTime>0.3</fadeOutTime>
+    </mote>
+  </ThingDef>
+  
+  <SoundDef ParentName="RadiologySound">
+    <defName>RadiologySoundRegeneration</defName>  
+    <maxSimultaneous>8</maxSimultaneous>  
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>Radiology/Regeneration</clipFolderPath>
+          </li>
+        </grains>
+        <volumeRange><min>15</min><max>20</max></volumeRange>
+        <sustainLoop>False</sustainLoop>
+      </li>
+    </subSounds>
+  </SoundDef>
+  
+  <RadiologyEffectSpawnerDef>
+    <defName>RadiologyEffectRegeneration</defName>
+      
+    <subEffects>
+      <li Class="Radiology.AutomaticSubEffectRadial">
+        <mote>RadiologyMoteRegeneration</mote>
+        <moteCount>1</moteCount>
+        <radius><min>0</min><max>0</max></radius>
+        <scale><min>1</min><max>2</max></scale>
+        <speed>0</speed>
+        <rotationRate><min>720</min><max>720</max></rotationRate>
+        <arc>360</arc>
+      </li>
+      <li Class="Radiology.AutomaticSubEffectSound">
+        <sound>RadiologySoundRegeneration</sound>
+      </li>
+    </subEffects>
+    <offset><min>0</min><max>0</max></offset>
+  </RadiologyEffectSpawnerDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationRegenerationDef">
+    <defName>MutationRegeneration</defName>
+    <label>regeneration</label>
+    <description>The body part has become a house to a host of symbiotic microorganisms who seem to consider well-being of the colonist to be their top priority, providing him with inhuman regenerative abilities, able to heal any permanent injuries in an otherewise healthy body part, and even to restore missing body parts.</description>
+    <likelihood>0.25</likelihood>
+
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts>
+      <li>Stomach</li>
+      <li>Heart</li>
+      <li>Lung</li>
+      <li>Kidney</li>
+      <li>Liver</li>
+      <li>Neck</li>
+    </affectedParts>
+
+    <healMissingParts>true</healMissingParts>
+
+    <effectRegeneration>RadiologyEffectRegeneration</effectRegeneration>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationRegenerationDef">
+    <defName>MutationRegenerationLesser</defName>
+    <label>lesser regeneration</label>
+    <description>The body part has become a house to a host of symbiotic microorganisms who seem to consider well-being of the colonist to be their top priority, providing him with strong regenerative abilities, able to heal any permanent injuries in an otherewise healthy body part.</description>
+    <likelihood>0.5</likelihood>
+
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts>
+      <li>Stomach</li>
+      <li>Heart</li>
+      <li>Lung</li>
+      <li>Kidney</li>
+      <li>Liver</li>
+      <li>Neck</li>
+    </affectedParts>
+
+    <effectRegeneration>RadiologyEffectRegeneration</effectRegeneration>
+  </HediffDef>
+
+</Defs>

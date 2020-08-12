@@ -31,7 +31,7 @@ namespace Radiology
             if (IsViolationOnPawn(pawn, part, Faction.OfPlayer))
             {
                 ThoughtUtility.GiveThoughtsForPawnOrganHarvested(pawn);
-                ReportViolation(pawn, billDoer, pawn.FactionOrExtraHomeFaction, -70, "GoodwillChangedReason_NeedlesslyInstalledWorseBodyPart".Translate(comp.parent.def.label));
+                ReportViolation(pawn, billDoer, pawn.FactionOrExtraMiniOrHomeFaction, -70, "GoodwillChangedReason_NeedlesslyInstalledWorseBodyPart".Translate(comp.parent.def.label));
             }
 
             for (int i = 0; i < comp.hediffs.Count; i++)

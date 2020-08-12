@@ -1,0 +1,40 @@
+- cat ears
+- hoofs
++ arm blades
++ arm blades + healing after dealing damage
+- crystallized body part
+- wings
++ brewery
++ bloated heart (heart performace up, produces a ton of blood when hit)
+levitation
+need for violence
+emp pulsing
+eye beams
+pain block
++ lesser regeneration - heal scars
+need for flesh
+fire breathing
+healing touch
+animal aggression
+animal panic
+performance grows while in combat
+scream ability
+- pushback ability
+performance depending on temperature
+
+
+bonus performance when near fire
+fluctuating performace with small period
+! hide radiation from hediff item readout
+! do not spawn hediff items with negative mutations only
+! test vomiting
+better effect for blink
+fix adrenal gland
+
+
++ radiation extender
+- radiation booster
+- chamber - stop at health
+- chamber - stop after time
+- chamber - activation delay
++ chamber - mutation display
