@@ -133,7 +133,7 @@ namespace Radiology
             return !diagnosed;
         }
 
-        public override void Tended(float quality, int batchPosition)
+        public override void Tended_NewTemp(float quality, float maxQuality, int batchPosition)
         {
             // XXX Obsolete?
 

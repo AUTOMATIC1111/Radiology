@@ -33,7 +33,7 @@ namespace Radiology
                 return false;
             }
 
-            if (!ShouldTakeCareOfPrisoner(pawn, prisoner))
+            if (!ShouldTakeCareOfPrisoner_NewTemp(pawn, prisoner))
             {
                 reason = reasonPrisonerInaccessible;
                 return false;
