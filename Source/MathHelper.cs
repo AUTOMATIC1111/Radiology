@@ -20,7 +20,7 @@ namespace Radiology
 
         public static bool IsBetween(int c, int a, int b)
         {
-            return a <= c && c <= b;
+            return (a <= c && c <= b) || (b <= c && c <= a);
         }
 
         public static bool CheckMtthDays(float mtthDays, int ticksPassed = 1)
@@ -29,5 +29,9 @@ namespace Radiology
             return ticksPassed >= Rand.Range(0, mtthDays*60000);
         }
 
+        public static float AngleDifference(float a, float b)
+        {
+            return ((a - b + 180) % 360 - 180);
+        }
     }
 }

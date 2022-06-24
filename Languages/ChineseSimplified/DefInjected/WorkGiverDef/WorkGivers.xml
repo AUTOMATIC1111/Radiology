@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <RadiologyIrradiate.label>被辐射于</RadiologyIrradiate.label>
+  <RadiologyIrradiate.verb>被辐射于</RadiologyIrradiate.verb>
+  <RadiologyIrradiate.gerund>正在被辐射于</RadiologyIrradiate.gerund>
+
+  <WorkGiverRadiologyIrradiatePrisoner.label>押送犯人到辐照室</WorkGiverRadiologyIrradiatePrisoner.label>
+  <WorkGiverRadiologyIrradiatePrisoner.verb>押送</WorkGiverRadiologyIrradiatePrisoner.verb>
+  <WorkGiverRadiologyIrradiatePrisoner.gerund>正在押送</WorkGiverRadiologyIrradiatePrisoner.gerund>
+
+
+</LanguageData>

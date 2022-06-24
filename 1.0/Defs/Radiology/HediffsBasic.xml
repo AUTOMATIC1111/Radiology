@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef>
+    <defName>RadiologyRadiation</defName>
+    <label>radiation</label>
+    <hediffClass>Radiology.HediffRadiation</hediffClass>
+    <defaultLabelColor>(179,86,132)</defaultLabelColor>
+    <maxSeverity>1.0</maxSeverity>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <isBad>false</isBad>
+    <stages>
+      <li>
+        <minSeverity>0</minSeverity>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef Abstract="True" Name="RadiologyMutation" Class="Radiology.MutationDef">
+    <defaultLabelColor>(255,138,0)</defaultLabelColor>
+    <isBad>false</isBad>
+    <spawnEffect>RadiologyEffectMutate</spawnEffect>
+  </HediffDef>
+</Defs>

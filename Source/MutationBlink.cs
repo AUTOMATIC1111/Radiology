@@ -9,7 +9,7 @@ using Verse.AI;
 
 namespace Radiology
 {
-    public class MutationBlinkDef : HediffMutationDef
+    public class MutationBlinkDef : MutationDef
     {
         public MutationBlinkDef() { hediffClass = typeof(MutationBlink); }
 
@@ -19,8 +19,8 @@ namespace Radiology
         public bool aimed;
         public int cooldownTicks = 240;
 
-        public AutomaticEffectSpawnerDef effectOut;
-        public AutomaticEffectSpawnerDef effectIn;
+        public RadiologyEffectSpawnerDef effectOut;
+        public RadiologyEffectSpawnerDef effectIn;
     }
 
     public class MutationBlink : Mutation<MutationBlinkDef>
@@ -30,7 +30,7 @@ namespace Radiology
             base.Tick();
 
             if (cooldown > 0) cooldown--;
-
+            if (pawn.Map == null) return;
             if (!MathHelper.CheckMtthDays(def.mtthDays)) return;
 
             BlinkRandomly();
@@ -43,9 +43,11 @@ namespace Radiology
             Scribe_Values.Look(ref cooldown, "cooldown");
         }
         
-        public override IEnumerable<Gizmo> GetGizmos()
+        public override IEnumerable<Gizmo> GetMutationGizmos()
         {
             if (!def.controlled) yield break;
+
+            bool enabled = cooldown <= 0 && pawn.Faction == Faction.OfPlayer;
 
             if (def.aimed)
             {
@@ -62,7 +64,7 @@ namespace Radiology
                     {
                         canTargetLocations = true,
                     },
-                    disabled = cooldown > 0,
+                    disabled = !enabled,
                 };
             }
             else
@@ -76,7 +78,7 @@ namespace Radiology
                     {
                         BlinkRandomly();
                     },
-                    disabled = cooldown > 0,
+                    disabled = !enabled,
                 };
             }
 
@@ -106,35 +108,42 @@ namespace Radiology
 
         private void BlinkTargeted(IntVec3 target)
         {
-            if (target.DistanceTo(pawn.Position) <= def.radius)
+            float distanceToTarget = target.DistanceTo(pawn.Position);
+            if (distanceToTarget <= def.radius && !target.Impassable(pawn.Map))
             {
                 Blink(target);
                 return;
             }
 
             Vector3 pos = pawn.Position.ToVector3();
-            pos = pos + (target.ToVector3() - pos).normalized * def.radius;
-            IntVec3 newTarget = pos.ToIntVec3();
-            if (newTarget.Walkable(pawn.Map))
+            Vector3 dest = target.ToVector3();
+            Vector3 dir = (dest - pos).normalized;
+            pos = pos + dir * Mathf.Min(distanceToTarget, def.radius);
+            for (float distance = distanceToTarget; distance >= 0; distance -= 1)
             {
-                Blink(newTarget);
-                return;
+                IntVec3 newTarget = pos.ToIntVec3();
+                if (! newTarget.Impassable(pawn.Map))
+                {
+                    Blink(newTarget);
+                    return;
+                }
+                pos -= dir; 
             }
 
-            BlinkRandomly(pos, 8);
+            Blink(pawn.Position);
         }
 
         private void Blink(IntVec3 target)
         {
             cooldown = def.cooldownTicks;
 
-            if (def.effectOut != null) def.effectOut.Spawn(pawn.Map, pawn.TrueCenter());
+            RadiologyEffectSpawnerDef.Spawn(def.effectOut, pawn);
 
             pawn.jobs.StartJob(new Job(RimWorld.JobDefOf.Wait, 1, false), JobCondition.InterruptForced, null, true, false);
             pawn.SetPositionDirect(target);
             pawn.Drawer.tweener.ResetTweenedPosToRoot();
 
-            if (def.effectIn != null) def.effectIn.Spawn(pawn.Map, pawn.TrueCenter());
+            RadiologyEffectSpawnerDef.Spawn(def.effectIn, pawn);
         }
 
         public int cooldown = 0;

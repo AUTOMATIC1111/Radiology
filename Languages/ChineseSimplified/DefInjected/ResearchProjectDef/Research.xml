@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- 1 -->
+
+  <RadiologyBasic.label>放射学</RadiologyBasic.label>
+  <RadiologyBasic.description>建造放射室，使用辐射器以用有害辐射照射你的殖民者。</RadiologyBasic.description>
+
+
+  <!-- 2 -->
+
+  <RadiologyBlocking.label>辐射拦截</RadiologyBlocking.label>
+  <RadiologyBlocking.description>建造一个拦截器，以阻止通过它的辐射照射到特定的身体部位。</RadiologyBlocking.description>
+
+  <RadiologyMonitoring.label>辐射监测</RadiologyMonitoring.label>
+  <RadiologyMonitoring.description>建造一个允许查看详细辐射室信息的监测仪器。</RadiologyMonitoring.description>
+
+  <RadiologyFiltering.label>辐射过滤</RadiologyFiltering.label>
+  <RadiologyFiltering.description>建造一个过滤器，以改变经过的辐射。</RadiologyFiltering.description>
+
+
+  <!-- blockers -->
+
+  <RadiologyBlockingIntermediate.label>中级拦截器</RadiologyBlockingIntermediate.label>
+  <RadiologyBlockingIntermediate.description>建造一个中级拦截器,有更高的概率偏转辐射，且可以选择更多的身体部位来保护。</RadiologyBlockingIntermediate.description>
+
+  <RadiologyBlockingAdvanced.label>先进拦截器</RadiologyBlockingAdvanced.label>
+  <RadiologyBlockingAdvanced.description>建造一个先进拦截器的变化,有更高的概率偏转辐射，且可以选择更多的身体部位来保护。</RadiologyBlockingAdvanced.description>
+
+
+  <!-- filters -->
+
+  <RadiologyFilteringIntermediate.label>中级过滤</RadiologyFilteringIntermediate.label>
+  <RadiologyFilteringIntermediate.description>解锁过滤器的额外操作模式。</RadiologyFilteringIntermediate.description>
+
+  <RadiologyFilteringTradeoff.label>高级过滤</RadiologyFilteringTradeoff.label>
+  <RadiologyFilteringTradeoff.description>解锁过滤器的额外操作模式。</RadiologyFilteringTradeoff.description>
+
+  <RadiologyFilteringAdvanced.label>先进过滤</RadiologyFilteringAdvanced.label>
+  <RadiologyFilteringAdvanced.description>解锁过滤器的额外操作模式。</RadiologyFilteringAdvanced.description>
+
+
+  <!-- 3 -->
+
+  <RadiologyIntermediate.label>改进放射学</RadiologyIntermediate.label>
+  <RadiologyIntermediate.description>建造改进版本的辐照器。</RadiologyIntermediate.description>
+
+
+</LanguageData>

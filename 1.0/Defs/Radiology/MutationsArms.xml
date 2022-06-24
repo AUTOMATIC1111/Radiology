@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationEnhancedDex</defName>
+    <label>enhanced dexterity</label>
+    <description>The radiation has strengthened the tendons and muscles in NAME's PART, making HIM more dexterous.</description>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Hand</li></affectedParts>
+    <exclusive>speed</exclusive>
+  
+    <beauty>4</beauty>
+  
+    <stage>
+      <capMods>
+        <li><capacity>Manipulation</capacity><offset>0.25</offset></li>
+      </capMods>
+      
+      <statOffsets>
+        <ShootingAccuracyPawn>4</ShootingAccuracyPawn>
+      </statOffsets>
+    </stage>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationStrengthenedArm</defName>
+    <label>strengthened arm</label>
+    <description>The muscle tissue in the arm has mutated and grown unnaturally, causing NAME to have increased strength and control.</description>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Arm</li></affectedParts>
+    <exclusive>productivity</exclusive>
+  
+    <beauty>2</beauty>
+
+    <stage>
+      <statOffsets>
+        <WorkSpeedGlobal>0.25</WorkSpeedGlobal>
+        <MeleeHitChance>8</MeleeHitChance>
+      </statOffsets>
+    </stage>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationSetSkillDef">
+    <defName>MutationRippedShoulders</defName>
+    <label>ripped shoulders</label>
+    <description>NAME's shoulders have gained a large amount of extra muscle mass, giving HIM extra proficiency for melee combat, as well as generally improving HIS looks.</description>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Shoulder</li></affectedParts>
+  
+    <beauty>5</beauty>
+
+    <skills>
+      <li>
+        <skill>Melee</skill>
+        <add>10</add>
+      </li>
+    </skills>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationSetSkillDef">
+    <defName>MutationShootingBoost</defName>
+    <label>steady hand</label>
+    <description>A specific mutation to NAME's hand enables a much greater shooting proficiency, at cost of weakening melee attacks.</description>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Hand</li></affectedParts>
+    
+    <skills>
+      <li>
+        <skill>Shooting</skill>
+        <add>8</add>
+      </li>
+      <li>
+        <skill>Melee</skill>
+        <add>-4</add>
+      </li>
+    </skills>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationSetSkillDef">
+    <defName>MutationGreenThumb</defName>
+    <label>green thumb</label>
+    <description>Green growth on the surface of NAME's PART seems to invigorate any plants HE puts into ground.</description>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Hand</li></affectedParts>
+    <exclusive>plants</exclusive>
+    
+    <skills>
+      <li>
+        <skill>Plants</skill>
+        <add>8</add>
+      </li>
+    </skills>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationTumorousHand</defName>
+    <label>Tumorous Fingers</label>
+    <description>The radiation has caused benign tumours to grow on NAME's hand, destroying nerves and muscle tissue causing the hand to become crippled.</description>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Hand</li></affectedParts>
+    <exclusive>speed</exclusive>
+  
+    <beauty>-3</beauty>
+
+    <stage>
+      <capMods>
+        <li><capacity>Manipulation</capacity><offset>-0.25</offset></li>
+      </capMods>
+    </stage>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationWeakenedArm</defName>
+    <label>Weakened Arms</label>
+    <description>The radiation has caused the muscle tissue in NAME's arm to deteriorate, weakening HIS strength and control.</description>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Arm</li></affectedParts>
+    <exclusive>productivity</exclusive>
+  
+    <stage>
+      <statOffsets>
+        <WorkSpeedGlobal>-0.15</WorkSpeedGlobal>
+      </statOffsets>
+    </stage>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationSetSkillDef">
+    <defName>MutationShootingBoost</defName>
+    <label>rotten hand</label>
+    <description>NAME's PART is near, but not exactly at a stage where it rots and falls off. Sometimes miniature life forms can be observed traversing the skin.</description>
+    <relatedParts><li>Shoulder</li></relatedParts>
+    <affectedParts><li>Hand</li></affectedParts>
+    <exclusive>plants</exclusive>
+
+    <beauty>-10</beauty>
+    
+    <stage>
+      <capMods>
+        <li><capacity>Manipulation</capacity><offset>-0.25</offset></li>
+      </capMods>
+    </stage>
+    
+    <skills>
+      <li>
+        <skill>Cooking</skill>
+        <setTo>-1</setTo>
+      </li>
+      <li>
+        <skill>Medicine</skill>
+        <setTo>-1</setTo>
+      </li>
+    </skills>
+  </HediffDef>
+  
+</Defs>

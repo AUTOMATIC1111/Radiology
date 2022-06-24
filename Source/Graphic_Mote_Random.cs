@@ -42,7 +42,7 @@ namespace Radiology
                 matrix.SetTRS(mote.DrawPos, Quaternion.AngleAxis(mote.exactRotation, Vector3.up), exactScale);
                 Material matSingle = MaterialFor(thing);
 
-                if (!this.ForcePropertyBlock && color.IndistinguishableFrom(matSingle.color))
+                if (!ForcePropertyBlock && color.IndistinguishableFrom(matSingle.color))
                 {
                     Graphics.DrawMesh(MeshPool.plane10, matrix, matSingle, layer, null, 0);
                 }

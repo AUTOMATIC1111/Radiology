@@ -7,46 +7,103 @@ using Verse;
 
 namespace Radiology
 {
-    public class MutationSetSkillDef : HediffMutationDef
+    public class MutationSetSkillRecord
+    {
+        public SkillDef skill;
+        public int setTo = -1;
+        public int add = 0;
+    }
+
+    public class MutationSetSkillDef : MutationDef
     {
         public MutationSetSkillDef() { hediffClass = typeof(MutationSetSkill); }
 
-        public SkillDef skill;
-        public int setTo;
+        public List<MutationSetSkillRecord> skills;
     }
 
     public class MutationSetSkill : Mutation<MutationSetSkillDef>
     {
-        public override void ExposeData()
+        public override string TipStringExtra
         {
-            base.ExposeData();
+            get
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.Append(base.TipStringExtra);
 
-            Scribe_Values.Look(ref storedLevel, "storedLevel");
+                foreach (var v in def.skills)
+                {
+                    if (v.add != 0)
+                    {
+                        builder.AppendLine(string.Format("{0}: {1}", v.skill.LabelCap, v.add));
+                    }
+                    else if (v.setTo != -1)
+                    {
+                        builder.AppendLine(string.Format("{0}: {1}", v.skill.LabelCap, v.setTo));
+                    }
+                    else
+                    {
+                        builder.AppendLine(string.Format("{0}: {1}", v.skill.LabelCap, "RadiologyTooltipSkillDisabled".Translate()));
+                    }
+                }
+
+                return builder.ToString();
+            }
         }
-
 
         public override void PostAdd(DamageInfo? dinfo)
         {
             base.PostAdd(dinfo);
 
-            SkillRecord rec = pawn.skills.GetSkill(def.skill);
-            if (rec == null) return;
+            foreach(var v in def.skills)
+            {
+                SkillRecord rec = pawn.skills.GetSkill(v.skill);
+                if (rec == null) return;
 
-            storedLevel = rec.Level;
-            rec.Level = def.setTo;
+                if (v.add != 0)
+                {
+                    rec.Level += v.add;
+                }
+                else if (v.setTo != -1)
+                {
+                    rec.Level = v.setTo;
+                }
+                else
+                {
+                    rec.Notify_SkillDisablesChanged();
+                }
+            }
         }
 
         public override void PostRemoved()
         {
             base.PostRemoved();
 
-            SkillRecord rec = pawn.skills.GetSkill(def.skill);
-            if (rec == null) return;
+            foreach (var v in def.skills)
+            {
+                SkillRecord rec = pawn.skills.GetSkill(v.skill);
+                if (rec == null) return;
 
-            if (storedLevel != -1) rec.Level = storedLevel;
+                if (v.add != 0)
+                {
+                    rec.Level -= v.add;
+                }
+                else if (v.setTo != -1)
+                {
+                    rec.Level = 0;
+                }
+                else
+                {
+                    rec.Notify_SkillDisablesChanged();
+                }
+            }
         }
 
-        public int storedLevel = -1;
-    }
+        public bool IsSkillDisabled(SkillDef skill)
+        {
+            MutationSetSkillRecord rec = def.skills.FirstOrDefault(x => x.skill == skill);
+            if (rec == null) return false;
 
+            return rec.setTo == -1 && rec.add == 0;
+        }
+    }
 }

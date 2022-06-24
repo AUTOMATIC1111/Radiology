@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBloodlustDef">
+    <defName>MutationBloodlust</defName>
+    <label>bloodlust</label>
+    <description>Colonist's body part has developed a way to perceive the smell of blood outside of the colonist's body, as well as an unusual thirst for it. Nearby pools of blood will raise capacity for blood pumping as well as movement speed.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Heart</li></affectedParts>
+    
+    <aoe>32</aoe>
+    <maximumAmount>100</maximumAmount>
+    
+    <stage>
+      <capMods>
+        <li><capacity>Moving</capacity><offset>0.5</offset></li>
+        <li><capacity>BloodPumping</capacity><offset>1.0</offset></li>
+      </capMods>
+    </stage>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBloodlustDef">
+    <defName>MutationBerserkerMinor</defName>
+    <label>adrenal gland</label>
+    <description>An extra adrenal gland has been formed partly inside colonist's body part, providing a huge boost to its capacity when the organism is injured.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Heart</li></affectedParts>
+    
+    <stage>
+      <capMods>
+        <li><capacity>BloodPumping</capacity><offset>4.0</offset></li>
+        <li><capacity>Consciousness</capacity><offset>0.75</offset></li>
+      </capMods>
+    </stage>
+  </HediffDef>
+
+</Defs>

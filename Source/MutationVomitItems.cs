@@ -7,7 +7,7 @@ using Verse;
 
 namespace Radiology
 {
-    public class MutationVomitItemsDef : HediffMutationDef
+    public class MutationVomitItemsDef : MutationDef
     {
         public MutationVomitItemsDef() { hediffClass = typeof(MutationVomitItems); }
 
@@ -18,7 +18,7 @@ namespace Radiology
         public List<BodyPartDef> hurtParts;
         public float hurtChance;
 
-        public AutomaticEffectSpawnerDef effect;
+        public RadiologyEffectSpawnerDef effect;
     }
 
     public class MutationVomitItems : Mutation<MutationVomitItemsDef>
@@ -31,7 +31,7 @@ namespace Radiology
             thing.stackCount = def.count.RandomInRange;
             GenPlace.TryPlaceThing(thing, cell, pawn.Map, ThingPlaceMode.Direct, null, null);
 
-            if (def.effect != null) def.effect.Spawn(pawn.Map, cell.ToVector3Shifted());
+            RadiologyEffectSpawnerDef.Spawn(def.effect, pawn);
 
             if (def.hurtParts == null) return;
 

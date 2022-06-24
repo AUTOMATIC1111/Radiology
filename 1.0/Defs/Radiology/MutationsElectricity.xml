@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="RadiologyMoteBase">
+    <defName>RadiologyMoteElectricalSpark</defName>
+    <graphicData>
+      <texPath>Things/Mote/ElectricalSpark</texPath>
+      <shaderType>MoteGlow</shaderType>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.04</fadeInTime>
+      <solidTime>0.08</solidTime>
+      <fadeOutTime>0.13</fadeOutTime>
+    </mote>
+  </ThingDef>
+
+  <SoundDef ParentName="RadiologySound">
+    <defName>RadiologyElectricitySpark</defName>  
+    <maxSimultaneous>8</maxSimultaneous>  
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Folder">
+            <clipFolderPath>Radiology/ElectricitySpark</clipFolderPath>
+          </li>
+        </grains>
+        <volumeRange><min>5</min><max>10</max></volumeRange>
+        <sustainLoop>False</sustainLoop>
+        <distRange><min>15</min><max>25</max></distRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+
+  <RadiologyEffectSpawnerDef>
+    <defName>RadiologyEffectElectricityDrain</defName>
+      
+    <subEffects>
+      <li Class="Radiology.AutomaticSubEffectRadial">
+        <mote>RadiologyMoteElectricalSpark</mote>
+        <moteCount>12</moteCount>
+        <radius><min>0</min><max>0.3</max></radius>
+        <scale><min>0.5</min><max>0.6</max></scale>
+        <speed>10</speed>
+        <arc>24</arc>
+      </li>
+      <li Class="Radiology.AutomaticSubEffectRadial">
+        <mote>RadiologyMoteElectricalSpark</mote>
+        <moteCount>6</moteCount>
+        <radius><min>0</min><max>0.8</max></radius>
+        <scale><min>0.2</min><max>0.5</max></scale>
+        <rotationRate><min>-720</min><max>720</max></rotationRate>
+        <speed>2</speed>
+      </li>
+      <li Class="Radiology.AutomaticSubEffectSound">
+        <sound>RadiologyElectricitySpark</sound>
+      </li>
+    </subEffects>
+    <alsoSpawn>
+      <li>RadiologyEffectSmoke</li>
+    </alsoSpawn>
+    <offset><min>0</min><max>0</max></offset>
+  </RadiologyEffectSpawnerDef>
+
+  <RadiologyEffectSpawnerDef>
+    <defName>RadiologyEffectElectricityDraining</defName>
+      
+    <subEffects>
+      <li Class="Radiology.AutomaticSubEffectRadial">
+        <mote>RadiologyMoteElectricalSpark</mote>
+        <moteCount>12</moteCount>
+        <radius><min>1.0</min><max>1.5</max></radius>
+        <scale><min>0.5</min><max>0.6</max></scale>
+        <speed>-10</speed>
+        <arc>24</arc>
+      </li>
+      <li Class="Radiology.AutomaticSubEffectSound">
+        <sound>RadiologyElectricitySpark</sound>
+      </li>
+    </subEffects>
+    <offset><min>0</min><max>0</max></offset>
+  </RadiologyEffectSpawnerDef>
+  
+  <HediffDef Abstract="true" Name="RadiologyMutationBattery" ParentName="RadiologyMutation" Class="Radiology.MutationBatteryDef">
+    <exclusiveGlobal>battery</exclusiveGlobal>
+    
+    <range>6</range>
+    <drain>40</drain>
+    <capacity>100</capacity>
+    <discargePerSecond>0.5</discargePerSecond>
+
+    <effectDraining>RadiologyEffectElectricityDraining</effectDraining>
+    <effectDrained>RadiologyEffectElectricityDrain</effectDrained>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutationBattery" Class="Radiology.MutationBatteryDef">
+    <defName>MutationBattery</defName>
+    <label>battery</label>
+    <description>The PART has strangely evolved to absorb and release electricity from nearby exposed conductors through thin air.</description>
+    
+    <likelihood>0.05</likelihood>
+    
+    <efficiency>0</efficiency>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutationBattery" Class="Radiology.MutationBatteryDef">
+    <defName>MutationBatteryLeg</defName>
+    <label>battery</label>
+    <description>The PART has mutated to absorb electricity from nearby exposed conductors through thin air and use it to improve its general performance, allowing NAME to move faster. However, without electricity, the perfomance is worse than baseline.</description>
+
+    <relatedParts><li>Leg</li></relatedParts>
+    <affectedParts><li>Leg</li></affectedParts>
+    <affectsAllParts>true</affectsAllParts>
+    
+    <likelihood>0.25</likelihood>
+    
+    <range>6</range>
+    <drain>20</drain>
+    <capacity>100</capacity>
+    <discargePerSecond>0.25</discargePerSecond>
+    
+    <stage>
+      <capMods>
+        <li>
+          <capacity>Moving</capacity>
+          <offset>0.25</offset>
+        </li>
+      </capMods>
+    </stage>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyMutationBattery" Class="Radiology.MutationBatteryDef">
+    <defName>MutationBatteryHeart</defName>
+    <label>battery</label>
+    <description>The PART has mutated to absorb electricity from nearby exposed conductors through thin air and use it to improve blood pumping. However, without electricity, the perfomance is worse than baseline.</description>
+
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Heart</li></affectedParts>
+    
+    <likelihood>0.5</likelihood>
+    
+    <stage>
+      <capMods>
+        <li>
+          <capacity>BloodPumping</capacity>
+          <offset>0.5</offset>
+        </li>
+      </capMods>
+    </stage>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyMutationBattery" Class="Radiology.MutationBatteryDef">
+    <defName>MutationBatteryBrain</defName>
+    <label>battery</label>
+    <description>The PART has mutated to absorb electricity from nearby exposed conductors through thin air and use it to improve its general performance. However, without electricity, the perfomance is worse than baseline.</description>
+
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Brain</li></affectedParts>
+    
+    <likelihood>0.5</likelihood>
+    
+    <stage>
+      <capMods>
+        <li><capacity>Consciousness</capacity><offset>0.25</offset></li>
+        <li><capacity>Sight</capacity><offset>0.25</offset></li>
+        <li><capacity>Talking</capacity><offset>0.25</offset></li>
+        <li><capacity>Hearing</capacity><offset>0.25</offset></li>
+      </capMods>
+    </stage>
+  </HediffDef>
+
+</Defs>

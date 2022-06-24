@@ -7,11 +7,23 @@
   
   <ChamberUnavailable>Cannot operate: {0}</ChamberUnavailable>
   <ChamberNoPower>chamber not powered</ChamberNoPower>
-  <IrradiatorNoPower>irradiator not powered</IrradiatorNoPower>
   <ChamberNoRoom>must be inside a room</ChamberNoRoom>
   <ChamberNoIrradiator>no irradiator linked</ChamberNoIrradiator>
   <ChamberPawnIsHurt>{0} is too hurt</ChamberPawnIsHurt>
+  <ChamberPawnNotAssigned>{0} is not assigned</ChamberPawnNotAssigned>
+  <ChamberCooldown>already irradiating</ChamberCooldown>
+  <ChamberSleeping>{0} is sleeping</ChamberSleeping>
+  <ChamberDowned>{0} is downed</ChamberDowned>
+  <ChamberShieldbelt>{0} is wearing shield belt</ChamberShieldbelt>
+  <ChamberPrisonerInaccessible>{0} is not available</ChamberPrisonerInaccessible>
   
+  
+
+  <ChamberDialogAssigned>Assigned</ChamberDialogAssigned>
+  <ChamberDialogNotAssigned>Not assigned</ChamberDialogNotAssigned>
+
+  <IrradiatorNoPower>irradiator not powered</IrradiatorNoPower>
+
   
   <CommandRadiologyAssignRadiationBlockingLabel>Setup blocking</CommandRadiologyAssignRadiationBlockingLabel>
   <CommandRadiologyAssignRadiationBlockingDesc>Setup blocking</CommandRadiologyAssignRadiationBlockingDesc>
@@ -34,8 +46,26 @@
 
   <RadiologyCancerNotGrowing>doesn't grow</RadiologyCancerNotGrowing>
   <RadiologyCancerNotDiagnosed>not diagnosed</RadiologyCancerNotDiagnosed>
+  <RadiologyCancerDoctorUnsure> (unsure)</RadiologyCancerDoctorUnsure>
+  <RadiologyCancerMisdiagnosed> (misdiagnosed)</RadiologyCancerMisdiagnosed>
+  <RadiologyCancerMissed> (missed)</RadiologyCancerMissed>
+  
   
   <RadiologyMutationBlinkCommand>Blink!</RadiologyMutationBlinkCommand>
   <RadiologyMutationBlinkDesc>Immediately teleport to a random location.</RadiologyMutationBlinkDesc>
   <RadiologyMutationBlinkTargetedDesc>Immediately teleport to a selected location.</RadiologyMutationBlinkTargetedDesc>
+  
+  <RadiologyTooltipNoDescription>No description provided for this mutation.</RadiologyTooltipNoDescription>
+  <RadiologyTooltipHe>he</RadiologyTooltipHe>
+  <RadiologyTooltipShe>she</RadiologyTooltipShe>
+  <RadiologyTooltipHim>him</RadiologyTooltipHim>
+  <RadiologyTooltipHer>her</RadiologyTooltipHer> <!-- reverse of him -->
+  
+  <RadiologyTooltipHisHer>her</RadiologyTooltipHisHer> <!-- reverse of his -->
+  <RadiologyTooltipHis>his</RadiologyTooltipHis>
+  
+  <RadiologyTooltipSkillDisabled>disabled</RadiologyTooltipSkillDisabled>
+  
+  <RadiologyLastMutation>Last mutation: {0}, {1} ago</RadiologyLastMutation>
+  
 </LanguageData>

@@ -10,7 +10,7 @@ namespace Radiology
 {
     public class PlaceWorkerShowFacilitiesConnections : PlaceWorker
     {
-        public override void DrawGhost(ThingDef def, IntVec3 center, Rot4 rot, Color ghostCol)
+        public override void DrawGhost(ThingDef def, IntVec3 center, Rot4 rot, Color ghostCol, Thing thing)
         {
             Map currentMap = Find.CurrentMap;
             if (def.HasComp(typeof(CompAffectedByFacilities)))

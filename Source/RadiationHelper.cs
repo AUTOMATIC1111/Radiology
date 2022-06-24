@@ -9,6 +9,19 @@ namespace Radiology
 {
     public static class RadiationHelper
     {
+        public static List<MutationDef> Mutations
+        {
+            get
+            {
+                if (allMutations != null) return allMutations;
+
+                allMutations = new List<MutationDef>();
+                allMutations.AddRange(GenDefDatabase.GetAllDefsInDatabaseForDef(typeof(MutationDef)).Cast<MutationDef>());
+                return allMutations;
+            }
+        }
+
+        static List<MutationDef> allMutations;
 
         private static IEnumerable<BodyPartRecord> GetChildBodyParts(BodyPartRecord part)
         {
@@ -30,7 +43,7 @@ namespace Radiology
 
         private static IEnumerable<BodyPartRecord> WhichPartsMutationIsAllowedOn(
             Pawn pawn,
-            HediffMutationDef def,
+            MutationDef def,
             BodyPartRecord part,
             Dictionary<string, HashSet<BodyPartDef>> excludedPartDefsForTag,
             Dictionary<string, HashSet<BodyPartRecord>> excludedPartsForTag
@@ -47,6 +60,8 @@ namespace Radiology
             {
                 allParts = pawn.health.hediffSet.GetNotMissingParts().Where(x => def.affectedParts.Contains(x.def));
             }
+
+            allParts = allParts.Where( x => ! x.def.IsSolid(x, pawn.health.hediffSet.hediffs));
 
             foreach (string tag in def.exclusives)
             {
@@ -71,16 +86,21 @@ namespace Radiology
             return allParts;
         }
 
-        public static IEnumerable<BodyPartRecord> MutatePawn(Pawn pawn, HediffRadiation radiation, float mutateAmount, float rareRatio, out Mutation mutationResult)
+        static void info(String text) {
+
+        }
+
+        public static IEnumerable<BodyPartRecord> MutatePawn(Pawn pawn, BodyPartRecord part, float rareRatio, out Mutation mutationResult)
         {
             mutationResult = null;
 
-            BodyPartRecord part = radiation.Part;
-            Debug.Log("Finding mutation for part: " + part);
-            Debug.Log("Rare ratio: " + rareRatio);
+            info("Finding mutation for part: " + part);
+            info("Rare ratio: " + rareRatio);
 
             Dictionary<string, HashSet<BodyPartDef>> excludedPartDefsForTag = new Dictionary<string, HashSet<BodyPartDef>>();
             Dictionary<string, HashSet<BodyPartRecord>> excludedPartsForTag = new Dictionary<string, HashSet<BodyPartRecord>>();
+            HashSet<string> excludedGlobalTags = new HashSet<string>();
+
             foreach (Mutation existingMutation in pawn.health.hediffSet.GetHediffs<Mutation>())
             {
                 foreach (string tag in existingMutation.def.exclusives)
@@ -99,58 +119,61 @@ namespace Radiology
                     }
                     set.Add(existingMutation.Part);
                 }
+
+                excludedGlobalTags.AddRange(existingMutation.def.exclusivesGlobal);
             }
 
-            Debug.Log("Excluded parts for tags: " + Debug.AsText(excludedPartsForTag));
-            Debug.Log("Excluded defs for tags: " + Debug.AsText(excludedPartDefsForTag));
+            info("Excluded parts for tags: " + Debug.AsText(excludedPartsForTag));
+            info("Excluded defs for tags: " + Debug.AsText(excludedPartDefsForTag));
 
-            var mutations =
-                MutationsHelper.Mutations.Where(x => x.relatedParts==null || x.relatedParts.Contains(part.def));
+            var mutations = Mutations.Where(x => x.relatedParts==null || x.relatedParts.Contains(part.def));
 
-            Debug.Log("All applicable mutations: " + Debug.AsText(mutations));
+            info("All applicable mutations: " + Debug.AsText(mutations));
 
-            Dictionary<HediffMutationDef, IEnumerable<BodyPartRecord>> allowedMutations = new Dictionary<HediffMutationDef, IEnumerable<BodyPartRecord>>();
+            Dictionary<MutationDef, IEnumerable<BodyPartRecord>> allowedMutations = new Dictionary<MutationDef, IEnumerable<BodyPartRecord>>();
             foreach (var mutation in mutations)
             {
+                if (mutation.exclusivesGlobal.Intersect(excludedGlobalTags).Any()) continue;
+
                 var parts = WhichPartsMutationIsAllowedOn(pawn, mutation, part, excludedPartDefsForTag, excludedPartsForTag);
-                Debug.Log("  " + mutation + ": to " + Debug.AsText(parts));
+                info("  " + mutation + ": to " + Debug.AsText(parts));
 
                 if (parts.Count() == 0) continue;
                 allowedMutations[mutation] = parts;
             }
 
-            Debug.Log("All allowed mutations: " + Debug.AsText(allowedMutations));
+            info("All allowed mutations: " + Debug.AsText(allowedMutations));
             if (allowedMutations.Count() == 0)
             {
-                Debug.Log("No mutation possible!");
+                info("No mutation possible!");
                 return null;
             }
 
-            HediffMutationDef mutationDef = allowedMutations.Keys.RandomElementByWeight(x => (float)Math.Pow(x.likelihood, 1f - rareRatio));
-            Debug.Log("Chose mutation: " + mutationDef);
+            MutationDef mutationDef = allowedMutations.Keys.RandomElementByWeight(x => (float)Math.Pow(x.likelihood, 1f - rareRatio));
+            info("Chose mutation: " + mutationDef);
 
             var applicableParts = allowedMutations[mutationDef];
-            Debug.Log("Can be applied to body parts: " + Debug.AsText(applicableParts));
+            info("Can be applied to body parts: " + Debug.AsText(applicableParts));
 
             if (allowedMutations.Count() == 0)
             {
-                Debug.Log("No matching body parts!");
+                info("No matching body parts!");
                 return null;
             }
 
             var chosenPart = applicableParts.RandomElement();
-            Debug.Log("Chose part: " + chosenPart);
+            info("Chose part: " + chosenPart);
 
             var chosenParts = pawn.health.hediffSet.GetNotMissingParts()
                 .Where(x => mutationDef.affectsAllParts ? x.def == chosenPart.def : x == chosenPart);
 
             foreach (var partToMutate in chosenParts)
             {
-                Debug.Log("Adding to part: " + partToMutate);
+                info("Adding to part: " + partToMutate);
 
                 if(pawn.health.hediffSet.GetHediffs<Mutation>().Where(x => x.def == mutationDef && x.Part == partToMutate).Any())
                 {
-                    Debug.Log("  But it already has this mutation!");
+                    info("  But it already has this mutation!");
                     continue;
                 }
 
@@ -163,6 +186,22 @@ namespace Radiology
 
             
             return chosenParts;
+        }
+
+
+        static public HediffRadiation GetHediffRadition(BodyPartRecord part, Pawn pawn)
+        {
+            if (part == null) return null;
+
+            foreach (var v in pawn.health.hediffSet.GetHediffs<HediffRadiation>())
+            {
+                if (v.Part == part) return v;
+            }
+            HediffRadiation hediff = HediffMaker.MakeHediff(HediffDefOf.RadiologyRadiation, pawn, part) as HediffRadiation;
+            if (hediff == null) return hediff;
+
+            pawn.health.AddHediff(hediff, null, null, null);
+            return hediff;
         }
 
     }

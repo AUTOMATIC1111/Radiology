@@ -15,7 +15,7 @@ namespace Radiology
     {
         public FloatRange burnThreshold;
         public FloatRange mutateThreshold;
-        public AutomaticEffectSpawnerDef burnEffect;
+        public RadiologyEffectSpawnerDef burnEffect;
 
         public List<AffectedBodyPart> bodyParts;
 
@@ -37,6 +37,14 @@ namespace Radiology
                 }
                 return cachedPartsMap;
             }
+        }
+
+        public float GetPartWeight(Pawn pawn, BodyPartRecord x)
+        {
+            /// XXX can be optimized
+            if (x.def.IsSolid(x, pawn.health.hediffSet.hediffs)) return 0f;
+
+            return PartsMap.TryGetValue(x.def, 0f);
         }
     }
 }

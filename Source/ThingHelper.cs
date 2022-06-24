@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,6 +53,14 @@ namespace Radiology
 
 
             return new Vector3(x, thing.def.Altitude, z);
+        }
+
+        public static Vector3 RandomPointNearTrueCenter(this Thing t)
+        {
+            Vector3 res = t.TrueCenter();
+            res.x += Rand.Range(-0.5f, 0.5f);
+            res.z += Rand.Range(-0.5f, 0.5f);
+            return res;
         }
     }
 }

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <CancerCompPartEfficiency.description>身体部件工作效率降低{0}%</CancerCompPartEfficiency.description>
+  <CancerCompCapacityOffset.description>{0}降低{1}%</CancerCompCapacityOffset.description>
+  <CancerCompGrowing.description>生长</CancerCompGrowing.description>
+  <CancerCompGrowingFast.description>生长迅速</CancerCompGrowingFast.description>
+  <CancerCompShrinking.description>收缩</CancerCompShrinking.description>
+  <CancerCompDestroyBodyPartAt75.description>以{1}%增长率破坏{0}</CancerCompDestroyBodyPartAt75.description>
+  <CancerCompDestroyBodyPartAt100.description>以{1}%增长率破坏{0}</CancerCompDestroyBodyPartAt100.description>
+  <CancerCompHunger.description>饥饿度增加{0}%</CancerCompHunger.description>
+  <CancerCompMentalBreakDaily.description>每天引发一次精神崩溃</CancerCompMentalBreakDaily.description>
+  <CancerCompMentalBreakTwoDays.description>每两天引发一次精神崩溃</CancerCompMentalBreakTwoDays.description>
+  <CancerCompMentalBreakThreeDays.description>每三天引发一次精神崩溃</CancerCompMentalBreakThreeDays.description>
+  <CancerCompMentalBreakTwiceADay.description>每天引发两次精神崩溃</CancerCompMentalBreakTwiceADay.description>
+  <CancerCompMentalBreakThriceADay.description>每天引发三次精神崩溃</CancerCompMentalBreakThriceADay.description>
+  <CancerCompPainLow.description>引起疼痛(少量)</CancerCompPainLow.description>
+  <CancerCompPainMedium.description>引起疼痛</CancerCompPainMedium.description>
+  <CancerCompPainHigh.description>引起疼痛(大量)</CancerCompPainHigh.description>
+  <CancerCompPainExtreme.description>引起疼痛(极大)</CancerCompPainExtreme.description>
+  <CancerCompAggressiveness.description>导致好战</CancerCompAggressiveness.description>
+  <CancerCompVomitingOften.description>引发呕吐</CancerCompVomitingOften.description>
+  <CancerCompVomitingSometimes.description>两天引发一次呕吐</CancerCompVomitingSometimes.description>
+  <CancerCompVomitingDaily.description>每天引发一次呕吐</CancerCompVomitingDaily.description>
+  <CancerCompDeathAt50.description>增长到50%时导致死亡</CancerCompDeathAt50.description>
+  <CancerCompDeathAt75.description>增长到75%时导致死亡</CancerCompDeathAt75.description>
+  <CancerCompDeathAt100.description>完全成长后导致死亡</CancerCompDeathAt100.description>
+  <CancerCompSpreadsUpwards.description>向上传播</CancerCompSpreadsUpwards.description>
+  <CancerCompSpreadsDownwards.description>向下传播</CancerCompSpreadsDownwards.description>
+  <CancerCompSpreads.description>传播</CancerCompSpreads.description>
+  <CancerCompSpreadsMutatesUpwards.description>向上传播且会变异</CancerCompSpreadsMutatesUpwards.description>
+  <CancerCompSpreadsMutatesDownwards.description>向下传播且会变异</CancerCompSpreadsMutatesDownwards.description>
+  <CancerCompMutatesSpreads.description>传播且会变异</CancerCompMutatesSpreads.description>
+
+
+</LanguageData>

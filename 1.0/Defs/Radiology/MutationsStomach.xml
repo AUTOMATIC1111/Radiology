@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <RadiologyEffectSpawnerDef>
+    <defName>RadiologyEffectVomitBricks</defName>
+      
+    <subEffects>
+      <li Class="Radiology.AutomaticSubEffectSound">
+        <sound>Stone_Drop</sound>
+      </li>
+      <li Class="Radiology.AutomaticSubEffectRadial">
+        <mote>RadiologyMoteAirPuff</mote>
+        <moteCount>24</moteCount>
+        <radius><min>0.1</min><max>0.5</max></radius>
+        <scale><min>0.5</min><max>1.0</max></scale>
+        <speed>1.0</speed>
+      </li>
+      <li Class="Radiology.AutomaticSubEffectRadial">
+        <mote>RadiologyMoteAirPuff</mote>
+        <moteCount>12</moteCount>
+        <radius><min>0.01</min><max>0.04</max></radius>
+        <scale><min>1.50</min><max>2.0</max></scale>
+        <speed>0.3</speed>
+      </li>
+    </subEffects>
+    
+    <offset><min>0</min><max>0</max></offset>
+  </RadiologyEffectSpawnerDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationVomitItemsDef">
+    <defName>MutationVomitMarbleBricks</defName>
+    <label>marble factory</label>
+    <description>NAME's PART has mutated to produce marble bricks. Some of the product is ejected during vomiting. Marble is a soft, beautiful stone, known for being easy to sculpt.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Stomach</li></affectedParts>
+    
+    <item>BlocksMarble</item>
+    <count><min>5</min><max>20</max></count>
+    <damage><min>0.5</min><max>1</max></damage>
+    
+    <hurtParts><li>Neck</li></hurtParts>
+    <hurtChance>0.3</hurtChance>
+    
+    <effect>RadiologyEffectVomitBricks</effect>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationVomitItemsDef">
+    <defName>MutationVomitSilver</defName>
+    <label>silver factory</label>
+    <description>NAME's PART has mutated to produce silver pieces. Some of the product is ejected during vomiting. Silver is mostly used as a commodity currency.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Stomach</li></affectedParts>
+    
+    <item>Silver</item>
+    <count><min>100</min><max>200</max></count>
+    <damage><min>0.5</min><max>1</max></damage>
+    
+    <hurtParts><li>Neck</li></hurtParts>
+    <hurtChance>0.1</hurtChance>
+    
+    <likelihood>0.1</likelihood>
+    
+    <effect>RadiologyEffectVomitBricks</effect>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationVomitItemsDef">
+    <defName>MutationVomitSteel</defName>
+    <label>steel factory</label>
+    <description>NAME's PART has mutated to produce chunks of steel. Some of the product is ejected during vomiting. Steel is an iron-carbon metal alloy.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Stomach</li></affectedParts>
+    
+    <item>Steel</item>
+    <count><min>5</min><max>20</max></count>
+    <damage><min>1</min><max>2</max></damage>
+    
+    <hurtParts><li>Neck</li></hurtParts>
+    <hurtChance>0.45</hurtChance>
+    
+    <likelihood>0.5</likelihood>
+    
+    <effect>RadiologyEffectVomitBricks</effect>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationVomitItemsDef">
+    <defName>MutationVomitSteel</defName>
+    <label>component factory</label>
+    <description>NAME's PART has mutated to produce miscellaneous gears, capacitors, circuit boards, tubes, wheels, sensors, wires, chips, processors, and other electronic and industrial parts. Some of the product is ejected during vomiting conveniently allowing for assembly of complex machines or electronics.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Stomach</li></affectedParts>
+
+    <item>ComponentIndustrial</item>
+    <count><min>1</min><max>2</max></count>
+    <damage><min>0.25</min><max>0.5</max></damage>
+    
+    <hurtParts><li>Neck</li></hurtParts>
+    <hurtChance>0.05</hurtChance>
+    
+    <likelihood>0.1</likelihood>
+    
+    <effect>RadiologyEffectVomitBricks</effect>
+  </HediffDef>
+
+</Defs>

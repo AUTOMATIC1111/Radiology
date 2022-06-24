@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <ThingDef Abstract="True" Name="RadiologyBuildingBase" ParentName="BuildingBase">
+    <category>Building</category>
+    <thingClass>Building</thingClass>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <repairEffect>Repair</repairEffect>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <filthLeaving>Filth_RubbleBuilding</filthLeaving>
+    <statBases>
+      <SellPriceFactor>0.70</SellPriceFactor>
+    </statBases>
+    
+    <designationCategory>Radiology</designationCategory>
+    <passability>PassThroughOnly</passability>
+  </ThingDef>
+
+  <ThingDef Abstract="True" Name="RadiologyBuildingMinifiable" ParentName="RadiologyBuildingBase">
+    <thingCategories>
+      <li>BuildingsFurniture</li>
+    </thingCategories>
+    <minifiedDef>MinifiedThing</minifiedDef>
+  </ThingDef>
+
+  <ThingDef ParentName="RadiologyBuildingBase" Class="Radiology.ChamberDef">
+    <defName>RadiologyRadiationChamber</defName>
+    <description>A place to stand on for a prescripted dose of radiation.</description>
+    <label>irradiation chamber</label>
+    <thingClass>Radiology.Chamber</thingClass>
+    <researchPrerequisites><li>RadiologyBasic</li></researchPrerequisites>
+
+    <graphicData>
+      <texPath>Radiology/Buildings/Chamber</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>3,3</drawSize>
+    </graphicData>
+    <uiIconPath>Radiology/Buildings/ChamberIcon</uiIconPath>
+    
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Standable</passability>
+    <castEdgeShadows>false</castEdgeShadows>
+    <fillPercent>0.5</fillPercent>
+    
+    <statBases>
+      <WorkToBuild>3200</WorkToBuild>
+      <MaxHitPoints>250</MaxHitPoints>
+      <Mass>120</Mass>
+    </statBases>
+    
+    <tickerType>Normal</tickerType>
+    <size>(3,3)</size>
+    
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0,0,0)</interactionCellOffset>
+    
+    <rotatable>false</rotatable>
+    <costList>
+      <Steel>50</Steel>
+    </costList>
+    
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>5</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_AffectedByFacilities">
+        <linkableFacilities>
+          <li>RadiologyIrradiator</li>
+          <li>RadiologyIrradiatorIntermediate</li>
+          <li>RadiologyMonitor</li>
+        </linkableFacilities>
+      </li>
+    </comps>
+    
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <staticSunShadowHeight>1.0</staticSunShadowHeight>
+    
+    <bodyParts>
+      <li><part>Head</part></li>
+      <li><part>Torso</part></li>
+      <li><part>Shoulder</part></li>
+      <li><part>Leg</part></li>
+    </bodyParts>
+    
+    <burnThreshold><min>5</min><max>10</max></burnThreshold>
+    <mutateThreshold><min>5</min><max>10</max></mutateThreshold>
+    
+    <burnEffect>RadiologyEffectBurn</burnEffect>
+
+    <placeWorkers>
+      <li>Radiology.PlaceWorkerShowFacilitiesConnections</li>
+    </placeWorkers>
+  </ThingDef>
+  
+  <ThingDef Abstract="True" Name="RadiologyIrradiatorBase" ParentName="RadiologyBuildingMinifiable">
+    <tickerType>Normal</tickerType>
+    <size>(1,2)</size>
+    
+    <defaultPlacingRot>East</defaultPlacingRot>
+    
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>5</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_AffectedByFacilities">
+        <linkableFacilities>
+          <li>RadiologyBlocker</li>
+          <li>RadiologyBlockerIntermediate</li>
+          <li>RadiologyBlockerAdvanced</li>
+          <li>RadiologyFilter</li>
+        </linkableFacilities>
+      </li>
+    </comps>
+    
+    <placeWorkers>
+      <li>Radiology.PlaceWorkerShowFacilitiesConnections</li>
+    </placeWorkers>
+  </ThingDef>
+
+  <ThingDef ParentName="RadiologyIrradiatorBase">
+    <defName>RadiologyIrradiator</defName>
+    <label>irradiator</label>
+    <description>Bombard your colonists with harmful radiation.</description>
+    <researchPrerequisites><li>RadiologyBasic</li></researchPrerequisites>
+
+    <graphicData>
+      <texPath>Radiology/Buildings/Irradiator</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(2,2)</drawSize>
+      <shadowData>
+        <volume>(3.1, 1.0, 3.3)</volume>
+      </shadowData>
+    </graphicData>
+    
+    <costList>
+      <Steel>100</Steel>
+      <Uranium>10</Uranium>
+      <ComponentIndustrial>4</ComponentIndustrial>
+    </costList>
+
+    <comps>
+      <li Class="Radiology.CompPropertiesAdvancedFacility">
+        <maxDistance>6</maxDistance>
+        <mustBeFacing>true</mustBeFacing>
+      </li>
+      <li Class="Radiology.CompPropertiesIrradiator">
+        <soundIrradiate>RadiologyIrradiateBasic</soundIrradiate>
+
+        <burn>
+            <perSecond><min>0.5</min><max>1</max></perSecond>
+            <multiplier>10</multiplier>
+        </burn>
+        
+        <mutate>
+            <perSecond><min>0.1</min><max>0.2</max></perSecond>
+        </mutate>
+        
+        <mutateRare>
+            <perSecond><min>0.01</min><max>0.02</max></perSecond>
+        </mutateRare>
+        
+        <powerConsumption>1000</powerConsumption>
+        
+        <motes>
+          <li>
+            <mote>RadiologyMoteRadiation</mote>
+            <scaleRange><min>0.5</min><max>2.0</max></scaleRange>
+            <speed><min>-0.1</min><max>0.1</max></speed>
+            <offset><min>0.0</min><max>1.0</max></offset>
+            <initialSpread>0.75</initialSpread>
+            <spread>0.75</spread>
+          </li>
+          <li>
+            <mote>RadiologyMoteRadiationDirected</mote>
+            <scaleRange><min>1.0</min><max>1.25</max></scaleRange>
+            <speed><min>12</min><max>16</max></speed>
+            <offset><min>0.05</min><max>0.15</max></offset>
+            <initialSpread>0.5</initialSpread>
+            <spread>1.0</spread>
+            <reflectChance>0.5</reflectChance>
+          </li>
+          <li><skip>true</skip></li>
+       </motes>
+        
+      </li>
+    </comps>
+    
+    <statBases>
+      <MaxHitPoints>400</MaxHitPoints>
+      <WorkToBuild>3200</WorkToBuild>
+      <Mass>120</Mass>
+    </statBases>
+  </ThingDef>
+
+  <ThingDef ParentName="RadiologyIrradiatorBase">
+    <defName>RadiologyIrradiatorIntermediate</defName>
+    <label>intermediate irradiator</label>
+    <description>Bombard your colonists with less harmful radiation.</description>
+    <researchPrerequisites><li>RadiologyIntermediate</li></researchPrerequisites>
+
+    <graphicData>
+      <texPath>Radiology/Buildings/Irradiator2</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(2,2)</drawSize>
+      <shadowData>
+        <volume>(3.1, 1.0, 3.3)</volume>
+      </shadowData>
+    </graphicData>
+    
+    <costList>
+      <Steel>50</Steel>
+      <Plasteel>50</Plasteel>
+      <Uranium>20</Uranium>
+      <ComponentIndustrial>4</ComponentIndustrial>
+      <ComponentSpacer>2</ComponentSpacer>
+    </costList>
+
+    <comps>
+      <li Class="Radiology.CompPropertiesAdvancedFacility">
+        <maxDistance>8</maxDistance>
+        <mustBeFacing>true</mustBeFacing>
+      </li>
+      <li Class="Radiology.CompPropertiesIrradiator">
+        <soundIrradiate>RadiologyIrradiateBasic</soundIrradiate>
+
+        <burn>
+            <perSecond><min>0.75</min><max>1.5</max></perSecond>
+            <multiplier>8</multiplier>
+        </burn>
+        
+        <mutate>
+            <perSecond><min>0.16</min><max>0.32</max></perSecond>
+        </mutate>
+        
+        <mutateRare>
+            <perSecond><min>0.02</min><max>0.04</max></perSecond>
+        </mutateRare>
+        
+        <powerConsumption>1500</powerConsumption>
+        
+        <motes>
+          <li>
+            <mote>RadiologyMoteRadiation</mote>
+            <scaleRange><min>0.5</min><max>2.0</max></scaleRange>
+            <speed><min>-0.1</min><max>0.1</max></speed>
+            <offset><min>0.0</min><max>1.0</max></offset>
+            <initialSpread>0.75</initialSpread>
+            <spread>0.75</spread>
+          </li>
+          <li>
+            <mote>RadiologyMoteRadiationDirected</mote>
+            <scaleRange><min>1.0</min><max>1.25</max></scaleRange>
+            <speed><min>12</min><max>16</max></speed>
+            <offset><min>0.05</min><max>0.15</max></offset>
+            <initialSpread>0.5</initialSpread>
+            <spread>1.0</spread>
+            <reflectChance>0.5</reflectChance>
+          </li>
+          <li><skip>true</skip></li>
+       </motes>
+        
+      </li>
+    </comps>
+    
+    <statBases>
+      <MaxHitPoints>400</MaxHitPoints>
+      <WorkToBuild>3200</WorkToBuild>
+      <Mass>120</Mass>
+    </statBases>
+  </ThingDef>
+
+  
+  <ThingDef Abstract="True" Name="RadiologyBlockerBase" ParentName="RadiologyBuildingMinifiable">
+    <graphicData>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,3)</drawSize>
+      <shadowData>
+        <volume>(3.1, 1.0, 3.3)</volume>
+      </shadowData>
+    </graphicData>
+    <size>(2,1)</size>
+
+    <defaultPlacingRot>South</defaultPlacingRot>
+    
+    <comps>
+      <li Class="Radiology.CompPropertiesAdvancedFacility">
+        <maxSimultaneous>999</maxSimultaneous>
+        <maxDistance>5</maxDistance>
+        <mustBeFaced>true</mustBeFaced>
+      </li>
+    </comps>
+    
+    <placeWorkers>
+      <li>Radiology.PlaceWorkerShowFacilitiesConnections</li>
+    </placeWorkers>
+    
+    <statBases>
+      <MaxHitPoints>400</MaxHitPoints>
+      <WorkToBuild>3200</WorkToBuild>
+      <Mass>120</Mass>
+    </statBases>
+  </ThingDef>
+  
+  <ThingDef ParentName="RadiologyBlockerBase">
+    <defName>RadiologyBlocker</defName>
+    <label>radiation blocker</label>
+    <description>Lets you set up a filter that will block a large amount of radiation directed at certain body parts. This blocker has 40% chance to deflect radiation and lets you select up to two body parts.</description>
+
+    <researchPrerequisites><li>RadiologyBlocking</li></researchPrerequisites>
+
+    <graphicData>
+      <texPath>Radiology/Buildings/Barrier</texPath>
+    </graphicData>
+    
+    <costList>
+      <Steel>50</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+    
+    <comps>
+      <li Class="Radiology.CompPropertiesBlocker">
+        <blockedBodyPartLimit>2</blockedBodyPartLimit>
+        <blockChance>0.4</blockChance>
+      </li>
+    </comps>
+  </ThingDef>
+    
+  <ThingDef ParentName="RadiologyBlockerBase">
+    <defName>RadiologyBlockerIntermediate</defName>
+    <label>intermediate radiation blocker</label>
+    <description>Lets you set up a filter that will block a large amount of radiation directed at certain body parts. This blocker has 60% chance to deflect radiation and lets you select up to three body parts.</description>
+
+    <researchPrerequisites><li>RadiologyBlockingIntermediate</li></researchPrerequisites>
+
+    <graphicData>
+      <texPath>Radiology/Buildings/Barrier2</texPath>
+      <drawSize>(2,2)</drawSize>
+    </graphicData>
+    
+    <costList>
+      <Steel>25</Steel>
+      <Silver>200</Silver>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+    
+    <comps>
+      <li Class="Radiology.CompPropertiesBlocker">
+        <blockedBodyPartLimit>3</blockedBodyPartLimit>
+        <blockChance>0.6</blockChance>
+      </li>
+    </comps>
+  </ThingDef>
+      
+  <ThingDef ParentName="RadiologyBlockerBase">
+    <defName>RadiologyBlockerAdvanced</defName>
+    <label>advanced radiation blocker</label>
+    <description>Lets you set up a filter that will block a large amount of radiation directed at certain body parts. This blocker has 80% chance to deflect radiation and lets you select up to four body parts.</description>
+
+    <researchPrerequisites><li>RadiologyBlockingAdvanced</li></researchPrerequisites>
+
+    <graphicData>
+      <texPath>Radiology/Buildings/Barrier3</texPath>
+      <drawSize>(2,2)</drawSize>
+    </graphicData>
+    
+    <costList>
+      <Steel>25</Steel>
+      <Silver>100</Silver>
+      <Gold>25</Gold>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+
+    <comps>
+      <li Class="Radiology.CompPropertiesBlocker">
+        <blockedBodyPartLimit>3</blockedBodyPartLimit>
+        <blockChance>0.6</blockChance>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="RadiologyBuildingMinifiable">
+    <defName>RadiologyFilter</defName>
+    <label>radiation filter</label>
+    <description>Lets you set up a filter that will alter the radiation going through it.</description>
+    <researchPrerequisites><li>RadiologyFiltering</li></researchPrerequisites>
+    
+    <graphicData>
+      <texPath>Radiology/Buildings/Filter</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,3)</drawSize>
+      <shadowData>
+        <volume>(3.1, 1.0, 3.3)</volume>
+      </shadowData>
+    </graphicData>
+    <size>(2,1)</size>
+
+    <costList>
+      <Steel>50</Steel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+    </costList>
+
+    <defaultPlacingRot>South</defaultPlacingRot>
+    
+    <comps>
+      <li Class="Radiology.CompPropertiesAdvancedFacility">
+        <maxDistance>5</maxDistance>
+        <mustBeFaced>true</mustBeFaced>
+      </li>
+      <li Class="Radiology.CompPropertiesFilter">
+      </li>
+    </comps>
+    
+    <placeWorkers>
+      <li>Radiology.PlaceWorkerShowFacilitiesConnections</li>
+    </placeWorkers>
+    
+    <statBases>
+      <MaxHitPoints>400</MaxHitPoints>
+      <WorkToBuild>3200</WorkToBuild>
+      <Mass>120</Mass>
+    </statBases>
+  </ThingDef>
+
+  <ThingDef ParentName="RadiologyBuildingMinifiable">
+    <defName>RadiologyMonitor</defName>
+    <label>radiation monitor</label>
+    <description>Displays the amount of radiation dispensed at radiation chamber.</description>
+    <researchPrerequisites><li>RadiologyMonitoring</li></researchPrerequisites>
+
+    <graphicData>
+      <texPath>Radiology/Buildings/MonitorRadiation</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+    <size>(1,1)</size>
+    <rotatable>false</rotatable>
+    
+    <costList>
+      <Steel>25</Steel>
+      <ComponentIndustrial>1</ComponentIndustrial>
+    </costList>
+
+    <comps>
+      <li Class="Radiology.CompPropertiesAdvancedFacility">
+        <maxDistance>4</maxDistance>
+      </li>
+      <li>
+        <compClass>Radiology.CompRadiationMonitor</compClass>
+      </li>
+    </comps>
+    
+    <placeWorkers>
+      <li>Radiology.PlaceWorkerShowFacilitiesConnections</li>
+    </placeWorkers>
+    
+    <statBases>
+      <MaxHitPoints>400</MaxHitPoints>
+      <WorkToBuild>3200</WorkToBuild>
+      <Mass>120</Mass>
+    </statBases>
+  </ThingDef>
+
+</Defs>

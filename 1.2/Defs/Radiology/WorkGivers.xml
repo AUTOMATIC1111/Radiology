@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <WorkGiverDef>
+    <defName>RadiologyIrradiate</defName>
+    <label>get irradiated in</label>
+    <giverClass>Radiology.WorkGiverIrradiate</giverClass>
+    <workType>BasicWorker</workType>
+    <verb>get irradiated in</verb>
+    <gerund>getting irradiated in</gerund>
+  </WorkGiverDef>
+  
+  <WorkGiverDef>
+    <defName>WorkGiverRadiologyIrradiatePrisoner</defName>
+    <label>deliver prisoner to</label>
+    <giverClass>Radiology.WorkGiverIrradiatePrisoner</giverClass>
+    <workType>Warden</workType>
+    <verb>deliver</verb>
+    <gerund>delivering</gerund>
+  </WorkGiverDef>
+</Defs>

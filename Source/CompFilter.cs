@@ -23,7 +23,7 @@ namespace Radiology
         public override string CompInspectStringExtra()
         {
             CompFilterOperationMode m = Mode;
-            string label = m == null ? "RadiologyFilterOperationModeNone".Translate() : m.Label;
+            string label = m == null ? "RadiologyFilterOperationModeNone".Translate().RawText : m.Label;
             return string.Format("RadiologyFilterOperationMode".Translate(), label);
         }
 

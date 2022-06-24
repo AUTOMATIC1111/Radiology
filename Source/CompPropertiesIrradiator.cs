@@ -24,7 +24,6 @@ namespace Radiology
         public float reflectChance = 0f;
     }
 
-
     public class CompPropertiesIrradiator :CompProperties
     {
         public CompPropertiesIrradiator()
@@ -38,6 +37,8 @@ namespace Radiology
         public RadiationInflurence mutate;
         public RadiationInflurence mutateRare;
         public float powerConsumption;
+
+        public SoundDef soundIrradiate;
 
         public override void ResolveReferences(ThingDef parentDef)
         {

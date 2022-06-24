@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompPartEfficiencyDef">
+     <defName>CancerCompPartEfficiency</defName>
+     <description>reduces body part efficiency by {0}%</description>
+     <offset>-0.5</offset>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompCapacityOffsetDef">
+     <defName>CancerCompCapacityOffset</defName>
+     <description>reduces {0} by {1}%</description>
+     <offset>-0.5</offset>
+     <capacity>BloodFiltration</capacity>
+   </RadiologyCancerCompDef>
+   
+   <RadiologyCancerCompDef Class="Radiology.CancerCompSeverityChangeDef">
+     <defName>CancerCompGrowing</defName>
+     <description>grows</description>
+     <changePerDay>0.1</changePerDay>
+     <tag>growthSpeed</tag>
+     <weight>4</weight>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompSeverityChangeDef">
+     <defName>CancerCompGrowingFast</defName>
+     <description>grows fast</description>
+     <changePerDay>0.2</changePerDay>
+     <tag>growthSpeed</tag>
+     <weight>4</weight>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompSeverityChangeDef">
+     <defName>CancerCompShrinking</defName>
+     <description>shrinks</description>
+     <changePerDay>-0.1</changePerDay>
+     <tag>growthSpeed</tag>
+     <weight>2</weight>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompDestroyBodyPartDef">
+     <defName>CancerCompDestroyBodyPartAt75</defName>
+     <description>destroys {0} at {1}% growth</description>
+     <destroyAtSeverity>0.75</destroyAtSeverity>
+   </RadiologyCancerCompDef>
+   
+   <RadiologyCancerCompDef Class="Radiology.CancerCompDestroyBodyPartDef">
+     <defName>CancerCompDestroyBodyPartAt100</defName>
+     <description>destroys {0} at {1}% growth</description>
+     <destroyAtSeverity>1</destroyAtSeverity>
+   </RadiologyCancerCompDef>
+   
+   <RadiologyCancerCompDef Class="Radiology.CancerCompHungerDef">
+     <defName>CancerCompHunger</defName>
+     <description>increases hunger by {0}%</description>
+     <offset>0.5</offset>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompMentalBreakDef">
+     <defName>CancerCompMentalBreakDaily</defName>
+     <description>causes a mental break about once per day</description>
+     <mtbDays>1</mtbDays>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompMentalBreakDef">
+     <defName>CancerCompMentalBreakTwoDays</defName>
+     <description>causes a mental break about once per two days</description>
+     <mtbDays>2</mtbDays>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompMentalBreakDef">
+     <defName>CancerCompMentalBreakThreeDays</defName>
+     <description>causes a mental break about once per three days</description>
+     <mtbDays>3</mtbDays>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompMentalBreakDef">
+     <defName>CancerCompMentalBreakTwiceADay</defName>
+     <description>causes a mental break about twice a day</description>
+     <mtbDays>0.5</mtbDays>
+   </RadiologyCancerCompDef>
+   
+   <RadiologyCancerCompDef Class="Radiology.CancerCompMentalBreakDef">
+     <defName>CancerCompMentalBreakThriceADay</defName>
+     <description>causes a mental break about three times a day</description>
+     <mtbDays>0.33333</mtbDays>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompPainDef">
+     <defName>CancerCompPainLow</defName>
+     <description>causes pain (minimal)</description>
+     <offset>0.1</offset>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompPainDef">
+     <defName>CancerCompPainMedium</defName>
+     <description>causes pain</description>
+     <offset>0.3</offset>
+     <weight>3</weight>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompPainDef">
+     <defName>CancerCompPainHigh</defName>
+     <description>causes pain (a lot)</description>
+     <offset>0.5</offset>
+     <weight>3</weight>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompPainDef">
+     <defName>CancerCompPainExtreme</defName>
+     <description>causes pain (extreme)</description>
+     <offset>0.7</offset>
+     <weight>2</weight>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompAggressivenessDef">
+     <defName>CancerCompAggressiveness</defName>
+     <description>makes aggressive</description>
+     <offset>10</offset>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompVomitingDef">
+     <defName>CancerCompVomitingOften</defName>
+     <description>makes vomit a lot</description>
+     <mtbDays>0.1</mtbDays>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompVomitingDef">
+     <defName>CancerCompVomitingSometimes</defName>
+     <description>makes vomit twice a day</description>
+     <mtbDays>0.5</mtbDays>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompVomitingDef">
+     <defName>CancerCompVomitingDaily</defName>
+     <description>makes vomit daily</description>
+     <mtbDays>1.0</mtbDays>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompDeathDef">
+     <defName>CancerCompDeathAt50</defName>
+     <description>causes death when grown to 50%</description>
+     <lethalSeverity>0.5</lethalSeverity>
+   </RadiologyCancerCompDef>
+   
+   <RadiologyCancerCompDef Class="Radiology.CancerCompDeathDef">
+     <defName>CancerCompDeathAt75</defName>
+     <description>causes death when grown to 75%</description>
+     <lethalSeverity>0.75</lethalSeverity>
+   </RadiologyCancerCompDef>
+   
+   <RadiologyCancerCompDef Class="Radiology.CancerCompDeathDef">
+     <defName>CancerCompDeathAt100</defName>
+     <description>causes death when fully grown</description>
+     <lethalSeverity>1.0</lethalSeverity>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompSpreadsDef">
+     <defName>CancerCompSpreadsUpwards</defName>
+     <description>spreads upwards</description>
+     <mtthDays>3</mtthDays>
+     <growUpwards>true</growUpwards>
+     <weight>0.5</weight>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompSpreadsDef">
+     <defName>CancerCompSpreadsDownwards</defName>
+     <description>spreads downwards</description>
+     <mtthDays>3</mtthDays>
+     <growDownwards>true</growDownwards>
+     <weight>0.5</weight>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompSpreadsDef">
+     <defName>CancerCompSpreads</defName>
+     <description>spreads</description>
+     <mtthDays>3</mtthDays>
+     <growUpwards>true</growUpwards>
+     <growDownwards>true</growDownwards>
+     <weight>0.5</weight>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompSpreadsDef">
+     <defName>CancerCompSpreadsMutatesUpwards</defName>
+     <description>spreads upwards and mutates</description>
+     <mtthDays>6</mtthDays>
+     <growUpwards>true</growUpwards>
+     <weight>0.25</weight>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompSpreadsDef">
+     <defName>CancerCompSpreadsMutatesDownwards</defName>
+     <description>spreads downwards and mutates</description>
+     <mtthDays>6</mtthDays>
+     <growDownwards>true</growDownwards>
+     <weight>0.25</weight>
+   </RadiologyCancerCompDef>
+
+   <RadiologyCancerCompDef Class="Radiology.CancerCompSpreadsDef">
+     <defName>CancerCompMutatesSpreads</defName>
+     <description>spreads and mutates</description>
+     <mtthDays>6</mtthDays>
+     <growUpwards>true</growUpwards>
+     <growDownwards>true</growDownwards>
+     <weight>0.25</weight>
+   </RadiologyCancerCompDef>
+
+</Defs>

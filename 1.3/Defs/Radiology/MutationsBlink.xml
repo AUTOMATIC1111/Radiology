@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBlinkDef">
+    <defName>MutationBlink</defName>
+    <label>blink</label>
+    <description>A deformation of an unknown origin in the body part is causing colonist to periodically shift in and out of existance, reappearing at a different location, uncontrollably.</description>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Brain</li></affectedParts>
+    <exclusive>blink</exclusive>
+    
+    <radius>40</radius>
+    <mtthDays>1</mtthDays>
+    <controlled>false</controlled>
+    <effectOut>RadiologyEffectBlinkOut</effectOut>
+    <effectIn>RadiologyEffectBlinkIn</effectIn>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBlinkDef">
+    <defName>MutationBlinkControlled</defName>
+    <label>controllable blink</label>
+    <description>A deformation of an unknown origin in the body part is allowing colonist to shift in and out of existance, reappearing at a different location, at will. Colonist is not able to control where he'll reappear.</description>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Brain</li></affectedParts>
+    <exclusive>blink</exclusive>
+    
+    <radius>40</radius>
+    <controlled>true</controlled>
+    <cooldownTicks>2400</cooldownTicks>
+    <effectOut>RadiologyEffectBlinkOut</effectOut>
+    <effectIn>RadiologyEffectBlinkIn</effectIn>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationBlinkDef">
+    <defName>MutationBlinkAimed</defName>
+    <label>aimed blink</label>
+    <description>A deformation of an unknown origin in the body part is allowing colonist to shift in and out of existance, reappearing at a desired location, at will.</description>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Brain</li></affectedParts>
+    <exclusive>blink</exclusive>
+    
+    <radius>40</radius>
+    <controlled>true</controlled>
+    <aimed>true</aimed>
+    <cooldownTicks>2400</cooldownTicks>
+    <effectOut>RadiologyEffectBlinkOut</effectOut>
+    <effectIn>RadiologyEffectBlinkIn</effectIn>
+  </HediffDef>
+</Defs>

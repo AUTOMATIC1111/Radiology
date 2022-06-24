@@ -8,13 +8,14 @@ using Verse.AI;
 
 namespace Radiology
 {
-    class JobDriverIrradiate :JobDriver
+    class JobDriverIrradiate :JobDriver, IPrisonerAllowedJob
     {
         private Chamber Chamber => job.GetTarget(TargetIndex.A).Thing as Chamber;
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             if (Chamber == null) return false;
+            if (!pawn.CanReserve(job.targetA, 1, -1)) return false;
 
             return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
         }
@@ -22,7 +23,8 @@ namespace Radiology
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
-            this.FailOn(delegate () { return Chamber.CanIrradiateNow() != null || !Chamber.IsHealthyEnoughForIrradiation(pawn); });
+            this.FailOn(delegate () { return Chamber.CanIrradiateNow(pawn) != null; });
+ //           AddFinishAction(delegate () { if (pawn.IsPrisoner) pawn.SetForbidden(false); });
 
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell).FailOnDespawnedOrNull(TargetIndex.A);
             Toil work = new Toil();

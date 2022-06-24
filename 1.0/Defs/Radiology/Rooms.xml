@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <RoomRoleDef>
+    <defName>RadiologyChamber</defName>
+    <label>irradiation chamber</label>
+    <workerClass>Radiology.RoomRoleWorker_RadiologyChamber</workerClass>
+  </RoomRoleDef>
+  
+</Defs>
