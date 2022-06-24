@@ -17,10 +17,14 @@ namespace Radiology.Patch
             ThingWithComps t = thing as ThingWithComps;
             if (t == null) return entry;
 
-            IEnumerable<IDefHyperlinkLister> listers = t.Comps().OfType<IDefHyperlinkLister>();
-            if (listers.Count() == 0) return entry;
+            IEnumerable<IDefHyperlinkLister> listers = t.Comps()?.OfType<IDefHyperlinkLister>();
+            if (listers==null || listers.Count() == 0) return entry;
 
-            Traverse.Create(entry).Field<IEnumerable<Dialog_InfoCard.Hyperlink>>("hyperlinks").Value = Dialog_InfoCard.DefsToHyperlinks(listLinks(thing, listers));
+            var hyperlinks = Traverse.Create(entry).Field<IEnumerable<Dialog_InfoCard.Hyperlink>>("hyperlinks");
+            if (hyperlinks != null)
+            {
+                hyperlinks.Value = Dialog_InfoCard.DefsToHyperlinks(listLinks(thing, listers));
+            }
 
             return entry;
         }

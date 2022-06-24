@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <designationCategoryDef>
+    <defName>Radiology</defName>
+    <label>radiology</label>
+    <description>Devices for irradiating your colonists.</description>
+    <order>-2750</order>
+    <specialDesignatorClasses>
+      <li>Designator_Cancel</li>
+    </specialDesignatorClasses>
+  </designationCategoryDef>
+  
+</Defs>

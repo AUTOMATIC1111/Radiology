@@ -1,0 +1,41 @@
+<Defs>
+
+  <ThoughtDef>
+    <defName>RadiologyMutationUgly</defName>
+    <thoughtClass>Thought_SituationalSocial</thoughtClass>
+    <workerClass>Radiology.ThoughtWorkerMutationUgly</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li><label>mutant</label><baseOpinionOffset>-5</baseOpinionOffset></li>
+      <li><label>creepy mutant</label><baseOpinionOffset>-10</baseOpinionOffset></li>
+      <li><label>detestable mutant</label><baseOpinionOffset>-15</baseOpinionOffset></li>
+      <li><label>revolting mutant</label><baseOpinionOffset>-20</baseOpinionOffset></li>
+      <li><label>disgusting mutant</label><baseOpinionOffset>-25</baseOpinionOffset></li>
+      <li><label>hideous mutant</label><baseOpinionOffset>-30</baseOpinionOffset></li>
+      <li><label>horrid mutant</label><baseOpinionOffset>-35</baseOpinionOffset></li>
+      <li><label>abominable mutant</label><baseOpinionOffset>-40</baseOpinionOffset></li>
+      <li><label>repugnant mutant</label><baseOpinionOffset>-45</baseOpinionOffset></li>
+      <li><label>abhorrent mutant</label><baseOpinionOffset>-50</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+  
+  <ThoughtDef>
+    <defName>RadiologyMutationBeautiful</defName>
+    <thoughtClass>Thought_SituationalSocial</thoughtClass>
+    <workerClass>Radiology.ThoughtWorkerMutationBeautiful</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li><label>nice-looking</label><baseOpinionOffset>5</baseOpinionOffset></li>
+      <li><label>pretty</label><baseOpinionOffset>10</baseOpinionOffset></li>
+      <li><label>beautiful</label><baseOpinionOffset>15</baseOpinionOffset></li>
+      <li><label>beautiful</label><baseOpinionOffset>20</baseOpinionOffset></li>
+      <li><label>beautiful</label><baseOpinionOffset>25</baseOpinionOffset></li>
+      <li><label>beautiful</label><baseOpinionOffset>30</baseOpinionOffset></li>
+      <li><label>beautiful</label><baseOpinionOffset>35</baseOpinionOffset></li>
+      <li><label>beautiful</label><baseOpinionOffset>40</baseOpinionOffset></li>
+      <li><label>beautiful</label><baseOpinionOffset>45</baseOpinionOffset></li>
+      <li><label>beautiful</label><baseOpinionOffset>50</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+  
+</Defs>

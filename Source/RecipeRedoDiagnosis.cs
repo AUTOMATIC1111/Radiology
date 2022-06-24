@@ -31,7 +31,7 @@ namespace Radiology
             Thing medicine = ingredients.FirstOrDefault();
             float quality = TendUtility.CalculateBaseTendQuality(billDoer, pawn, (medicine == null) ? null : medicine.def);
 
-            cancer.Tended(quality, 0);
+            cancer.Tended(quality, quality, 0);
         }
     }
 }

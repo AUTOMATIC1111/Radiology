@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationEnhancedLungs</defName>
+    <label>Enhanced Lungs</label>
+    <description>The radiation has strengthened the tissues and muscle in colonist's lungs and diaphram, causing his breathing to become unhuman.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Lung</li></affectedParts>
+    <exclusive>breathing</exclusive>
+    <affectsAllParts>true</affectsAllParts>
+  
+    <stage>
+      <capMods>
+        <li><capacity>Breathing</capacity><offset>0.50</offset></li>
+        <li><capacity>Moving</capacity><offset>0.10</offset></li>
+        <li><capacity>Consciousness</capacity><offset>0.10</offset></li>
+      </capMods>
+    </stage>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationStrengthenedHeart</defName>
+    <label>Strengthened Heart</label>
+    <description>The muscle tissue has woven itself in such a way that colonist's heart has strengthened and become superior.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Heart</li></affectedParts>
+    <exclusive>heart</exclusive>
+
+    <stage>
+      <capMods>
+        <li><capacity>BloodPumping</capacity><offset>0.75</offset></li>
+        <li><capacity>Consciousness</capacity><offset>0.15</offset></li>
+        <li><capacity>Moving</capacity><offset>0.05</offset></li>
+      </capMods>
+    </stage>
+  </HediffDef>
+
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationSuperVision</defName>
+    <label>Super Vision</label>
+    <description>Colonist's eye has mutated, allowing him to see more clearly and sharply. This allows colonist to have better reflexes and improves perception.</description>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Eye</li></affectedParts>
+    <exclusive>eyes</exclusive>
+
+    <stage>
+      <capMods>
+        <li><capacity>Sight</capacity><offset>0.50</offset></li>
+        <li><capacity>Manipulation</capacity><offset>0.1</offset></li>
+      </capMods>
+      
+      <statOffsets>
+        <ShootingAccuracyPawn>4</ShootingAccuracyPawn>
+      </statOffsets>
+    </stage>
+   </HediffDef>
+   
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationEnhancedHearing</defName>
+    <label>Enhanced Hearing</label>
+    <description>Colonist's ears have mutated, allowing him to hear more clearly and sharply. This allows him to have better reflexes.</description>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Ear</li></affectedParts>
+    <exclusive>Ears</exclusive>
+    <affectsAllParts>true</affectsAllParts>
+
+    <stage>
+      <capMods>
+        <li><capacity>Hearing</capacity><offset>0.50</offset></li>
+      </capMods>
+    </stage>
+   </HediffDef>
+   
+   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationBrain</defName>
+    <label>Brain Mutation</label>
+    <description>Colonist's brain has mutated, causing the synapses to fire quicker and more efficiently, making him perform better overall.</description>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Brain</li></affectedParts>
+    <exclusive>Brain</exclusive>
+
+    <stage>
+      <capMods>
+        <li><capacity>Hearing</capacity><offset>0.10</offset></li>
+        <li><capacity>Sight</capacity><offset>0.10</offset></li>
+        <li><capacity>Consciousness</capacity><offset>0.10</offset></li>
+        <li><capacity>Manipulation</capacity><offset>0.10</offset></li>
+      </capMods>
+    </stage>
+   </HediffDef>
+   
+   <!-- ++++++++++++++++++++++++++++ -->
+   <!-- Start of bad organ mutations -->
+   <!-- ++++++++++++++++++++++++++++ -->
+   
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationDamagedLung</defName>
+    <label>Damaged Lungs</label>
+    <description>The radiation has destroyed much of colonist's lung tissue making it difficult for him to breathe.</description>
+    <isBad>true</isBad>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Lung</li></affectedParts>
+    <exclusive>breathing</exclusive>
+  
+    <stage>
+      <capMods>
+        <li><capacity>Breathing</capacity><offset>-0.25</offset></li>
+        <li><capacity>Moving</capacity><offset>-0.05</offset></li>
+        <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
+      </capMods>
+    </stage>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationWeakenedHeart</defName>
+    <label>Weakened Heart</label>
+    <description>The muscle tissue has been weakened and damaged by the radiation, making colonist's body part less efficient and damaged.</description>
+    <isBad>true</isBad>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Heart</li></affectedParts>
+    <exclusive>heart</exclusive>
+    
+    <likelihood>0.7</likelihood>
+
+    <stage>
+      <capMods>
+        <li><capacity>BloodPumping</capacity><offset>-0.50</offset></li>
+        <li><capacity>Consciousness</capacity><offset>-0.15</offset></li>
+        <li><capacity>Moving</capacity><offset>-0.10</offset></li>
+      </capMods>
+      
+      <hediffGivers>
+            <li Class="HediffGiver_Random">
+              <hediff>HeartAttack</hediff>
+              <mtbDays>60</mtbDays>
+              <partsToAffect>
+                <li>Heart</li>
+              </partsToAffect>
+            </li>
+      </hediffGivers>
+    </stage>
+  </HediffDef>
+  
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationDamagedVision</defName>
+    <label>Damaged Vision</label>
+    <description>Colonist's eye tissue has been damaged, leaving his eye useless. If both eyes are damaged, colonist will go blind.</description>
+    <isBad>true</isBad>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Eye</li></affectedParts>
+    <exclusive>eyes</exclusive>
+
+    <stage>
+      <capMods>
+        <li><capacity>Sight</capacity><offset>-0.50</offset></li>
+      </capMods>
+      
+      <statOffsets>
+        <ShootingAccuracyPawn>-4</ShootingAccuracyPawn>
+      </statOffsets>
+    </stage>
+   </HediffDef>
+   
+   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationDamagedHearing</defName>
+    <label>Damaged Hearing</label>
+    <description>Colonist's ears have been damaged leaving him with poor hearing.</description>
+    <isBad>true</isBad>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Ear</li></affectedParts>
+    <exclusive>Ears</exclusive>
+    <affectsAllParts>true</affectsAllParts>
+
+    <stage>
+      <capMods>
+        <li><capacity>Hearing</capacity><offset>-0.50</offset></li>
+      </capMods>
+    </stage>
+   </HediffDef>
+   
+   <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationBrainDamage</defName>
+    <label>Brain Damage</label>
+    <description>Colonist's brain tissue has deteriorated, causing the synapses to fire slower and less efficiently, causing him to become deaf and mute.</description>
+    <isBad>true</isBad>
+    <relatedParts><li>Head</li></relatedParts>
+    <affectedParts><li>Brain</li></affectedParts>
+    <exclusive>Brain</exclusive>
+    
+    <likelihood>0.5</likelihood>
+
+    <stage>
+      <capMods>
+        <li><capacity>Hearing</capacity><offset>-1</offset></li>
+        <li><capacity>Sight</capacity><offset>-0.10</offset></li>
+        <li><capacity>Consciousness</capacity><offset>-0.10</offset></li>
+        <li><capacity>Manipulation</capacity><offset>-0.10</offset></li>
+        <li><capacity>Talking</capacity><offset>-1</offset></li>
+      </capMods>
+    </stage>
+   </HediffDef>
+   
+   
+  <HediffDef ParentName="RadiologyMutation" Class="Radiology.MutationDef">
+    <defName>MutationBloatedHeart</defName>
+    <label>Bloated Heart</label>
+    <description>The heart has transformed into a bloated fortress of blood. Colonist enjoys an immense increase in blood pumping capacity, and damage to the body produces large pools of blood.</description>
+    <relatedParts><li>Torso</li></relatedParts>
+    <affectedParts><li>Heart</li></affectedParts>
+    <exclusive>heart</exclusive>
+    
+    <likelihood>0.25</likelihood>
+
+    <stage>
+      <partEfficiencyOffset>1.5</partEfficiencyOffset>
+    </stage>
+    
+    <comps>
+      <li Class="Radiology.MutcompSpawnFilthOnHitProps">
+        <filth>Filth_Blood</filth>
+        <countPerDamage>4</countPerDamage>
+      </li>
+    </comps>
+  </HediffDef>
+ </Defs>

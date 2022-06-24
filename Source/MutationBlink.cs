@@ -43,7 +43,7 @@ namespace Radiology
             Scribe_Values.Look(ref cooldown, "cooldown");
         }
         
-        public override IEnumerable<Gizmo> GetGizmos()
+        public override IEnumerable<Gizmo> GetMutationGizmos()
         {
             if (!def.controlled) yield break;
 

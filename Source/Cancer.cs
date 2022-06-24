@@ -133,10 +133,8 @@ namespace Radiology
             return !diagnosed;
         }
 
-        public override void Tended(float quality, int batchPosition)
+        public override void Tended(float quality, float maxQuality, int batchPosition)
         {
-            // XXX Obsolete?
-
             diagnosed = true;
 
             HashSet<string> apparentTags = new HashSet<string>();
@@ -158,7 +156,7 @@ namespace Radiology
                     continue;
                 }
 
-                // 50% do diagnose wrongly, 50% to not notice
+                // 50% to diagnose wrongly, 50% to not notice
                 if (Rand.Value < 0.5f)
                 {
                     CancerCompDef mistakenDef = def.symptomsPossible.OfType<CancerCompDef>().Where(x => !apparentTags.Contains(x.tag)).RandomElementWithFallback();

@@ -133,7 +133,8 @@ namespace Radiology
             CreateApparel();
         }
 
-        public virtual IEnumerable<Gizmo> GetGizmos()
+        // XXX base game has GetGizmos for HediffWithComps now so this may not be needed; keeping for now
+        public virtual IEnumerable<Gizmo> GetMutationGizmos()
         {
             yield break;
         }

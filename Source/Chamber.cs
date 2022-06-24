@@ -22,7 +22,7 @@ namespace Radiology
             if (pawn != currentUser && ticksCooldown > 0)
                 return "ChamberCooldown";
 
-            Room room = Position.GetRoom(Find.CurrentMap, RegionType.Set_All);
+            Room room = Position.GetRoom(Find.CurrentMap);
             if (room == null || room.PsychologicallyOutdoors)
                 return "ChamberNoRoom";
 

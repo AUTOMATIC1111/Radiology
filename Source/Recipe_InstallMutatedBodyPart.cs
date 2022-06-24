@@ -30,8 +30,8 @@ namespace Radiology
             MedicalRecipesUtility.RestorePartAndSpawnAllPreviousParts(pawn, part, billDoer.Position, billDoer.Map);
             if (IsViolationOnPawn(pawn, part, Faction.OfPlayer))
             {
-                ThoughtUtility.GiveThoughtsForPawnOrganHarvested(pawn);
-                ReportViolation(pawn, billDoer, pawn.FactionOrExtraMiniOrHomeFaction, -70, "GoodwillChangedReason_NeedlesslyInstalledWorseBodyPart".Translate(comp.parent.def.label));
+                ThoughtUtility.GiveThoughtsForPawnOrganHarvested(pawn, billDoer);
+                ReportViolation(pawn, billDoer, pawn.HomeFaction, -70);
             }
 
             for (int i = 0; i < comp.hediffs.Count; i++)
